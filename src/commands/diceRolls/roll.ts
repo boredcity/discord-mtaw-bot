@@ -3,15 +3,15 @@ import {
     Locale,
     SlashCommandBuilder,
 } from 'discord.js'
-import type { BotCommand, LocalizationWithDefault } from '.'
-import { countOptionsBuilder, COUNT_OPTION_NAME } from './common/countOptions'
-import { handleDiceRoll } from './common/handleDiceRoll'
+import type { BotCommand, LocalizationWithDefault } from '..'
+import { countOptionsBuilder, COUNT_OPTION_NAME } from '../common/countOptions'
+import { handleDiceRoll } from '../common/handleDiceRoll'
 import {
     defaultRuleChoice,
     RuleChoiceValue,
     ruleOptionsBuilder,
     RULE_OPTION_NAME,
-} from './common/ruleOptions'
+} from '../common/ruleOptions'
 
 const name = 'roll'
 

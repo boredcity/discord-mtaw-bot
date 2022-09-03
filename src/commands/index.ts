@@ -6,9 +6,9 @@ import {
 } from 'discord.js'
 import { HELP_COMMAND } from './help'
 import { PING_COMMAND } from './ping'
-import { ROLL_COMMAND } from './roll'
-import { CHANCE_COMMAND } from './chance'
-import { R_COMMAND } from './r'
+import { CHANCE_COMMAND } from './diceRolls/chance'
+import { R_COMMAND } from './diceRolls/r'
+import { ROLL_COMMAND } from './diceRolls/roll'
 
 export interface LocalizationWithDefault
     extends Partial<Record<Locale, string>> {

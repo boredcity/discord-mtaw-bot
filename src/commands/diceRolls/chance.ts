@@ -3,8 +3,8 @@ import {
     Locale,
     SlashCommandBuilder,
 } from 'discord.js'
-import type { BotCommand, LocalizationWithDefault } from '.'
-import { getRollResults } from './common/getRollResults'
+import type { BotCommand, LocalizationWithDefault } from '..'
+import { getRollResults } from '../common/getRollResults'
 
 const name = 'chance'
 
