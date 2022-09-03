@@ -11,12 +11,25 @@ const client = new Client({
 for (const handler of ALL_EVENT_HANDLERS) {
     client[handler.once ? 'once' : 'on'](handler.eventName, async (...args) => {
         try {
-            // TODO(merelj): make typesafe
-            console.log(
-                `Handling ${handler.eventName} - ${(
-                    args[0].toJSON() as object
-                ).toString()}`,
-            )
+            console.log(`Handling ${handler.eventName}`)
+            if (
+                'isChatInputCommand' in args[0] &&
+                args[0].isChatInputCommand()
+            ) {
+                const cmd = args[0]
+                if (envs.NODE_ENV === 'development') {
+                    console.log(
+                        `Handling /${
+                            cmd.commandName
+                        } with options ${JSON.stringify(
+                            // no types provided for private fields, use only for debug in development
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            (cmd.options as any)?.['_hoistedOptions'],
+                        )}`,
+                    )
+                }
+            }
+            // TODO(merelj): try to make typesafe
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             await handler.execute(...(args as any))
         } catch (err) {

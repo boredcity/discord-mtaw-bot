@@ -8,6 +8,7 @@ import { HELP_COMMAND } from './help'
 import { PING_COMMAND } from './ping'
 import { ROLL_COMMAND } from './roll'
 import { CHANCE_COMMAND } from './chance'
+import { R_COMMAND } from './r'
 
 export interface LocalizationWithDefault
     extends Partial<Record<Locale, string>> {
@@ -29,6 +30,7 @@ export const ALL_COMMANDS: BotCommand[] = [
     PING_COMMAND,
     ROLL_COMMAND,
     CHANCE_COMMAND,
+    R_COMMAND,
 ].sort((c1, c2) => c1.name.localeCompare(c2.name))
 
 export type ArrayOfOptions<T> = Readonly<

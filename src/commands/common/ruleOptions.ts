@@ -1,4 +1,4 @@
-import { Locale } from 'discord.js'
+import { Locale, SlashCommandStringOption } from 'discord.js'
 import type { ArrayOfOptions } from '..'
 
 export const RULE_OPTION_NAME = 'rule'
@@ -48,3 +48,14 @@ export const ruleChoices: ArrayOfOptions<RuleChoiceValue> = [
         },
     },
 ] as const
+
+export const ruleOptionsBuilder = (option: SlashCommandStringOption) =>
+    option
+        .setRequired(true)
+        .setNameLocalizations({ ru: 'правило' })
+        .setName(RULE_OPTION_NAME)
+        .setDescription('What dice should explode or be rerolled?')
+        .setDescriptionLocalizations({
+            [Locale.Russian]: 'Какие кубы взрывать или перебрасывать?',
+        })
+        .addChoices(...ruleChoices)
