@@ -1,9 +1,11 @@
 import { Routes } from 'discord.js'
 import { REST } from '@discordjs/rest'
 import { envs } from './envs'
-import { ALL_COMMANDS } from './commands/index'
+import { ALL_CHAT_INTERACTION_COMMANDS } from './commands/index'
 
-const commands = ALL_COMMANDS.map((command) => command.builder.toJSON())
+const commands = ALL_CHAT_INTERACTION_COMMANDS.map((command) =>
+    command.builder.toJSON(),
+)
 
 const rest = new REST({ version: '10' }).setToken(envs.BOT_TOKEN)
 

@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from '@discordjs/builders'
 import { EmbedBuilder, Locale } from 'discord.js'
-import type { BotCommand, LocalizationWithDefault } from './index'
-import { ALL_COMMANDS } from './index'
+import type { BotChatCommand, LocalizationWithDefault } from './index'
+import { ALL_CHAT_INTERACTION_COMMANDS } from './index'
 
 const name = 'help'
 
@@ -10,7 +10,7 @@ const description: LocalizationWithDefault = {
     ru: 'показывает полный список команд',
 }
 
-export const HELP_COMMAND: BotCommand = {
+export const HELP_COMMAND: BotChatCommand = {
     name,
     description,
     builder: new SlashCommandBuilder()
@@ -23,14 +23,14 @@ export const HELP_COMMAND: BotCommand = {
         await interaction.deferReply()
         const locale = interaction.locale
         const helpEmbed = new EmbedBuilder()
-        helpEmbed.setTitle('Chronicles of Darkness Helper Bot')
+        helpEmbed.setTitle('Mage the Awakening (2nd Edition) Helper Bot')
         helpEmbed.setDescription(
             locale === Locale.Russian
                 ? 'Этот бот создан, чтоб помочь с играми в сеттинге "Хроники Тьмы"'
                 : 'This discord bot is designed to help you with "Chronicles of Darkness" games',
         )
         helpEmbed.addFields(
-            ALL_COMMANDS.map((c) => ({
+            ALL_CHAT_INTERACTION_COMMANDS.map((c) => ({
                 name: `\`${c.name}\``,
                 value:
                     locale === Locale.Russian

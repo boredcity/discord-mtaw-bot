@@ -7,8 +7,6 @@ export const handleDiceRoll = async (
     count: number | null,
     rule: RuleChoiceValue | null,
 ) => {
-    rule ??= 'rule10Again'
-
     if (!count) {
         return await interaction.reply({
             content:
@@ -18,6 +16,9 @@ export const handleDiceRoll = async (
             ephemeral: true,
         })
     }
+
+    await interaction.deferReply()
+    rule ??= 'rule10Again'
 
     const { successes, rolled } = getRollResults({ count, rule })
 
@@ -34,7 +35,7 @@ export const handleDiceRoll = async (
     let ruleNamePostfix = ''
     if (rule !== defaultRuleChoice) {
         const ruleChoice = ruleChoices.find((c) => c.value === rule)
-        const ruLocale = ruleChoice?.name_localizations.ru
+        const ruLocale = ruleChoice?.name_localizations?.ru
         ruleNamePostfix = ` (${ruleChoice?.name})`
         if (interaction.locale === Locale.Russian && ruLocale) {
             ruleNamePostfix = ` (${ruLocale})`
@@ -54,8 +55,7 @@ export const handleDiceRoll = async (
 
     const detailsText = `\`${rolledString}\` ${ruleNamePostfix}`
 
-    await interaction.reply({
+    await interaction.editReply({
         content: `${detailsText}\n${resultText}`,
-        ephemeral: false,
     })
 }

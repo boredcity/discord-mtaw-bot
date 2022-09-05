@@ -3,15 +3,18 @@ import {
     Locale,
     SlashCommandBuilder,
 } from 'discord.js'
-import type { BotCommand, LocalizationWithDefault } from '..'
-import { countOptionsBuilder, COUNT_OPTION_NAME } from '../common/countOptions'
-import { handleDiceRoll } from '../common/handleDiceRoll'
+import type { BotChatCommand, LocalizationWithDefault } from '..'
+import {
+    diceCountOptionsBuilder,
+    DICE_COUNT_OPTION_NAME,
+} from './common/diceCountOptions'
+import { handleDiceRoll } from './common/handleDiceRoll'
 import {
     defaultRuleChoice,
     RuleChoiceValue,
     ruleOptionsBuilder,
     RULE_OPTION_NAME,
-} from '../common/ruleOptions'
+} from './common/ruleOptions'
 
 const name = 'roll'
 
@@ -27,11 +30,11 @@ const builder = new SlashCommandBuilder()
     .setDescriptionLocalizations({
         [Locale.Russian]: 'Настроить бросок кубов',
     })
-    .addNumberOption(countOptionsBuilder)
+    .addIntegerOption(diceCountOptionsBuilder)
     .addStringOption(ruleOptionsBuilder)
 
 const execute = async (interaction: ChatInputCommandInteraction) => {
-    const count = interaction.options.getNumber(COUNT_OPTION_NAME)
+    const count = interaction.options.getInteger(DICE_COUNT_OPTION_NAME)
 
     const rule: RuleChoiceValue =
         (interaction.options.getString(
@@ -40,7 +43,7 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
 
     await handleDiceRoll(interaction, count, rule)
 }
-export const ROLL_COMMAND: BotCommand = {
+export const ROLL_COMMAND: BotChatCommand = {
     name,
     description,
     execute,

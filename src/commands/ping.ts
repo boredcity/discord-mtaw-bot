@@ -1,10 +1,5 @@
-import {
-    ActionRowBuilder,
-    ChatInputCommandInteraction,
-    SelectMenuBuilder,
-    SlashCommandBuilder,
-} from 'discord.js'
-import type { BotCommand, LocalizationWithDefault } from '.'
+import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js'
+import type { BotChatCommand, LocalizationWithDefault } from '.'
 
 const name = 'ping'
 const description: LocalizationWithDefault = {
@@ -22,4 +17,9 @@ async function execute(interaction: ChatInputCommandInteraction) {
     })
 }
 
-export const PING_COMMAND: BotCommand = { name, description, builder, execute }
+export const PING_COMMAND: BotChatCommand = {
+    name,
+    description,
+    builder,
+    execute,
+}

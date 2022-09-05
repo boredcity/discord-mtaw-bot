@@ -1,5 +1,5 @@
 import { Locale, SlashCommandStringOption } from 'discord.js'
-import type { ArrayOfOptions } from '..'
+import { ArrayOfOptions } from '../..'
 
 export const RULE_OPTION_NAME = 'rule'
 export type RuleChoiceValue =

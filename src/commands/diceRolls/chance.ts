@@ -3,8 +3,8 @@ import {
     Locale,
     SlashCommandBuilder,
 } from 'discord.js'
-import type { BotCommand, LocalizationWithDefault } from '..'
-import { getRollResults } from '../common/getRollResults'
+import type { BotChatCommand, LocalizationWithDefault } from '..'
+import { getRollResults } from './common/getRollResults'
 
 const name = 'chance'
 
@@ -22,6 +22,7 @@ const builder = new SlashCommandBuilder()
     })
 
 const execute = async (interaction: ChatInputCommandInteraction) => {
+    await interaction.deferReply()
     const { successes, rolled } = getRollResults({
         count: 1,
         target: 10,
@@ -38,16 +39,15 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
         content =
             interaction.locale === Locale.Russian
                 ? `${value}...Увы, не повезло 🫣`
-                : `${value}... Sorry, no dice! 🫣`
+                : `${value}...Sorry, no dice! 🫣`
     }
 
-    await interaction.reply({
+    await interaction.editReply({
         content,
-        ephemeral: false,
     })
 }
 
-export const CHANCE_COMMAND: BotCommand = {
+export const CHANCE_COMMAND: BotChatCommand = {
     name,
     description,
     execute,
