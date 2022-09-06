@@ -31,7 +31,7 @@ export const rangeChoices: (SelectMenuComponentOptionData &
         effect: getEffect(0, 1, 1),
         label: `Sympathetic Range (needs Space ●● and Yantra; 1 Reach, -1 Mana)`,
     },
-    // TODO: should I add temporal sympathy?
+    // NOTE: should I add temporal sympathy?
 ]
 
 export const rangeOptionsBuilder = new SelectMenuBuilder()

@@ -22,14 +22,14 @@ for (const handler of ALL_EVENT_HANDLERS) {
                         `Handling /${
                             cmd.commandName
                         } with options ${JSON.stringify(
-                            // no types provided for private fields, use only for debug in development
+                            // NOTE: no types provided for private fields, use only for debug in development
                             // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             (cmd.options as any)?.[`_hoistedOptions`],
                         )}`,
                     )
                 }
             }
-            // TODO(merelj): try to make typesafe
+            // TODO: try to make typesafe
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             await handler.execute(...(args as any))
         } catch (err) {

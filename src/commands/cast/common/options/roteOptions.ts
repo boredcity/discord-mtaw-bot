@@ -20,9 +20,7 @@ export type RoteDescription = {
         | `stamina`
         | `composure`
         | `rank`
-        // TODO: clean
-        | `rank ${string}`
-        | `resistance`
+        // TODO: Should check the rest of this field values against the book
         | string
     description: string
     source: string
@@ -47,7 +45,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `compelling`,
         primaryFactor: `duration`,
-        description: `Apply Poor Light Tilt in area+1 Reach: Apply Blinded Tilt in an area`,
+        description: `Apply Poor Light Tilt in area
++1 Reach: Apply Blinded Tilt in an area`,
         source: `MtAw2 p128`,
         id: `deepen_shadows`,
     },
@@ -57,7 +56,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `knowing`,
         primaryFactor: `potency`,
-        description: `Learn how a subject died+1 Reach: Witness final moments of a corpse's life`,
+        description: `Learn how a subject died
++1 Reach: Witness final moments of a corpse's life`,
         source: `MtAw2 p128`,
         id: `forensic_gaze`,
     },
@@ -67,7 +67,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `compelling`,
         primaryFactor: `duration`,
-        description: `Shape shadows to your liking+1 Reach: Both shape and animate shadows`,
+        description: `Shape shadows to your liking
++1 Reach: Both shape and animate shadows`,
         source: `MtAw2 p128`,
         id: `shadow_sculpting`,
     },
@@ -78,7 +79,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unveiling`,
         primaryFactor: `potency`,
         withstand: `resolve`,
-        description: `Learn about a subjects soul.+1 Reach: Can use spell on unattached souls`,
+        description: `Learn about a subjects soul.
++1 Reach: Can use spell on unattached souls`,
         source: `MtAw2 p128`,
         id: `soul_marks`,
     },
@@ -88,7 +90,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `unveiling`,
         primaryFactor: `duration`,
-        description: `Sense and communicate with ghosts in Twilight. Sense anchors and determine a ghosts rank.+1 Reach: See if an anchor is temporary or permanent+1 Reach: Can be understood by ghosts that don't share your language`,
+        description: `Sense and communicate with ghosts in Twilight. Sense anchors and determine a ghosts rank.
++1 Reach: See if an anchor is temporary or permanent
++1 Reach: Can be understood by ghosts that don't share your language`,
         source: `MtAw2 p128`,
         id: `speak_with_the_dead`,
     },
@@ -98,7 +102,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `veiling`,
         primaryFactor: `duration`,
-        description: `Alter a corpse's apparent time and cause of death.+1 Reach: Can cast this spell on injured living subjects. Turn cuts to burns etc.+1 Reach: Change corpse appearance completely even age and sex`,
+        description: `Alter a corpse's apparent time and cause of death.
++1 Reach: Can cast this spell on injured living subjects. Turn cuts to burns etc.
++1 Reach: Change corpse appearance completely even age and sex`,
         source: `MtAw2 p129`,
         id: `corpse_mask`,
     },
@@ -108,7 +114,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `potency`,
-        description: `Age an object, lowering durability+1 Reach: Decrease structure instead`,
+        description: `Age an object, lowering durability
++1 Reach: Decrease structure instead`,
         source: `MtAw2 p129`,
         id: `decay`,
     },
@@ -128,7 +135,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `shielding`,
         primaryFactor: `potency`,
-        description: `Protects subject form ghostly Numina, Influences and Manifestations as well as Death-Based entities  +1 Reach to protect from the physical attacks of Ghosts`,
+        description: `Protects subject form ghostly Numina, Influences and Manifestations as well as Death-Based entities  
++1 Reach to protect from the physical attacks of Ghosts`,
         source: `MtAw2 p129`,
         id: `ghost_shield`,
     },
@@ -170,7 +178,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `ruling`,
         primaryFactor: `duration`,
         withstand: `resolve`,
-        description: `Trap unattached soul into container+1 Reach: Bind soul to person with the soulless condition. An unwilling person may Withstand.+2 Reach: Spend a point of mana to make this spell lasting`,
+        description: `Trap unattached soul into container
++1 Reach: Bind soul to person with the soulless condition. An unwilling person may Withstand.
++2 Reach: Spend a point of mana to make this spell lasting`,
         source: `MtAw2 p129`,
         id: `soul_jar`,
     },
@@ -191,7 +201,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `veiling`,
         primaryFactor: `duration`,
-        description: `Appear to be a corpse+2 Reach: Spend a point of Mana to cast reflexively`,
+        description: `Appear to be a corpse
++2 Reach: Spend a point of Mana to cast reflexively`,
         source: `MtAw2 p130`,
         id: `suppress_life`,
     },
@@ -221,7 +232,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `duration`,
-        description: `Apply Ice Tilt to area+1 Reach: Also apply Extreme Cold Tilt`,
+        description: `Apply Ice Tilt to area
++1 Reach: Also apply Extreme Cold Tilt`,
         source: `MtAw2 p130`,
         id: `cold_snap`,
     },
@@ -252,7 +264,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `fraying`,
         primaryFactor: `potency`,
         withstand: `resolve`,
-        description: `Can take Willpower or Scour the pattern of an injured person+1 Reach: May affect a healty person who has recently taken damage+1 Reach: Spell does not count toward limit of Scouring per day+1 Reach: Use spell on ghosts`,
+        description: `Can take Willpower or Scour the pattern of an injured person
++1 Reach: May affect a healty person who has recently taken damage
++1 Reach: Spell does not count toward limit of Scouring per day
++1 Reach: Use spell on ghosts`,
         source: `MtAw2 p130`,
         id: `devouring_the_slain`,
     },
@@ -262,7 +277,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `duration`,
-        description: `Create a 2 dimensional gateway that converts anything passing through it into Death-attuned Twilight+1 Reach: Can transform a subject into Twilight directly without a gate`,
+        description: `Create a 2 dimensional gateway that converts anything passing through it into Death-attuned Twilight
++1 Reach: Can transform a subject into Twilight directly without a gate`,
         source: `MtAw2 p130`,
         id: `ghost_gate`,
     },
@@ -273,7 +289,11 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `perfecting`,
         primaryFactor: `duration`,
         withstand: `rank`,
-        description: `Call a ghost in the local area to you+1 Reach: Spell also creates the Open Condition+1 Reach: Can give the ghost a single word command to follow+1 Reach: When near an Iris to the Underworld can call a ghost from there instead+2 Reach: Can give ghost a complex command to follow`,
+        description: `Call a ghost in the local area to you
++1 Reach: Spell also creates the Open Condition
++1 Reach: Can give the ghost a single word command to follow
++1 Reach: When near an Iris to the Underworld can call a ghost from there instead
++2 Reach: Can give ghost a complex command to follow`,
         source: `MtAw2 p131`,
         id: `ghost_summons`,
     },
@@ -293,7 +313,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `duration`,
-        description: `Create a zombie+1 Reach: Create zombie suited for combat+2 Reach: Imbue zombie with exceptional physical prowess`,
+        description: `Create a zombie
++1 Reach: Create zombie suited for combat
++2 Reach: Imbue zombie with exceptional physical prowess`,
         source: `MtAw2 p131`,
         id: `quicken_corpse`,
     },
@@ -303,7 +325,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `perfecting`,
         primaryFactor: `potency`,
-        description: `Can boost ghost's Attributes or heal them+2 Reach: May choose to increase a ghosts Rank. Cost: one mana(optional)`,
+        description: `Can boost ghost's Attributes or heal them
++2 Reach: May choose to increase a ghosts Rank. Cost: one mana(optional)`,
         source: `MtAw2 p131`,
         id: `quicken_ghost`,
     },
@@ -313,7 +336,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `perfecting`,
         primaryFactor: `potency`,
-        description: `Inflict bashing damage+1 Reach: Subject suffers penalty to Social rolls`,
+        description: `Inflict bashing damage
++1 Reach: Subject suffers penalty to Social rolls`,
         source: `MtAw2 p132`,
         id: `rotting_flesh`,
     },
@@ -324,7 +348,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `fraying`,
         primaryFactor: `potency`,
         withstand: `resolve`,
-        description: `Take the soul from a Sleeper. Inflicts the Soulless Condition+1 Reach: Skip the Soulless Condition and inflict the Enervated Condition instead.+2 Reach: Skip both the Soulless and Enervated Conditions and inflict the Thrall Condition instead.`,
+        description: `Take the soul from a Sleeper. Inflicts the Soulless Condition
++1 Reach: Skip the Soulless Condition and inflict the Enervated Condition instead.
++2 Reach: Skip both the Soulless and Enervated Conditions and inflict the Thrall Condition instead.`,
         source: `MtAw2 p132`,
         id: `sever_soul`,
     },
@@ -357,7 +383,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unraveling`,
         primaryFactor: `potency`,
         withstand: `stamina`,
-        description: `Apply either the Leg Wrack Tilt or the Arm Wreck Tilt+1 Reach: Apply the Immobilized Tilt`,
+        description: `Apply either the Leg Wrack Tilt or the Arm Wreck Tilt
++1 Reach: Apply the Immobilized Tilt`,
         source: `MtAw2 p132`,
         id: `enervation`,
     },
@@ -368,7 +395,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unraveling`,
         primaryFactor: `potency`,
         withstand: `rank`,
-        description: `Destroy Manifestation Condition of a ghost or it's hostAdd Mind 2: Spell works on Goetia+1 Reach: Target cannot attempt to recreate destroyed conditions for the duration of the spell`,
+        description: `Destroy Manifestation Condition of a ghost or it's host
+Add Mind 2: Spell works on Goetia
++1 Reach: Target cannot attempt to recreate destroyed conditions for the duration of the spell`,
         source: `MtAw2 p132`,
         id: `exorcism`,
     },
@@ -390,7 +419,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         secondaryRequiredArcana: `Prime ●`,
         practice: `patterning`,
         primaryFactor: `potency`,
-        withstand: `rank + total arcanum dots of rote`,
+        withstand: `rank 
++ total arcanum dots of rote`,
         description: `*Costs 1 Mana* The Mage binds a Ghost to a grimoire, writing its essence into the vessel's pattern. This doesn't host the Ghost's numina or influences. The Grimoire gains the Open and Resonant Conditions. When cast the spell is increased by the Ghost's Rank for Primary Factor however the Ghost has a chance to escape with a Clash of Wills to the caster. When someone memorizes a Rote the Ghost has a chance to possess them using a CLash of Wills. This spell is a Wisdom Sin against Understanding`,
         source: `SoS 86`,
         id: `haunted_grimoire`,
@@ -402,7 +432,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `duration`,
         withstand: `rank`,
-        description: `Grant a ghost a Manifestation conditionAdd Mind 4: Spell works on Goetia`,
+        description: `Grant a ghost a Manifestation condition
+Add Mind 4: Spell works on Goetia`,
         source: `MtAw2 p132`,
         id: `revenant`,
     },
@@ -413,8 +444,11 @@ const rotesList: Readonly<RoteDescription[]> = [
         secondaryRequiredArcana: `Prime ●`,
         practice: `patterning`,
         primaryFactor: `potency`,
-        withstand: `rank of attainment + (10 - caster's gnosis)`,
-        description: `*Cost 1 Mana* Scribe a Daimonomikon for the Mage's Legacy. A Mage must be of Gnosis 2 or above to cast this. Anyone initiated into a Legacy via a Daimonomikon must spend 1 Arcane Experience and if used to learn more Legacy Attainments must use the Experience cost listed for learning without a tutor. These serve as a sympathetic Yantra worth +2 Dice for members of the inscribed Legacy  +1 Reach: For 1 Mana, the Spell's Duration is Lasting`,
+        withstand: `rank of attainment 
++ (10 - caster's gnosis)`,
+        description: `*Cost 1 Mana* Scribe a Daimonomikon for the Mage's Legacy. A Mage must be of Gnosis 2 or above to cast this. Anyone initiated into a Legacy via a Daimonomikon must spend 1 Arcane Experience and if used to learn more Legacy Attainments must use the Experience cost listed for learning without a tutor. These serve as a sympathetic Yantra worth 
++2 Dice for members of the inscribed Legacy  
++1 Reach: For 1 Mana, the Spell's Duration is Lasting`,
         source: `SoS 87`,
         id: `scribe_daimonomikon`,
     },
@@ -437,7 +471,11 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `duration`,
         withstand: `composure`,
-        description: `Graft another Mage's soul stone to your own soul, this does not increase Gnosis but grants a +_1 for soul stone or +2 for complete souls Gnosis for the purpose of Spell casting time, Determining range for Aimed spells, Clash of Wills, Mana spends per turn, spell control, combining spells and Yantras per turn. You also recieve a +2 for Soul Stone and +3 for full souls Gnosis for Calculating Paradox. This is an act against Falling wisdom`,
+        description: `Graft another Mage's soul stone to your own soul, this does not increase Gnosis but grants a 
++_1 for soul stone or 
++2 for complete souls Gnosis for the purpose of Spell casting time, Determining range for Aimed spells, Clash of Wills, Mana spends per turn, spell control, combining spells and Yantras per turn. You also recieve a 
++2 for Soul Stone and 
++3 for full souls Gnosis for Calculating Paradox. This is an act against Falling wisdom`,
         source: `SoS 90`,
         id: `soul_grafting`,
     },
@@ -447,7 +485,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `unraveling`,
         primaryFactor: `potency`,
-        description: `Inflict lethal damage+1 Reach: Spend one Mana, Inflict aggravated damage instead`,
+        description: `Inflict lethal damage
++1 Reach: Spend one Mana, Inflict aggravated damage instead`,
         source: `MtAw2 p133`,
         id: `withering`,
     },
@@ -468,7 +507,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 5,
         practice: `making`,
         primaryFactor: `duration`,
-        description: `Create a gateway to the upper levels of the Underworld. This gives the area a Death Resonance and the Gateway Condition+1 Reach: The gateway can lead to anywhere in the Underworld the mage has been before`,
+        description: `Create a gateway to the upper levels of the Underworld. This gives the area a Death Resonance and the Gateway Condition
++1 Reach: The gateway can lead to anywhere in the Underworld the mage has been before`,
         source: `MtAw2 p133`,
         id: `create_avernian_gate`,
     },
@@ -478,7 +518,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 5,
         practice: `making`,
         primaryFactor: `duration`,
-        description: `Create a ghost of Rank 1. ghost is loyal to you+1 Reach: Spend one Mana, the ghost created is Rank 2`,
+        description: `Create a ghost of Rank 1. ghost is loyal to you
++1 Reach: Spend one Mana, the ghost created is Rank 2`,
         source: `MtAw2 p133`,
         id: `create_ghost`,
     },
@@ -488,7 +529,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 5,
         practice: `unmaking`,
         primaryFactor: `potency`,
-        description: `Reverse the effects of decay and age up to a number of months+1 Reach: Can bring the recently dead back to life. Subject suffers Soulless Condition`,
+        description: `Reverse the effects of decay and age up to a number of months
++1 Reach: Can bring the recently dead back to life. Subject suffers Soulless Condition`,
         source: `MtAw2 p133`,
         id: `deny_the_reaper`,
     },
@@ -509,7 +551,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unmaking`,
         primaryFactor: `potency`,
         withstand: `resolve`,
-        description: `Severs the soul of an Awakened mage. Inflicts the Soulless Conditions+1 Reach: Skip the Soulless Condition and inflict the Enervated Condition instead.+2 Reach: Skip both the Soulless and Enervated Conditions and inflict the Thrall Condition instead.`,
+        description: `Severs the soul of an Awakened mage. Inflicts the Soulless Conditions
++1 Reach: Skip the Soulless Condition and inflict the Enervated Condition instead.
++2 Reach: Skip both the Soulless and Enervated Conditions and inflict the Thrall Condition instead.`,
         source: `MtAw2 p133`,
         id: `sever_the_awakened_soul`,
     },
@@ -520,7 +564,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unveiling`,
         primaryFactor: `potency`,
         withstand: `composure`,
-        description: `Reveal sympathetic connections, who has violated an oath or geas and spells with conditional duration+1 Reach: Detect possession, supernatural mind control and alterations of destiny+2 Reach: Discern information about a persons destiny`,
+        description: `Reveal sympathetic connections, who has violated an oath or geas and spells with conditional duration
++1 Reach: Detect possession, supernatural mind control and alterations of destiny
++2 Reach: Discern information about a persons destiny`,
         source: `MtAw2 p134`,
         id: `interconnections`,
     },
@@ -530,7 +576,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `knowing`,
         primaryFactor: `duration`,
-        description: `Know when the subject breaks or fulfills an oath+1 Reach: Also receive a brief vision of the subject when the oath is fullfilled+1 Reach: Track the subject of the spell+1 Reach: Trigger event may be something that could only be seen by Mage Sight`,
+        description: `Know when the subject breaks or fulfills an oath
++1 Reach: Also receive a brief vision of the subject when the oath is fullfilled
++1 Reach: Track the subject of the spell
++1 Reach: Trigger event may be something that could only be seen by Mage Sight`,
         source: `MtAw2 p135`,
         id: `oaths_fulfilled`,
     },
@@ -551,7 +600,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `compelling`,
         primaryFactor: `potency`,
         withstand: `composure`,
-        description: `Subject of spell receives a minor twist of fate positive or negative in 24 hours. Only hostile applications are Withstood+1 Reach: Spell takes effect within an hour`,
+        description: `Subject of spell receives a minor twist of fate positive or negative in 24 hours. Only hostile applications are Withstood
++1 Reach: Spell takes effect within an hour`,
         source: `MtAw2 p135`,
         id: `reading_the_outmost_eddies`,
     },
@@ -561,7 +611,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `knowing`,
         primaryFactor: `potency`,
-        description: `Reveal what course of action will bring you closer to your goal+1 Reach: When making a roll to achieve your stated goal, you may substitute the used Skill with another of the same type (Mental, Physical, Social)+2 Reach: As above but may substitute any Skill`,
+        description: `Reveal what course of action will bring you closer to your goal
++1 Reach: When making a roll to achieve your stated goal, you may substitute the used Skill with another of the same type (Mental, Physical, Social)
++2 Reach: As above but may substitute any Skill`,
         source: `MtAw2 p135`,
         id: `serendipity`,
     },
@@ -572,7 +624,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `ruling`,
         primaryFactor: `potency`,
         withstand: `composure`,
-        description: `Subject receives a boon or hex. A hex may be withstood+2 Reach: Boon or hex can affect spellcasting rolls+2 Reach: Spend a point of Mana. This spell can be cast reflexive`,
+        description: `Subject receives a boon or hex. A hex may be withstood
++2 Reach: Boon or hex can affect spellcasting rolls
++2 Reach: Spend a point of Mana. This spell can be cast reflexive`,
         source: `MtAw2 p136`,
         id: `exceptional_luck`,
     },
@@ -592,7 +646,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `duration`,
-        description: `Suffer no untrained skill penalties when facing a situation unprepared+1 Reach: Also receive a dice bonus+3 Reach: As above but bonus may apply to spellcasting rolls`,
+        description: `Suffer no untrained skill penalties when facing a situation unprepared
++1 Reach: Also receive a dice bonus
++3 Reach: As above but bonus may apply to spellcasting rolls`,
         source: `MtAw2 p136`,
         id: `fools_rush_in`,
     },
@@ -613,7 +669,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         secondaryRequiredArcana: `Mind ●●`,
         practice: `ruling`,
         primaryFactor: `potency`,
-        description: `Mage states a goal and the Hedge alters itself to fulfill that goal.+1 Reach: Mage may also enact paradigm shifts.`,
+        description: `Mage states a goal and the Hedge alters itself to fulfill that goal.
++1 Reach: Mage may also enact paradigm shifts.`,
         source: `DE2 p377`,
         id: `malleable_thorns`,
     },
@@ -623,7 +680,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `duration`,
-        description: `Find a particular kind of person, place or thing within 24 hours.+1 Reach: Find desired object within an hour`,
+        description: `Find a particular kind of person, place or thing within 24 hours.
++1 Reach: Find desired object within an hour`,
         source: `MtAw2 p136`,
         id: `shifting_the_odds`,
     },
@@ -633,7 +691,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `shielding`,
         primaryFactor: `duration`,
-        description: `Protect a subject against supernatural effect that would alter her fate including supernatural compulsion. Subject may also be excluded form any area-effect spell you may cast+1 Reach: Subject may be excluded from any spell/attainment you cast+2 Reach: Subject may be protected from any supernatural effects that target an area instead of individuals`,
+        description: `Protect a subject against supernatural effect that would alter her fate including supernatural compulsion. Subject may also be excluded form any area-effect spell you may cast
++1 Reach: Subject may be excluded from any spell/attainment you cast
++2 Reach: Subject may be protected from any supernatural effects that target an area instead of individuals`,
         source: `MtAw2 p136`,
         id: `warding_gesture`,
     },
@@ -654,7 +714,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `potency`,
-        description: `Bless or curse an object altering it's equipment bonus+1 Reach: Anybody who caries the item also receives a boon or a hex+1 Reach: Spend a point of Mana. Bonus or penalty may exceed five dice`,
+        description: `Bless or curse an object altering it's equipment bonus
++1 Reach: Anybody who caries the item also receives a boon or a hex
++1 Reach: Spend a point of Mana. Bonus or penalty may exceed five dice`,
         source: `MtAw2 p137`,
         id: `monkey's_paw`,
     },
@@ -665,7 +727,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `weaving`,
         primaryFactor: `potency`,
         withstand: `composure`,
-        description: `Two or more subjects are bound together. Any damage, Tilt or Condition suffered by one will also affect the other+1 Reach: Link is only one way+2 Reach: Subject is not linked to any other subjects. Instead, she suffers any damage, Tilt or Condition she inflicts on others`,
+        description: `Two or more subjects are bound together. Any damage, Tilt or Condition suffered by one will also affect the other
++1 Reach: Link is only one way
++2 Reach: Subject is not linked to any other subjects. Instead, she suffers any damage, Tilt or Condition she inflicts on others`,
         source: `MtAw2 p137`,
         id: `shared_fate`,
     },
@@ -675,7 +739,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `perfecting`,
         primaryFactor: `duration`,
-        description: `Cost: 1 Mana, Gain the rote quality+2 Reach: Rote quality may effect ritual spellcasting but this also doubles the casting time`,
+        description: `Cost: 1 Mana, Gain the rote quality
++2 Reach: Rote quality may effect ritual spellcasting but this also doubles the casting time`,
         source: `MtAw2 p137`,
         id: `superlative_luck`,
     },
@@ -685,7 +750,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `perfecting`,
         primaryFactor: `duration`,
-        description: `Supernaturally enforce a vow. Adhere to the oath and the subject receives a boon, break an she suffers a hex+1 Reach: If spell control is maintained the mage is aware if the spell is a boon or a hex`,
+        description: `Supernaturally enforce a vow. Adhere to the oath and the subject receives a boon, break an she suffers a hex
++1 Reach: If spell control is maintained the mage is aware if the spell is a boon or a hex`,
         source: `MtAw2 p137`,
         id: `sworn_oaths`,
     },
@@ -695,7 +761,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `perfecting`,
         primaryFactor: `duration`,
-        description: `Turn an ordinary object into the object needed to get the job done. During the duration of the spell this item could be conceivable used as the item needed to complete a task. When used for the new purpose the Items equipment bonus is increased (up to 5+) by the Potency, Items not normally used for the situation begin at 0`,
+        description: `Turn an ordinary object into the object needed to get the job done. During the duration of the spell this item could be conceivable used as the item needed to complete a task. When used for the new purpose the Items equipment bonus is increased (up to 5
++) by the Potency, Items not normally used for the situation begin at 0`,
         source: `SoS 64`,
         id: `the_right_tool`,
     },
@@ -706,7 +773,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         secondaryRequiredArcana: `Mind ●●`,
         practice: `weaving`,
         primaryFactor: `duration`,
-        description: `Allow Mages to be valid participants in Wyrd-backed oaths. Failure to follow the oath or breaking it inflicts the Oathbreaker Condition.+2 Reach: The effect is Lasting.`,
+        description: `Allow Mages to be valid participants in Wyrd-backed oaths. Failure to follow the oath or breaking it inflicts the Oathbreaker Condition.
++2 Reach: The effect is Lasting.`,
         source: `DE2 p379`,
         id: `wyrdbound_oaths`,
     },
@@ -717,7 +785,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unraveling`,
         primaryFactor: `potency`,
         withstand: `countered effect's potency`,
-        description: `If a subject is cursed can grant them a quest that, if fulfilled, will lift the curse. Stronger curses require greater quests+1 Reach: Quest can be undertaken by another on the subjects behalf`,
+        description: `If a subject is cursed can grant them a quest that, if fulfilled, will lift the curse. Stronger curses require greater quests
++1 Reach: Quest can be undertaken by another on the subjects behalf`,
         source: `MtAw2 p137`,
         id: `atonement`,
     },
@@ -728,7 +797,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `potency`,
         withstand: `composure`,
-        description: `Can realize complex possibility such as causing a 1.000 coins to turn up heads.+1 Reach: Spend one Mana. This spell when used as an attack can deal aggravated damage`,
+        description: `Can realize complex possibility such as causing a 1.000 coins to turn up heads.
++1 Reach: Spend one Mana. This spell when used as an attack can deal aggravated damage`,
         source: `MtAw2 p138`,
         id: `chaos_mastery`,
     },
@@ -751,7 +821,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `duration`,
         withstand: `resolve`,
-        description: `Allow Changelings to make Goblin Contracts with supernal entities. Releasing Paradox or on a critical failure the contract is made with an abyssal being.Add Death, Mind, or Spirit ●●●●: Allow Changelings to make Contracts with Goetia, ghosts, or spirits.`,
+        description: `Allow Changelings to make Goblin Contracts with supernal entities. Releasing Paradox or on a critical failure the contract is made with an abyssal being.
+Add Death, Mind, or Spirit ●●●●: Allow Changelings to make Contracts with Goetia, ghosts, or spirits.`,
         source: `DE2 p376`,
         id: `masking_the_false_fae`,
     },
@@ -762,8 +833,11 @@ const rotesList: Readonly<RoteDescription[]> = [
         secondaryRequiredArcana: `Prime ●`,
         practice: `patterning`,
         primaryFactor: `potency`,
-        withstand: `rank of attainment + (10 - caster's gnosis)`,
-        description: `*Cost 1 Mana* Scribe a Daimonomikon for the Mage's Legacy. A Mage must be of Gnosis 2 or above to cast this. Anyone initiated into a Legacy via a Daimonomikon must spend 1 Arcane Experience and if used to learn more Legacy Attainments must use the Experience cost listed for learning without a tutor. These serve as a sympathetic Yantra worth +2 Dice for members of the inscribed Legacy  +1 Reach: For 1 Mana, the Spell's Duration is Lasting`,
+        withstand: `rank of attainment 
++ (10 - caster's gnosis)`,
+        description: `*Cost 1 Mana* Scribe a Daimonomikon for the Mage's Legacy. A Mage must be of Gnosis 2 or above to cast this. Anyone initiated into a Legacy via a Daimonomikon must spend 1 Arcane Experience and if used to learn more Legacy Attainments must use the Experience cost listed for learning without a tutor. These serve as a sympathetic Yantra worth 
++2 Dice for members of the inscribed Legacy  
++1 Reach: For 1 Mana, the Spell's Duration is Lasting`,
         source: `SoS 87`,
         id: `scribe_daimonomikon`,
     },
@@ -774,7 +848,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `duration`,
         withstand: `resolve`,
-        description: `The mage can encourage a specific event to befall the subject. The event will come pass when circumstances allow. If the subject's cooperation is required opportunities for this event to come to pass will appear once a week.+1 Reach: Opportunities appear once a day`,
+        description: `The mage can encourage a specific event to befall the subject. The event will come pass when circumstances allow. If the subject's cooperation is required opportunities for this event to come to pass will appear once a week.
++1 Reach: Opportunities appear once a day`,
         source: `MtAw2 p138`,
         id: `strings_of_fate`,
     },
@@ -785,7 +860,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unraveling`,
         primaryFactor: `duration`,
         withstand: `composure`,
-        description: `Can have a variety of effects such as freeing a bound ephemeral entity or dispelling a conditional trigger+2 Reach: Spell's effects are lasting`,
+        description: `Can have a variety of effects such as freeing a bound ephemeral entity or dispelling a conditional trigger
++2 Reach: Spell's effects are lasting`,
         source: `MtAw2 p138`,
         id: `sever_oaths`,
     },
@@ -806,7 +882,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 5,
         practice: `making`,
         primaryFactor: `potency`,
-        description: `Mage gains a number of Intercessions that can be spend reflexively to increase/decrease dice pools or to cause likely events to happen on command+1 Reach: Spend one Intercession and Willpower to cause a low-probability event to pass+2 Reach: Spend one Intercession, Willpower and Mana to let the incredible come to pass`,
+        description: `Mage gains a number of Intercessions that can be spend reflexively to increase/decrease dice pools or to cause likely events to happen on command
++1 Reach: Spend one Intercession and Willpower to cause a low-probability event to pass
++2 Reach: Spend one Intercession, Willpower and Mana to let the incredible come to pass`,
         source: `MtAw2 p140`,
         id: `miracle`,
     },
@@ -817,7 +895,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unmaking`,
         primaryFactor: `potency`,
         withstand: `composure`,
-        description: `Turns the whole world against the subject+1 Reach: Mage can adjust the sensitivity of the curse`,
+        description: `Turns the whole world against the subject
++1 Reach: Mage can adjust the sensitivity of the curse`,
         source: `MtAw2 p139`,
         id: `pariah`,
     },
@@ -847,7 +926,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `compelling`,
         primaryFactor: `duration`,
-        description: `Guide flames along a particular path+1 Reach: Increase or decrease the size of a flame`,
+        description: `Guide flames along a particular path
++1 Reach: Increase or decrease the size of a flame`,
         source: `MtAw2 p140`,
         id: `influence_fire`,
     },
@@ -867,7 +947,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `compelling`,
         primaryFactor: `duration`,
-        description: `Control the flow of heat in an area. Can protect against heat- or cold-related Environments up to level 2(see p.224)+1 Reach: Protect against Environments up to level 3+2 Reach: Protect against Environments up to level 4`,
+        description: `Control the flow of heat in an area. Can protect against heat- or cold-related Environments up to level 2(see p.224)
++1 Reach: Protect against Environments up to level 3
++2 Reach: Protect against Environments up to level 4`,
         source: `MtAw2 p141`,
         id: `influence_heat`,
     },
@@ -877,7 +959,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `unveiling`,
         primaryFactor: `duration`,
-        description: `Suffer no penalty form dim to no light. Bright lights can inflict the Blind Condition+1 Reach: No longer risk the Blind Condition from sudden bright lights`,
+        description: `Suffer no penalty form dim to no light. Bright lights can inflict the Blind Condition
++1 Reach: No longer risk the Blind Condition from sudden bright lights`,
         source: `MtAw2 p141`,
         id: `nightvision`,
     },
@@ -947,7 +1030,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `duration`,
-        description: `Can focus or disperse light, and alter its wavelength on the spectrum+1 Reach: Can create a mirroring effect or a complete black-out which causes the Blinded Tilt or provides substantial cover`,
+        description: `Can focus or disperse light, and alter its wavelength on the spectrum
++1 Reach: Can create a mirroring effect or a complete black-out which causes the Blinded Tilt or provides substantial cover`,
         source: `MtAw2 p142`,
         id: `control_light`,
     },
@@ -957,7 +1041,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `duration`,
-        description: `Amplify or dampen sound, can also influence the direction of sound. Loud sounds can cause the Deafened Tilt in combat+1 Reach: Create an echoing effect which imposes a penalty to stealth rolls+1 Reach: Gain a bonus to hearing-based perception rolls`,
+        description: `Amplify or dampen sound, can also influence the direction of sound. Loud sounds can cause the Deafened Tilt in combat
++1 Reach: Create an echoing effect which imposes a penalty to stealth rolls
++1 Reach: Gain a bonus to hearing-based perception rolls`,
         source: `MtAw2 p142`,
         id: `control_sound`,
     },
@@ -967,7 +1053,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `duration`,
-        description: `Make changes to the weather may create an Extreme Environments up to level 4+1 Reach: Weather changes are more gradual+2 Reach: Required for more drastic changes`,
+        description: `Make changes to the weather may create an Extreme Environments up to level 4
++1 Reach: Weather changes are more gradual
++2 Reach: Required for more drastic changes`,
         source: `MtAw2 p143`,
         id: `control_weather`,
     },
@@ -997,7 +1085,11 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `duration`,
-        description: `Unarmed attacks gain a bonus+1 Reach: Apply the Knocked Down Tilt+1 Reach: Apply the Stunned Tilt+1 Reach: Spell can affect held weapons+2 Reach: Spell affects thrown weapons but can also grant bullets Armor Piercing`,
+        description: `Unarmed attacks gain a bonus
++1 Reach: Apply the Knocked Down Tilt
++1 Reach: Apply the Stunned Tilt
++1 Reach: Spell can affect held weapons
++2 Reach: Spell affects thrown weapons but can also grant bullets Armor Piercing`,
         source: `MtAw2 p143`,
         id: `kinetic_blow`,
     },
@@ -1007,7 +1099,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `duration`,
-        description: `Hijack existing signals and change the transmitted data or its destination+1 Reach: The signal becomes "encrypted" only specific actions will allow somebody to read them`,
+        description: `Hijack existing signals and change the transmitted data or its destination
++1 Reach: The signal becomes "encrypted" only specific actions will allow somebody to read them`,
         source: `MtAw2 p144`,
         id: `transmission`,
     },
@@ -1017,7 +1110,11 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `duration`,
-        description: `See distant objects or better examine small ones+1 Reach: See clearly for miles+1 Reach: Clearly examine dust-sized particles+1 Reach: No longer suffer penalties form atmospheric conditions+2 Reach: Clearly see microscopic particles, even molecular bonds`,
+        description: `See distant objects or better examine small ones
++1 Reach: See clearly for miles
++1 Reach: Clearly examine dust-sized particles
++1 Reach: No longer suffer penalties form atmospheric conditions
++2 Reach: Clearly see microscopic particles, even molecular bonds`,
         source: `MtAw2 p144`,
         id: `zoom_in`,
     },
@@ -1089,7 +1186,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `duration`,
-        description: `Use telekinetic force to lift or manipulate an object remotely. Potency is applied to either Strength or Dexterity the remaining stat becomes 1+1 Reach: Divide Potency between Two of the Three Physical Attributes  +2 Reach: Divide Potency between any of the Three Physical Attributes`,
+        description: `Use telekinetic force to lift or manipulate an object remotely. Potency is applied to either Strength or Dexterity the remaining stat becomes 1
++1 Reach: Divide Potency between Two of the Three Physical Attributes  
++2 Reach: Divide Potency between any of the Three Physical Attributes`,
         source: `MtAw2 p144`,
         id: `telekinesis`,
     },
@@ -1099,7 +1198,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `potency`,
-        description: `Deal bashing damage+1 Reach: Apply the Knocked Down or Stunned Tilt`,
+        description: `Deal bashing damage
++1 Reach: Apply the Knocked Down or Stunned Tilt`,
         source: `MtAw2 p145`,
         id: `telekinetic_strike`,
     },
@@ -1109,7 +1209,11 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `potency`,
-        description: `When applying defense against an object this spell may be used, causing the object to be deflected in an uncontrolled direction though it never reverses direction+1 Reach: Spell can be used as an reflexive action+1 Reach: Mage has control over where the object is deflected, sol long as the new direction is within 90 degrees of the original arc+2 Reach: Objects direction can be completely reversed Ranged weapons hit their usersAdd Time 1: Use a Reach, you can now turn objects too fast for you to apply defense against`,
+        description: `When applying defense against an object this spell may be used, causing the object to be deflected in an uncontrolled direction though it never reverses direction
++1 Reach: Spell can be used as an reflexive action
++1 Reach: Mage has control over where the object is deflected, sol long as the new direction is within 90 degrees of the original arc
++2 Reach: Objects direction can be completely reversed Ranged weapons hit their users
+Add Time 1: Use a Reach, you can now turn objects too fast for you to apply defense against`,
         source: `MtAw2 p145`,
         id: `turn_momentum`,
     },
@@ -1140,7 +1244,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `duration`,
         withstand: `stamina`,
-        description: `Levitate a subject, if unwilling the spell is withstood. You may direct the levitation each turn as an instant action. Without the mages focus the subject simply stops and floats in midair+1 Reach: Subject retains momentum form turn to turn, floating slowly in whatever direction it was last directed in+1 Reach: Subject can fly freely, apply defense normally and a speed equal to the mage's Gnosis+spell's Potency`,
+        description: `Levitate a subject, if unwilling the spell is withstood. You may direct the levitation each turn as an instant action. Without the mages focus the subject simply stops and floats in midair
++1 Reach: Subject retains momentum form turn to turn, floating slowly in whatever direction it was last directed in
++1 Reach: Subject can fly freely, apply defense normally and a speed equal to the mage's Gnosis
++spell's Potency`,
         source: `MtAw2 p145`,
         id: `levitation`,
     },
@@ -1160,7 +1267,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `patterning`,
         primaryFactor: `potency`,
-        description: `Deal lethal damage+1 Reach: Spend one Mana, spell deals aggravated damage`,
+        description: `Deal lethal damage
++1 Reach: Spend one Mana, spell deals aggravated damage`,
         source: `MtAw2 p146`,
         id: `thunderbolt`,
     },
@@ -1170,7 +1278,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `patterning`,
         primaryFactor: `duration`,
-        description: `Transform one type of energy into another of the same level+1 Reach: May decrease the level of transformed energy by one. This Reach can be applied multiply times+1 Reach: Split one type of energy into two others+1 Reach: Spend one Mana, increase the level of transformed energy by one`,
+        description: `Transform one type of energy into another of the same level
++1 Reach: May decrease the level of transformed energy by one. This Reach can be applied multiply times
++1 Reach: Split one type of energy into two others
++1 Reach: Spend one Mana, increase the level of transformed energy by one`,
         source: `MtAw2 p146`,
         id: `transform_energy`,
     },
@@ -1180,7 +1291,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 5,
         practice: `making`,
         primaryFactor: `duration`,
-        description: `Create Extreme Environments of nearly any kind up to level 4+1 Reach: Can create weather drastically different from the local conditions`,
+        description: `Create Extreme Environments of nearly any kind up to level 4
++1 Reach: Can create weather drastically different from the local conditions`,
         source: `MtAw2 p146`,
         id: `adverse_weather`,
     },
@@ -1220,7 +1332,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `knowing`,
         primaryFactor: `duration`,
-        description: `Observe a creature and learn information like species, age, sex and overall health. A supernatural creature's species shows up as unknown unless the mage has studied it's kind before. Can discern amount of dots in physical attributes and any illnesses, injuries, Personal Tilts and Condition on target+1 Reach: May learn a specific Physical Attribute level, rather than just the total number of dots`,
+        description: `Observe a creature and learn information like species, age, sex and overall health. A supernatural creature's species shows up as unknown unless the mage has studied it's kind before. Can discern amount of dots in physical attributes and any illnesses, injuries, Personal Tilts and Condition on target
++1 Reach: May learn a specific Physical Attribute level, rather than just the total number of dots`,
         source: `MtAw2 p148`,
         id: `analyze_life`,
     },
@@ -1230,7 +1343,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `compelling`,
         primaryFactor: `potency`,
-        description: `Help subject resist any toxins in her system+1 Reach: The subject may make a resistance roll immediately, in addition to the normal ones from regular intervals`,
+        description: `Help subject resist any toxins in her system
++1 Reach: The subject may make a resistance roll immediately, in addition to the normal ones from regular intervals`,
         source: `MtAw2 p148`,
         id: `cleanse_the_body`,
     },
@@ -1240,7 +1354,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `unveiling`,
         primaryFactor: `duration`,
-        description: `Heighten desired senses. Grants bonus to perception roles+1 Reach: You can track by scent`,
+        description: `Heighten desired senses. Grants bonus to perception roles
++1 Reach: You can track by scent`,
         source: `MtAw2 p149`,
         id: `heightened_senses`,
     },
@@ -1250,7 +1365,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `unveiling`,
         primaryFactor: `duration`,
-        description: `Magically speak with a specific species of animal. Animals have limited ability to understand things around them, for example a rat may refer to a cat and vampire alike as simply a "predator"+1 Reach: May communicate with all animals rather than only a single species`,
+        description: `Magically speak with a specific species of animal. Animals have limited ability to understand things around them, for example a rat may refer to a cat and vampire alike as simply a "predator"
++1 Reach: May communicate with all animals rather than only a single species`,
         source: `MtAw2 p148`,
         id: `speak_with_beasts`,
     },
@@ -1270,7 +1386,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `duration`,
-        description: `Slow Breathing, Heartbeat and/or Metabolism. Up your Initiative, eliminate or increase body odors and halve healing time for bashing damage+1 Reach: Gain 1/0 armor+2 reach: Half healing time for lethal damage`,
+        description: `Slow Breathing, Heartbeat and/or Metabolism. Up your Initiative, eliminate or increase body odors and halve healing time for bashing damage
++1 Reach: Gain 1/0 armor
++2 reach: Half healing time for lethal damage`,
         source: `MtAw2 p148`,
         id: `body_control`,
     },
@@ -1281,7 +1399,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `ruling`,
         primaryFactor: `duration`,
         withstand: `composure`,
-        description: `Trigger a specific instinctual response in animals(includes humans). Subject suffers a Condition related to the desired  instinct+1 Reach: Control instincts of living supernatural creatures`,
+        description: `Trigger a specific instinctual response in animals(includes humans). Subject suffers a Condition related to the desired  instinct
++1 Reach: Control instincts of living supernatural creatures`,
         source: `MtAw2 p149`,
         id: `control_instincts`,
     },
@@ -1292,7 +1411,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `ruling`,
         primaryFactor: `duration`,
         withstand: `resolve`,
-        description: `Create a lure or repellent that works on a specific organism. Plant and bacteria have 0 resolve for the purposes of this spell+1 Reach: Lured creatures may offer food or small favors a appropriate for the animal+1 Reach: Lured creatures treat the subject good if a lure or bad if a repellent for the purposes of first impressions in Social maneuvering`,
+        description: `Create a lure or repellent that works on a specific organism. Plant and bacteria have 0 resolve for the purposes of this spell
++1 Reach: Lured creatures may offer food or small favors a appropriate for the animal
++1 Reach: Lured creatures treat the subject good if a lure or bad if a repellent for the purposes of first impressions in Social maneuvering`,
         source: `MtAw2 p149`,
         id: `lure_and_repel`,
     },
@@ -1303,7 +1424,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `veiling`,
         primaryFactor: `duration`,
         withstand: `stamina`,
-        description: `Change a subjects appearance, apparent sex, voice, smell, etc. Changes are illusionary, bio-metric devices will still pick up the truth. Cannot imitate specific people+2 Reach: Can duplicate the appearance of a specific person, including fingerprints`,
+        description: `Change a subjects appearance, apparent sex, voice, smell, etc. Changes are illusionary, bio-metric devices will still pick up the truth. Cannot imitate specific people
++2 Reach: Can duplicate the appearance of a specific person, including fingerprints`,
         source: `MtAw2 p149`,
         id: `mutable_mask`,
     },
@@ -1323,7 +1445,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `fraying`,
         primaryFactor: `potency`,
-        description: `Deal bashing damage+1 Reach: Inflict an additional -1 penalty to any wound penalties the target might have`,
+        description: `Deal bashing damage
++1 Reach: Inflict an additional -1 penalty to any wound penalties the target might have`,
         source: `MtAw2 p150`,
         id: `bruise_flesh`,
     },
@@ -1333,7 +1456,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `duration`,
-        description: `Creates a drug that targets the nervous system. Anyone who comes into contact with the Subject is affected by this drug for one scene. The Caster determines if it increases Initiative equal to Potency or penalizes Initiative equal to Potency. The drug affects a living subject as well as any touching it  +1 Reach: Living subjects are Immune but still spread the drug to anything they touch`,
+        description: `Creates a drug that targets the nervous system. Anyone who comes into contact with the Subject is affected by this drug for one scene. The Caster determines if it increases Initiative equal to Potency or penalizes Initiative equal to Potency. The drug affects a living subject as well as any touching it  
++1 Reach: Living subjects are Immune but still spread the drug to anything they touch`,
         source: `SoS 65`,
         id: `contact_high`,
     },
@@ -1344,7 +1468,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `fraying`,
         primaryFactor: `duration`,
         withstand: `stamina`,
-        description: `Reduce a targets Physical Attributes, but only one+1 Reach: Spell may effect two different Physical Attributes`,
+        description: `Reduce a targets Physical Attributes, but only one
++1 Reach: Spell may effect two different Physical Attributes`,
         source: `MtAw2 p150`,
         id: `degrading_the_form`,
     },
@@ -1354,7 +1479,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `perfecting`,
         primaryFactor: `duration`,
-        description: `Raise Strength, Dexterity or Stamina, but no higher than a subjects max for these stats+1 Reach: Spell may effect two different Physical. This effect can be applied twice so that all three attributes may be affected+1 Reach: Spend a point of Mana, may increase stats beyond the allowed maximum`,
+        description: `Raise Strength, Dexterity or Stamina, but no higher than a subjects max for these stats
++1 Reach: Spell may effect two different Physical. This effect can be applied twice so that all three attributes may be affected
++1 Reach: Spend a point of Mana, may increase stats beyond the allowed maximum`,
         source: `MtAw2 p150`,
         id: `honing_the_form`,
     },
@@ -1364,7 +1491,11 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `perfecting`,
         primaryFactor: `potency`,
-        description: `Heal 2 bashing damage per Potency+1 Reach: You can heal Personal Tilts such as Arm Wrack+1 Reach: Can heal damage done by deprivation+1 Reach: Reproduce the effect of night's rest, regain a Willpower point if appropriate+1 Reach: Heal one lethal per Potency instead of 2 Bashing`,
+        description: `Heal 2 bashing damage per Potency
++1 Reach: You can heal Personal Tilts such as Arm Wrack
++1 Reach: Can heal damage done by deprivation
++1 Reach: Reproduce the effect of night's rest, regain a Willpower point if appropriate
++1 Reach: Heal one lethal per Potency instead of 2 Bashing`,
         source: `MtAw2 p150`,
         id: `knit`,
     },
@@ -1387,7 +1518,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `weaving`,
         primaryFactor: `duration`,
         withstand: `stamina`,
-        description: `Like "Mutable Mask" only the changes are real rather than an illusion. Poor vision or other senses can be restored. Missing organs and limbs can not be restored however. You may also rearrange the subjects Physical AttributesAdd Time 3: You can change physical age as well`,
+        description: `Like "Mutable Mask" only the changes are real rather than an illusion. Poor vision or other senses can be restored. Missing organs and limbs can not be restored however. You may also rearrange the subjects Physical Attributes
+Add Time 3: You can change physical age as well`,
         source: `MtAw2 p150`,
         id: `many_faces`,
     },
@@ -1409,7 +1541,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `weaving`,
         primaryFactor: `potency`,
         withstand: `stamina`,
-        description: `Give life features normally belonging to other organisms. Gills, Claws, Senses, Etc.+2 Reach: The bestowed feature, if permanent, can be passed on to a creatures descendants`,
+        description: `Give life features normally belonging to other organisms. Gills, Claws, Senses, Etc.
++2 Reach: The bestowed feature, if permanent, can be passed on to a creatures descendants`,
         source: `MtAw2 p150`,
         id: `transform_life`,
     },
@@ -1420,7 +1553,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `duration`,
         withstand: `stamina`,
-        description: `Cause a lifeform to rapidly grow, at the end of the duration the subject will return to their actual age. If the subject exceeds its natural lifespan, it will die of old age+1 Reach: When the spell ends the subject will rapidly de-age at an even faster rate than they grew, returning to their actual age in minutes. This puts great stress on the target. They must make a Stamina roll and on a failure they will enter a coma for a number of days.`,
+        description: `Cause a lifeform to rapidly grow, at the end of the duration the subject will return to their actual age. If the subject exceeds its natural lifespan, it will die of old age
++1 Reach: When the spell ends the subject will rapidly de-age at an even faster rate than they grew, returning to their actual age in minutes. This puts great stress on the target. They must make a Stamina roll and on a failure they will enter a coma for a number of days.`,
         source: `MtAw2 p151`,
         id: `accelerate_growth`,
     },
@@ -1431,7 +1565,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `duration`,
         withstand: `stamina`,
-        description: `The mage takes complete bodily control of a subject. Difference in gait may be noticeable to those familiair with the subject. The mage's body will be inert while this spell is active+1 Reach: Target behaves more normally, as you understand the targets habits`,
+        description: `The mage takes complete bodily control of a subject. Difference in gait may be noticeable to those familiair with the subject. The mage's body will be inert while this spell is active
++1 Reach: Target behaves more normally, as you understand the targets habits`,
         source: `MtAw2 p151`,
         id: `animal_minion`,
     },
@@ -1441,7 +1576,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `unraveling`,
         primaryFactor: `potency`,
-        description: `Deal lethal damage+1 Reach: Inflict an additional -2 penalty to any wound penalties the target might have+1 Reach: Spend a point of Mana, deal aggravated damage`,
+        description: `Deal lethal damage
++1 Reach: Inflict an additional -2 penalty to any wound penalties the target might have
++1 Reach: Spend a point of Mana, deal aggravated damage`,
         source: `MtAw2 p152`,
         id: `life-force_assault`,
     },
@@ -1452,7 +1589,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         secondaryRequiredArcana: `Prime ●●●●`,
         practice: `patterning`,
         primaryFactor: `potency`,
-        withstand: `total arcanum dots used in the rote + stamina`,
+        withstand: `total arcanum dots used in the rote 
++ stamina`,
         description: `The Mage scribes a single rote per casting of this spell onto a living being. Casting this spell constitutes as an act of Hubris against Understanding Wisdom`,
         source: `SoS 85`,
         id: `living_grimoire`,
@@ -1463,7 +1601,11 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `patterning`,
         primaryFactor: `potency`,
-        description: `Heal 2 lethal wounds per Potency+1 Reach: Can erase scars+1 Reach: Can heal damage done by deprivation+1 Reach: Reproduce the effect of night's rest, regain a Willpower point if appropriate+1 Reach: Spend a point of Mana, can heal aggravated damage`,
+        description: `Heal 2 lethal wounds per Potency
++1 Reach: Can erase scars
++1 Reach: Can heal damage done by deprivation
++1 Reach: Reproduce the effect of night's rest, regain a Willpower point if appropriate
++1 Reach: Spend a point of Mana, can heal aggravated damage`,
         source: `MtAw2 p152`,
         id: `mend`,
     },
@@ -1484,7 +1626,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `potency`,
         withstand: `stamina`,
-        description: `Take on the form of another creature. Clothes and gear do not change with you. Instincts of the new form may need to be resisted with a Composure + Resolve rollAdd Matter 4: Gear changes with you to fit the new form`,
+        description: `Take on the form of another creature. Clothes and gear do not change with you. Instincts of the new form may need to be resisted with a Composure 
++ Resolve roll
+Add Matter 4: Gear changes with you to fit the new form`,
         source: `MtAw2 p152`,
         id: `shapechanging`,
     },
@@ -1494,7 +1638,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 5,
         practice: `making`,
         primaryFactor: `duration`,
-        description: `Design and create any form of life you desire. If cast with finite duration life will disappear at the end of the spell, this may count as an Act of Hubris.Add Mind 5: Give your organism a true mind as appropriate to type+1 Reach: Creature can be given additional features as per "Transform Life"`,
+        description: `Design and create any form of life you desire. If cast with finite duration life will disappear at the end of the spell, this may count as an Act of Hubris.
+Add Mind 5: Give your organism a true mind as appropriate to type
++1 Reach: Creature can be given additional features as per "Transform Life"`,
         source: `MtAw2 p153`,
         id: `create_life`,
     },
@@ -1504,7 +1650,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 5,
         practice: `making`,
         primaryFactor: `potency`,
-        description: `Create minor or life-threatening diseases+1 Reach: Create a never before seen disease. This is likely to be an Act of Hubris as no creature in the world could have developed any defenses against it`,
+        description: `Create minor or life-threatening diseases
++1 Reach: Create a never before seen disease. This is likely to be an Act of Hubris as no creature in the world could have developed any defenses against it`,
         source: `MtAw2 p153`,
         id: `contagion`,
     },
@@ -1514,7 +1661,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 5,
         practice: `unmaking`,
         primaryFactor: `duration`,
-        description: `Destroy life-force in an area. This Creates an Extreme Environment equal to Potency+1 Reach: Individual living things that survive, will still suffer an additional -1 to any wound penalties they might have`,
+        description: `Destroy life-force in an area. This Creates an Extreme Environment equal to Potency
++1 Reach: Individual living things that survive, will still suffer an additional -1 to any wound penalties they might have`,
         source: `MtAw2 p153`,
         id: `salt_the_earth`,
     },
@@ -1524,7 +1672,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `knowing`,
         primaryFactor: `duration`,
-        description: `Study an object for one turn to learn it's intended function. If the object has no purpose that will be revealed instead. If something prevents the object from fulfilling it's function, the spell will reveal the nature of the problem+1 Reach: Learn how to use the studied object. This grants the 8-Again when using the object. Only one object can benefit from this bonus at once+2 Reach: Learn all possible uses for an objectAdd Fate 1: Name a task while casting the spell. All objects that could help you with this task will become obvious to you`,
+        description: `Study an object for one turn to learn it's intended function. If the object has no purpose that will be revealed instead. If something prevents the object from fulfilling it's function, the spell will reveal the nature of the problem
++1 Reach: Learn how to use the studied object. This grants the 8-Again when using the object. Only one object can benefit from this bonus at once
++2 Reach: Learn all possible uses for an object
+Add Fate 1: Name a task while casting the spell. All objects that could help you with this task will become obvious to you`,
         source: `MtAw2 p154`,
         id: `craftsmen's_eye`,
     },
@@ -1534,7 +1685,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `unveiling`,
         primaryFactor: `duration`,
-        description: `Become aware of a chosen type of substance in the area. "Iron", "A knife" and "My hunting Knife" are all valid choicesAdd Time 1: Determine if an object has been in the areaAdd Forces 1: Search for a specific type of electronic information`,
+        description: `Become aware of a chosen type of substance in the area. "Iron", "A knife" and "My hunting Knife" are all valid choices
+Add Time 1: Determine if an object has been in the area
+Add Forces 1: Search for a specific type of electronic information`,
         source: `MtAw2 p154`,
         id: `detect_substance`,
     },
@@ -1544,7 +1697,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `knowing`,
         primaryFactor: `potency`,
-        description: `Become aware of an objects weight, density and the precise elements in it's makeup+1 Reach: Also become aware of any objects hidden within the studied object+1 Reach: You know an object's structural weak points. Reduce Durability by spell PotencyAdd Space 2: Know not only what an object was made of but also where the materials came from`,
+        description: `Become aware of an objects weight, density and the precise elements in it's makeup
++1 Reach: Also become aware of any objects hidden within the studied object
++1 Reach: You know an object's structural weak points. Reduce Durability by spell Potency
+Add Space 2: Know not only what an object was made of but also where the materials came from`,
         source: `MtAw2 p154`,
         id: `discern_composition`,
     },
@@ -1564,7 +1720,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `compelling`,
         primaryFactor: `potency`,
-        description: `Control a mechanical object, to make it fulfill its function+1 Reach: Perform more complex task while controlling the object`,
+        description: `Control a mechanical object, to make it fulfill its function
++1 Reach: Perform more complex task while controlling the object`,
         source: `MtAw2 p155`,
         id: `remote_control`,
     },
@@ -1574,7 +1731,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `shielding`,
         primaryFactor: `potency`,
-        description: `Choose a material, you become largely immune to its deleterious effects. The material cannot inflict bashing damage and lethal damage is reduced by spell Potency. The spell does not protect against damage from a sword or gun+1 Reach: Choose an additional material to be protected against+2 Reach: Your immune to both the bashing and lethal, aggravated damage is reduced by PotencyAdd Forces 2: You are now also protected against the damage from the extreme temperature of a material`,
+        description: `Choose a material, you become largely immune to its deleterious effects. The material cannot inflict bashing damage and lethal damage is reduced by spell Potency. The spell does not protect against damage from a sword or gun
++1 Reach: Choose an additional material to be protected against
++2 Reach: Your immune to both the bashing and lethal, aggravated damage is reduced by Potency
+Add Forces 2: You are now also protected against the damage from the extreme temperature of a material`,
         source: `MtAw2 p155`,
         id: `alchemist's_touch`,
     },
@@ -1584,7 +1744,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `duration`,
-        description: `Improve the balance and heft of an item. This grants it the 9-Again quality+1 Reach: Grant a tool the 8-Again quality instead`,
+        description: `Improve the balance and heft of an item. This grants it the 9-Again quality
++1 Reach: Grant a tool the 8-Again quality instead`,
         source: `MtAw2 p155`,
         id: `find_the_balance`,
     },
@@ -1604,7 +1765,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `veiling`,
         primaryFactor: `duration`,
-        description: `Become invisible to mechanical sensors. Supernatural items enter a Clash of Wills+1 Reach: This spell now also works on constructs animated with magic, like zombies and golems. This triggers a Clash of Wills`,
+        description: `Become invisible to mechanical sensors. Supernatural items enter a Clash of Wills
++1 Reach: This spell now also works on constructs animated with magic, like zombies and golems. This triggers a Clash of Wills`,
         source: `MtAw2 p156`,
         id: `machine_invisibility`,
     },
@@ -1614,7 +1776,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `potency`,
-        description: `Shape liquids and gases in any form you desire in defiance of gravity+1 Reach: Can alter solids as well. Warped tools or weapons will have their equipment bonus reduced by potency, if reduced to 0 the object becomes useless+1 Reach: If creating or repairing an object in an extended action reduce its required successes by this spell's Potency, the number cannot fall below one+2 Reach: The shaping can create an appropriate Environmental Tilt, such as Earthquake, Flooded or Howling Winds`,
+        description: `Shape liquids and gases in any form you desire in defiance of gravity
++1 Reach: Can alter solids as well. Warped tools or weapons will have their equipment bonus reduced by potency, if reduced to 0 the object becomes useless
++1 Reach: If creating or repairing an object in an extended action reduce its required successes by this spell's Potency, the number cannot fall below one
++2 Reach: The shaping can create an appropriate Environmental Tilt, such as Earthquake, Flooded or Howling Winds`,
         source: `MtAw2 p156`,
         id: `shaping`,
     },
@@ -1624,7 +1789,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `duration`,
-        description: `For each level of Potency grant an object one of the following: Raise/lower ballistic Armor by 1, raise/lower general Armor by 1, raise/lower Defense penalty by 1+1 Reach: The armor becomes immune to the Armor-Piercing effect`,
+        description: `For each level of Potency grant an object one of the following: Raise/lower ballistic Armor by 1, raise/lower general Armor by 1, raise/lower Defense penalty by 1
++1 Reach: The armor becomes immune to the Armor-Piercing effect`,
         source: `MtAw2 p156`,
         id: `aegis`,
     },
@@ -1634,7 +1800,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `potency`,
-        description: `Make an object more or less conductive to electricity+1 Reach: Alter an objects conductivity to other forms of energy. Each additional type is an extra Reach`,
+        description: `Make an object more or less conductive to electricity
++1 Reach: Alter an objects conductivity to other forms of energy. Each additional type is an extra Reach`,
         source: `MtAw2 p156`,
         id: `alter_conductivity`,
     },
@@ -1645,7 +1812,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `fraying or perfecting`,
         primaryFactor: `potency`,
         withstand: `durability`,
-        description: `Increase or decrease an objects Durability+1 Reach: Instead of increasing Durability by 1 increase structure by 2+2 Reach: The effect is lasting`,
+        description: `Increase or decrease an objects Durability
++1 Reach: Instead of increasing Durability by 1 increase structure by 2
++2 Reach: The effect is lasting`,
         source: `MtAw2 p156`,
         id: `alter_integrity`,
     },
@@ -1655,7 +1824,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `perfecting`,
         primaryFactor: `potency`,
-        description: `Grant a tool the 8-Again for a number of turns. Valuable objects will have their Availability rating increased, this rating cannot become more than double the original rating+1 Reach: Spend one point of Mana, The object gains the rote quality for a number of rolls. So long as the durability last this effect can be recharged by spending more Mana+1 Reach: Availability may be triple the original rating`,
+        description: `Grant a tool the 8-Again for a number of turns. Valuable objects will have their Availability rating increased, this rating cannot become more than double the original rating
++1 Reach: Spend one point of Mana, The object gains the rote quality for a number of rolls. So long as the durability last this effect can be recharged by spending more Mana
++1 Reach: Availability may be triple the original rating`,
         source: `MtAw2 p157`,
         id: `crucible`,
     },
@@ -1665,7 +1836,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `perfecting`,
         primaryFactor: `duration`,
-        description: `*Cost 1 Mana* The mage takes an ordinary metal (iron, gold, silver, mercury, copper, tin or lead) and transmutes it into its perfected metal.  +2 Reach: The spell may Perfect another substance like Glass or Gemstones  Forces ●●●: May perfect fire`,
+        description: `*Cost 1 Mana* The mage takes an ordinary metal (iron, gold, silver, mercury, copper, tin or lead) and transmutes it into its perfected metal.  
++2 Reach: The spell may Perfect another substance like Glass or Gemstones  Forces ●●●: May perfect fire`,
         source: `SoS 61`,
         id: `hone_the_perfected_form`,
     },
@@ -1675,7 +1847,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `fraying or perfecting`,
         primaryFactor: `potency`,
-        description: `Repair or damage an objects Structure+1 Reach: When damaging ignore durability`,
+        description: `Repair or damage an objects Structure
++1 Reach: When damaging ignore durability`,
         source: `MtAw2 p157`,
         id: `nigredo_and_albedo`,
     },
@@ -1686,7 +1859,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `weaving`,
         primaryFactor: `potency`,
         withstand: `durability`,
-        description: `Increase or decrease an objects sizeAdd Life 3: Can be cast on living subjects, unwilling subjects may Withstand with Stamina`,
+        description: `Increase or decrease an objects size
+Add Life 3: Can be cast on living subjects, unwilling subjects may Withstand with Stamina`,
         source: `MtAw2 p157`,
         id: `shrink_and_grow`,
     },
@@ -1708,7 +1882,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `weaving`,
         primaryFactor: `duration`,
         withstand: `durability`,
-        description: `Change material one step along the path from solid to liquid to gas. This does not cause any temperature change+1 Reach: You may transform solids directly int gas and vice versaAdd Forces 3: You may transmute matter into plasma`,
+        description: `Change material one step along the path from solid to liquid to gas. This does not cause any temperature change
++1 Reach: You may transform solids directly int gas and vice versa
+Add Forces 3: You may transmute matter into plasma`,
         source: `MtAw2 p157`,
         id: `state_change`,
     },
@@ -1718,7 +1894,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `potency`,
-        description: `Deal bashing damage+1 Reach: Create an appropriate Environmental Tilt`,
+        description: `Deal bashing damage
++1 Reach: Create an appropriate Environmental Tilt`,
         source: `MtAw2 p157`,
         id: `windstrike`,
     },
@@ -1728,7 +1905,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `potency`,
-        description: `Integrate multiple machines into one anotherAdd Life 3: Machine properties can be grafted onto a living thing or vice versa`,
+        description: `Integrate multiple machines into one another
+Add Life 3: Machine properties can be grafted onto a living thing or vice versa`,
         source: `MtAw2 p157`,
         id: `wonderful_machine`,
     },
@@ -1748,7 +1926,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `patterning`,
         primaryFactor: `duration`,
-        description: `*Costs 1 Mana* Combine perfected metals into a single metal called Dumanium. The object is Durability 1 and holds 1 point of Mana. Weapons made from Dumanium can spend Mana to deal aggravated Damage for a single attack  +2 Reach: The Spell is Lasting however this relies on all the Metals to remain perfect, should a perfected metal become mundane the alloy will collapse`,
+        description: `*Costs 1 Mana* Combine perfected metals into a single metal called Dumanium. The object is Durability 1 and holds 1 point of Mana. Weapons made from Dumanium can spend Mana to deal aggravated Damage for a single attack  
++2 Reach: The Spell is Lasting however this relies on all the Metals to remain perfect, should a perfected metal become mundane the alloy will collapse`,
         source: `SoS 62`,
         id: `forge_dumanium`,
     },
@@ -1758,7 +1937,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `patterning`,
         primaryFactor: `duration`,
-        description: `*Costs 1 Mana* Combine perfected metals into a single metal that scavenges Mana called Sophis. The object is Durability 1 and can hold 1 Mana. Potency increases this 1 for 1 for Durability and Mana.  +2 Reach: The Spell is Lasting however this relies on all the Metals to remain perfect, should a perfected metal become mundane the alloy will collapse`,
+        description: `*Costs 1 Mana* Combine perfected metals into a single metal that scavenges Mana called Sophis. The object is Durability 1 and can hold 1 Mana. Potency increases this 1 for 1 for Durability and Mana.  
++2 Reach: The Spell is Lasting however this relies on all the Metals to remain perfect, should a perfected metal become mundane the alloy will collapse`,
         source: `SoS 62`,
         id: `forge_sophis`,
     },
@@ -1768,7 +1948,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `patterning`,
         primaryFactor: `duration`,
-        description: `*Costs 1 Mana* Combine perfected metals to create Thaumium, The object is Durability 1 and holds 1 point of Mana which it spends to shield against Magic.  +2 Reach: The Spell is Lasting however this relies on all the Metals to remain perfect, should a perfected metal become mundane the alloy will collapse  Other Arcanum ●●: Thaumium can protect against other types of Magic provided they fall under the Arcanum`,
+        description: `*Costs 1 Mana* Combine perfected metals to create Thaumium, The object is Durability 1 and holds 1 point of Mana which it spends to shield against Magic.  
++2 Reach: The Spell is Lasting however this relies on all the Metals to remain perfect, should a perfected metal become mundane the alloy will collapse  Other Arcanum ●●: Thaumium can protect against other types of Magic provided they fall under the Arcanum`,
         source: `SoS 62`,
         id: `forge_thaumium`,
     },
@@ -1778,7 +1959,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `patterning`,
         primaryFactor: `duration`,
-        description: `Turn objects intangibleAdd Death 3, Mind 3 or Spirit 3: The object may be shifted into the Twilight, attuned to the used Arcanum`,
+        description: `Turn objects intangible
+Add Death 3, Mind 3 or Spirit 3: The object may be shifted into the Twilight, attuned to the used Arcanum`,
         source: `MtAw2 p158`,
         id: `ghostwall`,
     },
@@ -1788,7 +1970,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `patterning`,
         primaryFactor: `potency`,
-        description: `Animate a statue or other objectAdd Death 4 or Spirit 4: A ghost or spirit may serve as the intelligence of the golemAdd Mind 5: Grant true  intelligence see "Psychic Genesis"`,
+        description: `Animate a statue or other object
+Add Death 4 or Spirit 4: A ghost or spirit may serve as the intelligence of the golem
+Add Mind 5: Grant true  intelligence see "Psychic Genesis"`,
         source: `MtAw2 p158`,
         id: `golem`,
     },
@@ -1798,7 +1982,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `patterning`,
         primaryFactor: `potency`,
-        description: `Deal lethal damage+1 Reach: Create an appropriate Environmental Tilt+1 Reach: Spend a point of Mana, deal aggravated damage`,
+        description: `Deal lethal damage
++1 Reach: Create an appropriate Environmental Tilt
++1 Reach: Spend a point of Mana, deal aggravated damage`,
         source: `MtAw2 p158`,
         id: `piercing_earth`,
     },
@@ -1808,7 +1994,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `patterning`,
         primaryFactor: `duration`,
-        description: `Transform any type of matter into another type+1 Reach: Transmute multiply substance into a single substance or vice versa Add Life 4: Transform matter into living things or vice versa`,
+        description: `Transform any type of matter into another type
++1 Reach: Transmute multiply substance into a single substance or vice versa 
+Add Life 4: Transform matter into living things or vice versa`,
         source: `MtAw2 p158`,
         id: `transubstantiation`,
     },
@@ -1819,7 +2007,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unmaking`,
         primaryFactor: `potency`,
         withstand: `durability`,
-        description: `Destroy matter completely+1 Reach: Spend a point of Mana, can now destroy magical objects as well`,
+        description: `Destroy matter completely
++1 Reach: Spend a point of Mana, can now destroy magical objects as well`,
         source: `MtAw2 p158`,
         id: `annihilate_matter`,
     },
@@ -1829,7 +2018,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 5,
         practice: `making`,
         primaryFactor: `potency`,
-        description: `Create an object or relatively uncomplicated tool out of nothing+1 Reach: Create a complex machine or electronic device, like a car or smartphone`,
+        description: `Create an object or relatively uncomplicated tool out of nothing
++1 Reach: Create a complex machine or electronic device, like a car or smartphone`,
         source: `MtAw2 p158`,
         id: `ex_nihilo`,
     },
@@ -1839,7 +2029,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 5,
         practice: `making`,
         primaryFactor: `potency`,
-        description: `Cause a machine to repair Potency in Structure per day+1 Reach: The machine heals every hour+2 Reach: The machine heals every 15 minutes`,
+        description: `Cause a machine to repair Potency in Structure per day
++1 Reach: The machine heals every hour
++2 Reach: The machine heals every 15 minutes`,
         source: `MtAw2 p159`,
         id: `self-repairing_machine`,
     },
@@ -1849,7 +2041,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `knowing`,
         primaryFactor: `potency`,
-        description: `Determine a subject's Virtue, Vice and Mental and Social Attribute levels+1 Reach: Also determine Aspirations and Obsessions`,
+        description: `Determine a subject's Virtue, Vice and Mental and Social Attribute levels
++1 Reach: Also determine Aspirations and Obsessions`,
         source: `MtAw2 p159`,
         id: `know_nature`,
     },
@@ -1860,7 +2053,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unveiling`,
         primaryFactor: `potency`,
         withstand: `composure`,
-        description: `Ask storyteller questions about a subject's mental or emotional state+1 Reach: Read surface thoughts for snippets of a subject's current ideas or words and phrases before they are actually spoken`,
+        description: `Ask storyteller questions about a subject's mental or emotional state
++1 Reach: Read surface thoughts for snippets of a subject's current ideas or words and phrases before they are actually spoken`,
         source: `MtAw2 p159`,
         id: `mental_scan`,
     },
@@ -1870,7 +2064,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `compelling`,
         primaryFactor: `duration`,
-        description: `Perform two Mental or Social extended tasks at the same time. Neither can be a purely Physical task.+1 Reach: May perform two Mental instant tasks at the same time+2 Reach: If in the Astral Realms one of the actions may be "Physical"`,
+        description: `Perform two Mental or Social extended tasks at the same time. Neither can be a purely Physical task.
++1 Reach: May perform two Mental instant tasks at the same time
++2 Reach: If in the Astral Realms one of the actions may be "Physical"`,
         source: `MtAw2 p159`,
         id: `one_mind,_two_thoughts`,
     },
@@ -1901,7 +2097,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `ruling`,
         primaryFactor: `duration`,
         withstand: `composure`,
-        description: `Enter a subject's dream. You can influence but not take part in the dream. Cast on self to be able to remember your own dreams.+1 Reach: You can become an active part of the dream. Cast on self induces lucid dreaming`,
+        description: `Enter a subject's dream. You can influence but not take part in the dream. Cast on self to be able to remember your own dreams.
++1 Reach: You can become an active part of the dream. Cast on self induces lucid dreaming`,
         source: `MtAw2 p160`,
         id: `dream_reaching`,
     },
@@ -1953,7 +2150,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `shielding`,
         primaryFactor: `duration`,
-        description: `Protects the Subject from Mental Attacks, Goetia Powers, Influences or Manifestations that target them. +1 Reach: Also Protects from Physical attacks of Goetia`,
+        description: `Protects the Subject from Mental Attacks, Goetia Powers, Influences or Manifestations that target them. 
++1 Reach: Also Protects from Physical attacks of Goetia`,
         source: `MtAw2 p160`,
         id: `mental_shield`,
     },
@@ -1964,7 +2162,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `shielding`,
         primaryFactor: `duration`,
         withstand: `composure`,
-        description: `The mage can reflect the mental and emotional effects of a Nimbus tilt back onto its source. Whenever the Mage is subjected to a tilt that affects a Mental or Social trait this spell provokes a Clash of Wills. If the mage wins affect the instigator of the Tilt. Can be cast if the Mage is already under the effects of a tilt to immediately create a Clash of Wills  Substitute Life ●●: This Spell affects Nimbus Tilts relating to Physical Traits or purely Physical effects instead  Add Life ●●: This Spell affects all types of Nimbus Tilt  Add Prime ●●: Affects other type of Supernatural Auras with the appropriate kinds of effects`,
+        description: `The mage can reflect the mental and emotional effects of a Nimbus tilt back onto its source. Whenever the Mage is subjected to a tilt that affects a Mental or Social trait this spell provokes a Clash of Wills. If the mage wins affect the instigator of the Tilt. Can be cast if the Mage is already under the effects of a tilt to immediately create a Clash of Wills  Substitute Life ●●: This Spell affects Nimbus Tilts relating to Physical Traits or purely Physical effects instead  
+Add Life ●●: This Spell affects all types of Nimbus Tilt  
+Add Prime ●●: Affects other type of Supernatural Auras with the appropriate kinds of effects`,
         source: `SoS 94`,
         id: `narcissus'_mirror`,
     },
@@ -1975,7 +2175,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `ruling`,
         primaryFactor: `potency`,
         withstand: `resolve`,
-        description: `Send one word commands to a subject that they are compelled to act upon, even against their will+1 Reach: take control of a subject, forcing him to take actions against their will. These actions cannot put him serious danger however+1 Reach: Force the subject to take an additional task`,
+        description: `Send one word commands to a subject that they are compelled to act upon, even against their will
++1 Reach: take control of a subject, forcing him to take actions against their will. These actions cannot put him serious danger however
++1 Reach: Force the subject to take an additional task`,
         source: `MtAw2 p161`,
         id: `physic_domination`,
     },
@@ -1996,7 +2198,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `duration`,
-        description: `By Splitting their senses a mage may view whats happening around their Soul Stone 360° or hears the sounds in its vicinity. This doesn't require sympathetic range Add Forces ●●: The mage may project their voice through the stone to speak or create a hologram of themselves  +1 Reach: The mage experiences the Stone's surroundings with all their Senses+1 Reach: For each reach spent the Mage may split their senses to another Soul Stone`,
+        description: `By Splitting their senses a mage may view whats happening around their Soul Stone 360° or hears the sounds in its vicinity. This doesn't require sympathetic range 
+Add Forces ●●: The mage may project their voice through the stone to speak or create a hologram of themselves  
++1 Reach: The mage experiences the Stone's surroundings with all their Senses
++1 Reach: For each reach spent the Mage may split their senses to another Soul Stone`,
         source: `SoS 90`,
         id: `soul_windows`,
     },
@@ -2007,7 +2212,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `ruling`,
         primaryFactor: `potency`,
         withstand: `composure`,
-        description: `Surface thoughts of the subjects play out in the each others minds. This may grant a bonus or penalty between the subjects. A deliberate message may be send along the link.+1 Reach: Only thoughts that the originating subject wants to share are shared+1 Reach: All subjects have the ability to send and receive thoughts`,
+        description: `Surface thoughts of the subjects play out in the each others minds. This may grant a bonus or penalty between the subjects. A deliberate message may be send along the link.
++1 Reach: Only thoughts that the originating subject wants to share are shared
++1 Reach: All subjects have the ability to send and receive thoughts`,
         source: `MtAw2 p161`,
         id: `telepathy`,
     },
@@ -2019,7 +2226,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `weaving`,
         primaryFactor: `potency`,
         withstand: `total arcanum dots used in rote`,
-        description: `*Costs 1 Mana* Scribe a Rote within ones own Oneiros, these can be cast from the Grimoire without needing to meditate to the Astral  +1 Reach: The Mage can scribe the grimoire within the Temenos making it available to any who travel there. These can only be cast directly from the Astral representation or with its Summoned goetia  +1 Reach: For 1 point of Mana the Spell's duration is lasting  +2 Reach: The Mage can scribe within the Anima Mundi, these don't manifest as books or scrolls but as constellations or rock formations. Figuring these out is a mystery of itself`,
+        description: `*Costs 1 Mana* Scribe a Rote within ones own Oneiros, these can be cast from the Grimoire without needing to meditate to the Astral  
++1 Reach: The Mage can scribe the grimoire within the Temenos making it available to any who travel there. These can only be cast directly from the Astral representation or with its Summoned goetia  
++1 Reach: For 1 point of Mana the Spell's duration is lasting  
++2 Reach: The Mage can scribe within the Anima Mundi, these don't manifest as books or scrolls but as constellations or rock formations. Figuring these out is a mystery of itself`,
         source: `SoS 85`,
         id: `astral_grimoire`,
     },
@@ -2029,7 +2239,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `perfecting`,
         primaryFactor: `potency`,
-        description: `Increase a Mental or Social Attribute by Potency, up to normal limits.+1 Reach: Divide increase between an additional Attribute.+2 Reach: for 1 Mana, go above normal limits.`,
+        description: `Increase a Mental or Social Attribute by Potency, up to normal limits.
++1 Reach: Divide increase between an additional Attribute.
++2 Reach: for 1 Mana, go above normal limits.`,
         source: `MtAw2 p161`,
         id: `augment_mind`,
     },
@@ -2040,7 +2252,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `fraying`,
         primaryFactor: `potency`,
         withstand: `composure or resolve`,
-        description: `Lower a Mental or Social Attributes. One Potency equal one dot to a minimum of one.+1 Reach: May lower an additional Attribute per reach, dividing Potency among the options`,
+        description: `Lower a Mental or Social Attributes. One Potency equal one dot to a minimum of one.
++1 Reach: May lower an additional Attribute per reach, dividing Potency among the options`,
         source: `MtAw2 p163`,
         id: `befuddle`,
     },
@@ -2051,7 +2264,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `fraying`,
         primaryFactor: `duration`,
         withstand: `composure`,
-        description: `This spell creates a breaking point for the subject as a way to relinquish spells without spending a willpower dot. The next act of hubris, braking point or genre equivalent by a subject of this spell suffers penalty by Potency  +1 Reach: The Subject of this spell immediately suffers a breaking point`,
+        description: `This spell creates a breaking point for the subject as a way to relinquish spells without spending a willpower dot. The next act of hubris, braking point or genre equivalent by a subject of this spell suffers penalty by Potency  
++1 Reach: The Subject of this spell immediately suffers a breaking point`,
         source: `SoS 73`,
         id: `broken_relinquishment`,
     },
@@ -2061,7 +2275,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `perfecting`,
         primaryFactor: `duration`,
-        description: `Suppress a Mental Condition or Tilt per Potency, for the Duration. Can't affect Paradox Conditions; those cause by the supernatural provoke a Clash of Wills.+1 Reach: subject gains 1 Willpower.+2 Reach: effect is lasting.`,
+        description: `Suppress a Mental Condition or Tilt per Potency, for the Duration. Can't affect Paradox Conditions; those cause by the supernatural provoke a Clash of Wills.
++1 Reach: subject gains 1 Willpower.
++2 Reach: effect is lasting.`,
         source: `MtAw2 p161`,
         id: `clear_thoughts`,
     },
@@ -2071,7 +2287,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `perfecting`,
         primaryFactor: `duration`,
-        description: `Increase an Skill with already at least one rank by Potency, for the Duration, up to their normal limits.+1 Reach: Divide increase between an additional Skill.+ 2 Reach: for 1 Mana, go above normal limits.`,
+        description: `Increase an Skill with already at least one rank by Potency, for the Duration, up to their normal limits.
++1 Reach: Divide increase between an additional Skill.
++ 2 Reach: for 1 Mana, go above normal limits.`,
         source: `MtAw2 p161`,
         id: `enhance_skill`,
     },
@@ -2093,7 +2311,14 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `perfecting`,
         primaryFactor: `duration`,
         withstand: `rank`,
-        description: `Call the nearest Goetia; one personally known, specified by type of Resonance, or the nearest generally.Add Spirit or Death 2: it gains the Materialized Condition for the duration.+1 Reach: Also creates the Open Condition.+1 Reach: May give it a one-word command.+2 Reach: may give a complex but single task command.+1 Reach: summon a Goetia from the subject's Oneiros at a place one could reach the Astral. Must spend the Mana it would take to enter.+2 Reach: summon from the Temenos.+3 Reach: summon from Anima Mundi.`,
+        description: `Call the nearest Goetia; one personally known, specified by type of Resonance, or the nearest generally.
+Add Spirit or Death 2: it gains the Materialized Condition for the duration.
++1 Reach: Also creates the Open Condition.
++1 Reach: May give it a one-word command.
++2 Reach: may give a complex but single task command.
++1 Reach: summon a Goetia from the subject's Oneiros at a place one could reach the Astral. Must spend the Mana it would take to enter.
++2 Reach: summon from the Temenos.
++3 Reach: summon from Anima Mundi.`,
         source: `MtAw2 p162`,
         id: `goetic_summons`,
     },
@@ -2103,7 +2328,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `duration`,
-        description: `Cause the subject to believe the caster is someone else. Manipulation + Subterfuge every minute if mimicking a specific person. Can't replicate Social Merits; any Doors opened benefit the assumed identity.`,
+        description: `Cause the subject to believe the caster is someone else. Manipulation 
++ Subterfuge every minute if mimicking a specific person. Can't replicate Social Merits; any Doors opened benefit the assumed identity.`,
         source: `MtAw2 p162`,
         id: `imposter`,
     },
@@ -2113,7 +2339,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `fraying`,
         primaryFactor: `potency`,
-        description: `Deal Bashing equal to Potency, mimicking a stroke.+1 Reach: give target -1 to Mental rolls (may stack 3 times).`,
+        description: `Deal Bashing equal to Potency, mimicking a stroke.
++1 Reach: give target -1 to Mental rolls (may stack 3 times).`,
         source: `MtAw2 p162`,
         id: `psychic_assault`,
     },
@@ -2146,7 +2373,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `weaving`,
         primaryFactor: `potency`,
         withstand: `resolve`,
-        description: `Read memories and ideas from target's subconscious.+1 Reach: modify one of the memories read, for the Duration.`,
+        description: `Read memories and ideas from target's subconscious.
++1 Reach: modify one of the memories read, for the Duration.`,
         source: `MtAw2 p162`,
         id: `read_the_depths`,
     },
@@ -2167,7 +2395,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         secondaryRequiredArcana: `Prime ●`,
         practice: `patterning`,
         primaryFactor: `potency`,
-        withstand: `total arcanum dots of rote + rank`,
+        withstand: `total arcanum dots of rote 
++ rank`,
         description: `*Costs 1 Mana* The Mage binds a Goetia to a grimoire, writing its essence into the vessel's pattern. This doesn't host the Goetia's numina or influences nor does it have an essence pool. The Grimoire gains the Open and Resonant Conditions. When cast the spell is increased by the Goetia Rank for Primary Factor however the Goetia has a chance to escape with a Clash of Wills to the caster. When someone memorizes a Rote the Goetia has a chance to possess them using a Clash of Wills. This spell is a Wisdom Sin against Understanding`,
         source: `SoS 86`,
         id: `haunted_grimoire`,
@@ -2189,7 +2418,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `patterning`,
         primaryFactor: `duration`,
-        description: `Increase a Skill by Potency. This cannot go above the normal maximum.+1 Reach: Divide the increase between an additional Skill.+ 1 Reach: for 1 Mana, go above normal limits.`,
+        description: `Increase a Skill by Potency. This cannot go above the normal maximum.
++1 Reach: Divide the increase between an additional Skill.
++ 1 Reach: for 1 Mana, go above normal limits.`,
         source: `MtAw2 p163`,
         id: `gain_skill`,
     },
@@ -2200,7 +2431,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `duration`,
         withstand: `rank of entity`,
-        description: `May convert pieces of a persons Psyche from a soul stone into a Goetia+2 Reach: The Mage may extract the Goetia directly into his own Oneiros`,
+        description: `May convert pieces of a persons Psyche from a soul stone into a Goetia
++2 Reach: The Mage may extract the Goetia directly into his own Oneiros`,
         source: `SoS 90`,
         id: `goetic_evocatuion`,
     },
@@ -2211,7 +2443,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `potency`,
         withstand: `composure`,
-        description: `Create an illusion that affects all senses but touch.+1 Reach: The illusion can now be "touched" by the subject. It cannot harm or attack.`,
+        description: `Create an illusion that affects all senses but touch.
++1 Reach: The illusion can now be "touched" by the subject. It cannot harm or attack.`,
         source: `MtAw2 p163`,
         id: `hallucination`,
     },
@@ -2221,7 +2454,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `unraveling`,
         primaryFactor: `potency`,
-        description: `Deal lethal damage.+1 Reach: Cause Insane Tilt +2 Reach: Spend a point of Mana, deal aggravated damage`,
+        description: `Deal lethal damage.
++1 Reach: Cause Insane Tilt 
++2 Reach: Spend a point of Mana, deal aggravated damage`,
         source: `MtAw2 p164`,
         id: `mind_flay`,
     },
@@ -2232,7 +2467,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `duration`,
         withstand: `resolve`,
-        description: `Astral project into Twilight or into somebody's dreams.Add Spirit 2: May project into the Shadow. Withstand is Gauntlet rating.`,
+        description: `Astral project into Twilight or into somebody's dreams.
+Add Spirit 2: May project into the Shadow. Withstand is Gauntlet rating.`,
         source: `MtAw2 p164`,
         id: `psychic_projection`,
     },
@@ -2243,7 +2479,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `potency`,
         withstand: `resolve`,
-        description: `For each point of Potency change one of the followin: Virtue, Vice, Short-Term Aspiration, Long-Term Aspiration, Obsession, a non-Physical Persistent Condition, or may move one dot between two Social Skills, or between two Mental Skills.+1 Reach: May also move between two Social Attributes, or two Mental Attributes.`,
+        description: `For each point of Potency change one of the followin: Virtue, Vice, Short-Term Aspiration, Long-Term Aspiration, Obsession, a non-Physical Persistent Condition, or may move one dot between two Social Skills, or between two Mental Skills.
++1 Reach: May also move between two Social Attributes, or two Mental Attributes.`,
         source: `MtAw2 p164`,
         id: `psychic_reprogramming`,
     },
@@ -2254,8 +2491,11 @@ const rotesList: Readonly<RoteDescription[]> = [
         secondaryRequiredArcana: `Prime ●`,
         practice: `patterning`,
         primaryFactor: `potency`,
-        withstand: `rank of attainment + (10 - caster's gnosis)`,
-        description: `*Cost 1 Mana* Scribe a Daimonomikon for the Mage's Legacy. A Mage must be of Gnosis 2 or above to cast this. Anyone initiated into a Legacy via a Daimonomikon must spend 1 Arcane Experience and if used to learn more Legacy Attainments must use the Experience cost listed for learning without a tutor. These serve as a sympathetic Yantra worth +2 Dice for members of the inscribed Legacy  +1 Reach: For 1 Mana, the Spell's Duration is Lasting`,
+        withstand: `rank of attainment 
++ (10 - caster's gnosis)`,
+        description: `*Cost 1 Mana* Scribe a Daimonomikon for the Mage's Legacy. A Mage must be of Gnosis 2 or above to cast this. Anyone initiated into a Legacy via a Daimonomikon must spend 1 Arcane Experience and if used to learn more Legacy Attainments must use the Experience cost listed for learning without a tutor. These serve as a sympathetic Yantra worth 
++2 Dice for members of the inscribed Legacy  
++1 Reach: For 1 Mana, the Spell's Duration is Lasting`,
         source: `SoS 87`,
         id: `scribe_daimonomikon`,
     },
@@ -2266,7 +2506,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `potency`,
         withstand: `composure`,
-        description: `Cause the Insensate Tilt for the duration or until it's resolved+1 Reach: Inflict Broken Condition instead`,
+        description: `Cause the Insensate Tilt for the duration or until it's resolved
++1 Reach: Inflict Broken Condition instead`,
         source: `MtAw2 p164`,
         id: `terrorize`,
     },
@@ -2299,7 +2540,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unmaking`,
         primaryFactor: `potency`,
         withstand: `resolve`,
-        description: `Remove large portions of the subjects memories, inflicts the Amnesia Tilt for the duration of the spell. You can affect one month of time per level Potency. You can specify what portions are forgotten.+1 Reach: May specify what memories are erased, rather than just erasing a single span of time.+2 Reach: The effect is Lasting`,
+        description: `Remove large portions of the subjects memories, inflicts the Amnesia Tilt for the duration of the spell. You can affect one month of time per level Potency. You can specify what portions are forgotten.
++1 Reach: May specify what memories are erased, rather than just erasing a single span of time.
++2 Reach: The effect is Lasting`,
         source: `MtAw2 p164`,
         id: `mind_wipe`,
     },
@@ -2309,7 +2552,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 5,
         practice: `making`,
         primaryFactor: `duration`,
-        description: `Create a self-aware intelligence. This is a Rank 1 Goetia in Twilight.+1 Reach: The entity works as a sleepwalker for the purposes of assisting ritual casting.+1 Reach: For one Mana, the rank is 2`,
+        description: `Create a self-aware intelligence. This is a Rank 1 Goetia in Twilight.
++1 Reach: The entity works as a sleepwalker for the purposes of assisting ritual casting.
++1 Reach: For one Mana, the rank is 2`,
         source: `MtAw2 p165`,
         id: `psychic_genesis`,
     },
@@ -2330,7 +2575,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `compelling`,
         primaryFactor: `potency`,
         withstand: `arcanum rating of the subject spell's caster`,
-        description: `Temporarily suppress or destroy an active spellAdd Fate 1: Selectively suppress spell+2 Reach: Make the effect Lasting`,
+        description: `Temporarily suppress or destroy an active spell
+Add Fate 1: Selectively suppress spell
++2 Reach: Make the effect Lasting`,
         source: `MtAw2 p 165`,
         id: `dispel_magic`,
     },
@@ -2350,7 +2597,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `unveiling`,
         primaryFactor: `duration`,
-        description: `See through falsehoods magical and mundane+1 Reach: Get a sense of the actual truth`,
+        description: `See through falsehoods magical and mundane
++1 Reach: Get a sense of the actual truth`,
         source: `MtAw2 p 165`,
         id: `pierce_deception`,
     },
@@ -2360,7 +2608,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `unveiling`,
         primaryFactor: `duration`,
-        description: `Reveal ley lines and nodes+1 Reach: Reveal HallowsAdd Death 1 or Spirit 1: See Avernian Gates or Loci as well.`,
+        description: `Reveal ley lines and nodes
++1 Reach: Reveal Hallows
+Add Death 1 or Spirit 1: See Avernian Gates or Loci as well.`,
         source: `MtAw2 p 166`,
         id: `sacred_geometry`,
     },
@@ -2371,7 +2621,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `compelling`,
         primaryFactor: `potency`,
         withstand: `total arcanum dots of all arcana used in the spell being scribed`,
-        description: `Create a Grimoire full of Rotes or transcribe it from one medium to another+1 Reach: Make the Grimoire LastingAdd Forces ●●: Transcribe the grimoire without needed equipment.`,
+        description: `Create a Grimoire full of Rotes or transcribe it from one medium to another
++1 Reach: Make the Grimoire Lasting
+Add Forces ●●: Transcribe the grimoire without needed equipment.`,
         source: `MtAw2 p 166, SoS p83`,
         id: `scribe_grimoire`,
     },
@@ -2382,7 +2634,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unveiling`,
         primaryFactor: `duration`,
         withstand: `resolve`,
-        description: `*Cost 1+ Mana per Arcanum per subject* Share your Mage sight with another Mage  Prime ●●●●: Can be used on a Sleepwalker under the effects of Apocalypse  Other Arcanum ●: *1 Mana per Arcanum* May add or substitute Prime for another Arcanum`,
+        description: `*Cost 1
++ Mana per Arcanum per subject* Share your Mage sight with another Mage  Prime ●●●●: Can be used on a Sleepwalker under the effects of Apocalypse  Other Arcanum ●: *1 Mana per Arcanum* May add or substitute Prime for another Arcanum`,
         source: `SoS 28`,
         id: `shared_mage_sight`,
     },
@@ -2392,7 +2645,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `compelling`,
         primaryFactor: `potency`,
-        description: `The Mage flares her Immediate Nimbus to imprint her signature on a subject, The signature reflects her Shadow Name and lasts for the Duration of the spell. Anyone who Studies the nimbus under focused mage sight can not only sense the details of the Nimbus but the Casters Supernal Identity. This moves the Caster one impression level up the Social Maneuvering unless the viewer succeeds a Resolve + Composure - Potency roll`,
+        description: `The Mage flares her Immediate Nimbus to imprint her signature on a subject, The signature reflects her Shadow Name and lasts for the Duration of the spell. Anyone who Studies the nimbus under focused mage sight can not only sense the details of the Nimbus but the Casters Supernal Identity. This moves the Caster one impression level up the Social Maneuvering unless the viewer succeeds a Resolve 
++ Composure - Potency roll`,
         source: `SoS 93`,
         id: `supernal_signature`,
     },
@@ -2402,7 +2656,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `unveiling`,
         primaryFactor: `potency`,
-        description: `Perceive the Supernal properties of a subject+1 Reach: Perceive the non-Supernal magical properties of a subject`,
+        description: `Perceive the Supernal properties of a subject
++1 Reach: Perceive the non-Supernal magical properties of a subject`,
         source: `MtAw2 p 166`,
         id: `supernal_vision`,
     },
@@ -2412,7 +2667,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `compelling`,
         primaryFactor: `potency`,
-        description: `Bypass triggers to activate magical effectsAdd Any Other Arcanum 1: Add another Arcanum to activate magical effects and objects created by other sources of power`,
+        description: `Bypass triggers to activate magical effects
+Add Any Other Arcanum 1: 
+Add another Arcanum to activate magical effects and objects created by other sources of power`,
         source: `MtAw2 p 166`,
         id: `word_of_command`,
     },
@@ -2422,7 +2679,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `duration`,
-        description: `Empower Yantras with 9-Again on spellcasting rolls+1 Reach: Make it 8-again`,
+        description: `Empower Yantras with 9-Again on spellcasting rolls
++1 Reach: Make it 8-again`,
         source: `MtAw2 p 166`,
         id: `as_above,_so_below`,
     },
@@ -2432,7 +2690,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `veiling`,
         primaryFactor: `duration`,
-        description: `Veil Nimbus and emotional state of auras. Attempts to see are subject to a Clash of Wills. Immediate Nimbus does not flare unless the caster chooses to. Signature Nimbus viewed by Mage Sight provokes Clash of Wills. Flaring or imprinting your Nimbus will immediately end this spell+1 Reach: Make your Nimbus appear lesser. For every Reach you may lower any of Gnosis, Mana or Arcanum to a desired lower false Trait value`,
+        description: `Veil Nimbus and emotional state of auras. Attempts to see are subject to a Clash of Wills. Immediate Nimbus does not flare unless the caster chooses to. Signature Nimbus viewed by Mage Sight provokes Clash of Wills. Flaring or imprinting your Nimbus will immediately end this spell
++1 Reach: Make your Nimbus appear lesser. For every Reach you may lower any of Gnosis, Mana or Arcanum to a desired lower false Trait value`,
         source: `MtAw2 p 167`,
         id: `cloak_nimbus`,
     },
@@ -2442,7 +2701,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `potency`,
-        description: `*Costs 1 Mana* The mage copies one whole grimoire into two or more disparate parts that individually mean nothing. Only someone with all parts may use the rotes within the Grimoire</br> +1 Reach: The mage may fracture the Grimoire into as many pieces as she wants.`,
+        description: `*Costs 1 Mana* The mage copies one whole grimoire into two or more disparate parts that individually mean nothing. Only someone with all parts may use the rotes within the Grimoire</br> 
++1 Reach: The mage may fracture the Grimoire into as many pieces as she wants.`,
         source: `SoS 84`,
         id: `fractured_grimoire`,
     },
@@ -2472,7 +2732,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `veiling`,
         primaryFactor: `duration`,
-        description: `Once a Mage has scrutinized an Immediate or Signature Nimbus with Focused mage sight she may cast this spell to disguise her own Nimbus as the Scrutinized one. If its the Immediate Nimbus it copies the Tilts of the Forged one instead of her own, if Signature nimbus any spell left behind holds the Forged one instead of her own until this spells duration ends. Any attempt to pierce the deception results with a Clash of Wills  +1 Reach: The Mage Forges all three types of nimbus with one casting even if she's only scrutinized one.`,
+        description: `Once a Mage has scrutinized an Immediate or Signature Nimbus with Focused mage sight she may cast this spell to disguise her own Nimbus as the Scrutinized one. If its the Immediate Nimbus it copies the Tilts of the Forged one instead of her own, if Signature nimbus any spell left behind holds the Forged one instead of her own until this spells duration ends. Any attempt to pierce the deception results with a Clash of Wills  
++1 Reach: The Mage Forges all three types of nimbus with one casting even if she's only scrutinized one.`,
         source: `SoS 94`,
         id: `nimbus_forgery`,
     },
@@ -2483,7 +2744,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `veiling`,
         primaryFactor: `potency`,
         withstand: `opacity`,
-        description: `Add Spell's Potency to the Opacity of the Subject Mystery  +1 Reach: Every Reach spent allows mage to plant 1 falsehood of Surface or Deep information. Recognizing this is a Clash of Wills when focused on with Focused Mage Sight.`,
+        description: `
+Add Spell's Potency to the Opacity of the Subject Mystery  
++1 Reach: Every Reach spent allows mage to plant 1 falsehood of Surface or Deep information. Recognizing this is a Clash of Wills when focused on with Focused Mage Sight.`,
         source: `SoS 28`,
         id: `path_to_jerusalem`,
     },
@@ -2504,7 +2767,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         secondaryRequiredArcana: `Time ●`,
         practice: `ruling`,
         primaryFactor: `duration`,
-        description: `The mage casts this on a Signature Nimbus she's studied under Focused Mage Sight. Rather than fading like normal the Nimbus persists for the Duration of the spell, Once the Duration expires it fades at its usual rate  +2 Reach: Duration is Lasting`,
+        description: `The mage casts this on a Signature Nimbus she's studied under Focused Mage Sight. Rather than fading like normal the Nimbus persists for the Duration of the spell, Once the Duration expires it fades at its usual rate  
++2 Reach: Duration is Lasting`,
         source: `SoS 93`,
         id: `sustain_nimbus`,
     },
@@ -2534,7 +2798,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `potency`,
-        description: `Attack with shrieking aetheric wind+1 Reach: Create Heavy Winds Environmental Tilt+1 Reach: Destroy target's Mana instead of dealing damage`,
+        description: `Attack with shrieking aetheric wind
++1 Reach: Create Heavy Winds Environmental Tilt
++1 Reach: Destroy target's Mana instead of dealing damage`,
         source: `MtAw2 p 168`,
         id: `aetheric_winds`,
     },
@@ -2544,7 +2810,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `duration`,
-        description: `*Cost 1 Mana* This spell enchants a Camera, video recorder or similar device and allows it to record Supernal Energies allowing a mage to study the recordings using Active and Focused mage sight. +2 Reach: 1 Mana to make the recordings Lasting`,
+        description: `*Cost 1 Mana* This spell enchants a Camera, video recorder or similar device and allows it to record Supernal Energies allowing a mage to study the recordings using Active and Focused mage sight. 
++2 Reach: 1 Mana to make the recordings Lasting`,
         source: `SoS 28`,
         id: `camera_obscura`,
     },
@@ -2554,7 +2821,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `potency`,
-        description: `Move Mana equal to Potency between vessels(mages, Hallows, etc). This cannot exceed Gnosis-derived the Mana per turn limit though+1 Reach: Ignore Mana per turn limit for this spell`,
+        description: `Move Mana equal to Potency between vessels(mages, Hallows, etc). This cannot exceed Gnosis-derived the Mana per turn limit though
++1 Reach: Ignore Mana per turn limit for this spell`,
         source: `MtAw2 p 168`,
         id: `channel_mana`,
     },
@@ -2574,7 +2842,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `duration`,
-        description: `Imagos become visible to all forms of Active Mage Sight+2 Reach: For one Mana all attempts to Counterspell gain the Rote QualityAdd Fate ●: Make clauses of fae Contracts visible.`,
+        description: `Imagos become visible to all forms of Active Mage Sight
++2 Reach: For one Mana all attempts to Counterspell gain the Rote Quality
+Add Fate ●: Make clauses of fae Contracts visible.`,
         source: `MtAw2 p 168, DE2 379`,
         id: `display_of_power`,
     },
@@ -2584,7 +2854,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `duration`,
-        description: `Subject becomes solid to any and all Twilight entities+2 Reach: For one Mana, if the subject is a weapon it will inflict aggravated damage to one specified Twilight entity. Every additional entity costs one Mana`,
+        description: `Subject becomes solid to any and all Twilight entities
++2 Reach: For one Mana, if the subject is a weapon it will inflict aggravated damage to one specified Twilight entity. Every additional entity costs one Mana`,
         source: `MtAw2 p 169`,
         id: `ephemeral_enchantment`,
     },
@@ -2625,7 +2896,13 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `perfecting`,
         primaryFactor: `potency`,
-        description: `*Cost 1+ Mana* - Create a simple Tass object or tool of Size 5 or less from Mana. Durability is 1 and contains one Mana. Potency may be allocated to the following effects: Increase Durability by +1, Increase Mana capacity by +1, If a tool add +1 equipment bonus though each use of the tool now uses one up Mana. When all Mana is used up the object crumbles. If the spell expires any unused Mana will be lost+1 Reach: If a tool it gains the 8-Again+2 Reach: Effect is Lasting(Still crumbles if all Mana is expended or absorbed)`,
+        description: `*Cost 1
++ Mana* - Create a simple Tass object or tool of Size 5 or less from Mana. Durability is 1 and contains one Mana. Potency may be allocated to the following effects: Increase Durability by 
++1, Increase Mana capacity by 
++1, If a tool add 
++1 equipment bonus though each use of the tool now uses one up Mana. When all Mana is used up the object crumbles. If the spell expires any unused Mana will be lost
++1 Reach: If a tool it gains the 8-Again
++2 Reach: Effect is Lasting(Still crumbles if all Mana is expended or absorbed)`,
         source: `MtAw2 p 169`,
         id: `platonic_form`,
     },
@@ -2636,7 +2913,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `weaving`,
         primaryFactor: `duration`,
         withstand: `resolve`,
-        description: `*Cost 1+ Mana* This spell alters the imbument process, creating an item that will always target the user. The subject of the spell must be a mage.`,
+        description: `*Cost 1
++ Mana* This spell alters the imbument process, creating an item that will always target the user. The subject of the spell must be a mage.`,
         source: `SoS 72`,
         id: `primary_subject`,
     },
@@ -2647,7 +2925,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         secondaryRequiredArcana: `Time ●●`,
         practice: `weaving`,
         primaryFactor: `potency`,
-        description: `You may discern all signature Nimbuses associated with the Subject, This spell reduces the difficulty to Focused Mage Sight to scrutinize the subject for a signature Nimbus and reveals all Nimbuses associated with the subject. Add Potency as bonus die to reveal them. +1 Reach: Add bonus dice equal to Potency to Clash of Wills to reveal an obscured Signature Nimbus`,
+        description: `You may discern all signature Nimbuses associated with the Subject, This spell reduces the difficulty to Focused Mage Sight to scrutinize the subject for a signature Nimbus and reveals all Nimbuses associated with the subject. Add Potency as bonus die to reveal them. 
++1 Reach: Add bonus dice equal to Potency to Clash of Wills to reveal an obscured Signature Nimbus`,
         source: `SoS 74`,
         id: `reveal_marks`,
     },
@@ -2657,8 +2936,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `potency`,
-        withstand: `rotes total arcanum dots +1`,
-        description: `*Costs 1 Mana* Like "Scribe Grimoire" this spell gives physical form to a single rote's symbols using a Grimoire that has had its contents erased, scrubbed, scribbled out, painted over or otherwise made unreadable. The Storyteller chooses one Arcanum when the character casts this spell. Whenever a character later casts the rote from the completed Grimoire, it acts as though it incorporated dots of the chosen Arcanum equal to this spell's Potency, creating unpredictable blended effects. +1 Reach: For 1 point of Mana, the spell's Duration is Lasting`,
+        withstand: `rotes total arcanum dots 
++1`,
+        description: `*Costs 1 Mana* Like "Scribe Grimoire" this spell gives physical form to a single rote's symbols using a Grimoire that has had its contents erased, scrubbed, scribbled out, painted over or otherwise made unreadable. The Storyteller chooses one Arcanum when the character casts this spell. Whenever a character later casts the rote from the completed Grimoire, it acts as though it incorporated dots of the chosen Arcanum equal to this spell's Potency, creating unpredictable blended effects. 
++1 Reach: For 1 point of Mana, the spell's Duration is Lasting`,
         source: `SoS 84`,
         id: `scribe_palimpsest`,
     },
@@ -2713,7 +2994,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `duration`,
         withstand: `resolve`,
-        description: `Grant a Sleeper the ability to see what a Mage sees+1 Reach and Add Any Other Arcanum 1: Add the Arcanum to the granted Sight.`,
+        description: `Grant a Sleeper the ability to see what a Mage sees
++1 Reach and 
+Add Any Other Arcanum 1: Add the Arcanum to the granted Sight.`,
         source: `MtAw2 p 169`,
         id: `apocalypse`,
     },
@@ -2723,7 +3006,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `patterning`,
         primaryFactor: `potency`,
-        description: `Attack spell inflict Lethal equal to Potency+1 Reach: Spell ignites flammable object in the scene +1 Reach: For one Mana, spell deals aggravated damage+1 Reach: May destroy target's Mana instead of dealing damage, spend Potency between regular and Mana damage`,
+        description: `Attack spell inflict Lethal equal to Potency
++1 Reach: Spell ignites flammable object in the scene 
++1 Reach: For one Mana, spell deals aggravated damage
++1 Reach: May destroy target's Mana instead of dealing damage, spend Potency between regular and Mana damage`,
         source: `MtAw2 p 170`,
         id: `celestial_fire`,
     },
@@ -2745,7 +3031,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `potency`,
         withstand: `hallow rating`,
-        description: `Suppress an active Hallow or awaken a dormant one. Rousing requires Potency equal to the Hallow's rating. Dampening reduces the Hallow's dot rating by Potency, if it falls to zero or less the Hallow is rendered dormant+2 Reach: For one point of Mana the effect is Lasting`,
+        description: `Suppress an active Hallow or awaken a dormant one. Rousing requires Potency equal to the Hallow's rating. Dampening reduces the Hallow's dot rating by Potency, if it falls to zero or less the Hallow is rendered dormant
++2 Reach: For one point of Mana the effect is Lasting`,
         source: `MtAw2 p 170`,
         id: `hallow_dance`,
     },
@@ -2756,7 +3043,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `duration`,
         withstand: `composure`,
-        description: `This allows a Mage to transfer spell control of a spell they've cast to another mage. The spell transfers Spells up to Potency from Caster to Subject. Once the Duration ends control returns to the Caster  +2 Reach: If Primal Transfer is Imbued into an item with this effect spell control is passed to the user of the Item allowing the user to assign reach and reassign spell factors`,
+        description: `This allows a Mage to transfer spell control of a spell they've cast to another mage. The spell transfers Spells up to Potency from Caster to Subject. Once the Duration ends control returns to the Caster  
++2 Reach: If Primal Transfer is Imbued into an item with this effect spell control is passed to the user of the Item allowing the user to assign reach and reassign spell factors`,
         source: `SoS 71`,
         id: `primal_transfer`,
     },
@@ -2766,8 +3054,11 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `patterning`,
         primaryFactor: `potency`,
-        withstand: `rank of attainment + (10 - caster's gnosis)`,
-        description: `*Cost 1 Mana* Scribe a Daimonomikon for the Mage's Legacy. A Mage must be of Gnosis 2 or above to cast this. Anyone initiated into a Legacy via a Daimonomikon must spend 1 Arcane Experience and if used to learn more Legacy Attainments must use the Experience cost listed for learning without a tutor. These serve as a sympathetic Yantra worth +2 Dice for members of the inscribed Legacy  +1 Reach: For 1 Mana, the Spell's Duration is Lasting`,
+        withstand: `rank of attainment 
++ (10 - caster's gnosis)`,
+        description: `*Cost 1 Mana* Scribe a Daimonomikon for the Mage's Legacy. A Mage must be of Gnosis 2 or above to cast this. Anyone initiated into a Legacy via a Daimonomikon must spend 1 Arcane Experience and if used to learn more Legacy Attainments must use the Experience cost listed for learning without a tutor. These serve as a sympathetic Yantra worth 
++2 Dice for members of the inscribed Legacy  
++1 Reach: For 1 Mana, the Spell's Duration is Lasting`,
         source: `SoS 87`,
         id: `scribe_daimonomikon`,
     },
@@ -2778,7 +3069,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unraveling`,
         primaryFactor: `potency`,
         withstand: `arcanum rating of the subject spell's caster`,
-        description: `Success suppresses target spell for Supernal Dispellations DurationAdd Fate 1: Selectively suppress spell+2 Reach: Make the effect Lasting`,
+        description: `Success suppresses target spell for Supernal Dispellations Duration
+Add Fate 1: Selectively suppress spell
++2 Reach: Make the effect Lasting`,
         source: `MtAw2 p 170`,
         id: `supernal_dispellation`,
     },
@@ -2788,7 +3081,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `patterning`,
         primaryFactor: `duration`,
-        description: `May transfer a Soul Stone from one object to another of size 2 or below  +2 Reach: This spell is Lasting`,
+        description: `May transfer a Soul Stone from one object to another of size 2 or below  
++2 Reach: This spell is Lasting`,
         source: `SoS 91`,
         id: `transfer_soul_stone`,
     },
@@ -2799,7 +3093,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unmaking`,
         primaryFactor: `potency`,
         withstand: `hallow rating, if applicable`,
-        description: `Sever the connection to the Supernal in an area+2 Reach: Make the effect Lasting`,
+        description: `Sever the connection to the Supernal in an area
++2 Reach: Make the effect Lasting`,
         source: `MtAw2 p 170`,
         id: `blasphemy`,
     },
@@ -2810,7 +3105,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `making`,
         primaryFactor: `duration`,
         withstand: `hallow rating`,
-        description: `Cost 5 Mana per Potency. Create Hallow with rating equal to Potency, Hallows cannot have a rating above 5+2 Reach: For 5 Mana the effect is Lasting`,
+        description: `Cost 5 Mana per Potency. Create Hallow with rating equal to Potency, Hallows cannot have a rating above 5
++2 Reach: For 5 Mana the effect is Lasting`,
         source: `MtAw2 p 170`,
         id: `create_truth`,
     },
@@ -2820,7 +3116,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 5,
         practice: `making`,
         primaryFactor: `potency`,
-        description: `Like "Platonic Form" but can create animate Tass. May spend Potency on an additional effect: Grand the mage a dot of the Retainer Merit. Construct will obey it's owners command, any mage can claim ownership by marking it with his NimbusAdd Forces ●●●: The Construct is not Obviously MagicalAdd Mind ●●●●●: The Construct may be given a mind of its own.Pg. 165 for details+2 Reach: The effect is Lasting, Tass still crumbles if all it's mana is spend`,
+        description: `Like "Platonic Form" but can create animate Tass. May spend Potency on an additional effect: Grand the mage a dot of the Retainer Merit. Construct will obey it's owners command, any mage can claim ownership by marking it with his Nimbus
+Add Forces ●●●: The Construct is not Obviously Magical
+Add Mind ●●●●●: The Construct may be given a mind of its own.Pg. 165 for details
++2 Reach: The effect is Lasting, Tass still crumbles if all it's mana is spend`,
         source: `MtAw2 p 171`,
         id: `eidolon`,
     },
@@ -2831,7 +3130,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `making`,
         primaryFactor: `duration`,
         withstand: `resolve`,
-        description: `Subject gains one of the caster's Obsessions. If subject is a mage already possessing the maximum number of Obsessions this spell causes a Clash of Wills. If successful replace one of these Obsessions+1 Reach: Can grant a wholly new Obsession`,
+        description: `Subject gains one of the caster's Obsessions. If subject is a mage already possessing the maximum number of Obsessions this spell causes a Clash of Wills. If successful replace one of these Obsessions
++1 Reach: Can grant a wholly new Obsession`,
         source: `MtAw2 p 171`,
         id: `forge_purpose`,
     },
@@ -2842,7 +3142,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unmaking`,
         primaryFactor: `potency`,
         withstand: `merit rating or durability`,
-        description: `Destroy a magical item, but not artifacts+2 Reach: Item explodes violently, roll the item Merit rating or Durability. Anyone within 1 yard per dot suffers lethal damage per success`,
+        description: `Destroy a magical item, but not artifacts
++2 Reach: Item explodes violently, roll the item Merit rating or Durability. Anyone within 1 yard per dot suffers lethal damage per success`,
         source: `MtAw2 p 171`,
         id: `word_of_unmaking`,
     },
@@ -2852,7 +3153,11 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `knowing`,
         primaryFactor: `potency`,
-        description: `Learn one of subjects sympathetic links per Potency. The oldest and strongest are revealed first. If the link is nearby you will learn it't exact location too.+1 Reach: You can follow a link to it's other end.+1 Reach: Learn the emotional aspect of the connection. Connection "My childhood home" may carry notes of comfort or fear depending on the subject.+2 Reach: Specify what links you want to learn. The answer comes form the subjects perspective.+2 Reach: If used on a keyed spell or iris this spell can learn the key.`,
+        description: `Learn one of subjects sympathetic links per Potency. The oldest and strongest are revealed first. If the link is nearby you will learn it't exact location too.
++1 Reach: You can follow a link to it's other end.
++1 Reach: Learn the emotional aspect of the connection. Connection "My childhood home" may carry notes of comfort or fear depending on the subject.
++2 Reach: Specify what links you want to learn. The answer comes form the subjects perspective.
++2 Reach: If used on a keyed spell or iris this spell can learn the key.`,
         source: `MtAw2 p172`,
         id: `correspondence`,
     },
@@ -2884,7 +3189,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `knowing`,
         primaryFactor: `duration`,
-        description: `Can find the subject in spell area.+1 Reach: Can track the subject even if it leaves the area.`,
+        description: `Can find the subject in spell area.
++1 Reach: Can track the subject even if it leaves the area.`,
         source: `MtAw2 p173`,
         id: `locate_object`,
     },
@@ -2894,7 +3200,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `unveiling`,
         primaryFactor: `duration`,
-        description: `Gain 360 degree vision and hearing. All attempts to ambush the character fail, or in the case of exceptional camouflage or distraction a chance die. Finally all penalties due to range, cover or concealment(but not darkness or other poor visibility situations) are reduced by Potency.+2 Reach: Can see through warps or shortcuts in Space. This includes Distortion Irises, additional Arcana may allow sight into other types of Irises, this is at Storyteller's discretion`,
+        description: `Gain 360 degree vision and hearing. All attempts to ambush the character fail, or in the case of exceptional camouflage or distraction a chance die. Finally all penalties due to range, cover or concealment(but not darkness or other poor visibility situations) are reduced by Potency.
++2 Reach: Can see through warps or shortcuts in Space. This includes Distortion Irises, additional Arcana may allow sight into other types of Irises, this is at Storyteller's discretion`,
         source: `MtAw2 p174`,
         id: `the_outward_and_inward_eye`,
     },
@@ -2905,7 +3212,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `ruling`,
         primaryFactor: `duration`,
         withstand: `sympathy`,
-        description: `Allows the transfer of a number of sympathetic connections between the caster and the subject(s) of the spell equal to potency. The caster must be aware of the links, either through other magic or knowledge of the subject.+1 Reach: The caster may also transfer connections between subjects affected without being involved in the transfer.+1 Reach: The caster may copy connections instead of transferring them.`,
+        description: `Allows the transfer of a number of sympathetic connections between the caster and the subject(s) of the spell equal to potency. The caster must be aware of the links, either through other magic or knowledge of the subject.
++1 Reach: The caster may also transfer connections between subjects affected without being involved in the transfer.
++1 Reach: The caster may copy connections instead of transferring them.`,
         source: `MtAw2 p174`,
         id: `borrow_threads`,
     },
@@ -2915,7 +3224,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `potency`,
-        description: `Allows the subject to slip past an obstacle that is obstructing a path or similar restriction of movement.+1 Reach: The subject can fit through narrow or restrictive passageways they couldn't normally fit through.+2 Reach: Subjects unable to move can pass through obstructions, appearing on the other side.`,
+        description: `Allows the subject to slip past an obstacle that is obstructing a path or similar restriction of movement.
++1 Reach: The subject can fit through narrow or restrictive passageways they couldn't normally fit through.
++2 Reach: Subjects unable to move can pass through obstructions, appearing on the other side.`,
         source: `MtAw2 p174`,
         id: `break_boundary`,
     },
@@ -2936,7 +3247,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `duration`,
-        description: `Allows the caster to remotely view a distant location, with varying effects depending on the type of Sympathetic connection. Spells can also be cast on subjects as if one were viewing them remotely. The scrying window may be invisible or visible to everyone in the vicinity.Add Fate 2: The caster can select specific people who can see the scrying window.`,
+        description: `Allows the caster to remotely view a distant location, with varying effects depending on the type of Sympathetic connection. Spells can also be cast on subjects as if one were viewing them remotely. The scrying window may be invisible or visible to everyone in the vicinity.
+Add Fate 2: The caster can select specific people who can see the scrying window.`,
         source: `MtAw2 p174`,
         id: `scrying`,
     },
@@ -2946,7 +3258,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `veiling`,
         primaryFactor: `duration`,
-        description: `Allows the caster to hide a passageway from mundane perception, invoking Clash of Wills against magical perception.+1 Reach: A Key may be specified to allow entry.`,
+        description: `Allows the caster to hide a passageway from mundane perception, invoking Clash of Wills against magical perception.
++1 Reach: A Key may be specified to allow entry.`,
         source: `MtAw2 p175`,
         id: `secret_door`,
     },
@@ -2957,7 +3270,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `veiling`,
         primaryFactor: `duration`,
         withstand: `sympathy`,
-        description: `Conceals one of the subject's sympathetic connections.+1 Reach: May make the subject appear to have a nonexistent connection.+1 Reach: Prevents the connection from being used as a Sympathetic Yantra.+2 Reach: The caster may suppress all of the subject's connections.`,
+        description: `Conceals one of the subject's sympathetic connections.
++1 Reach: May make the subject appear to have a nonexistent connection.
++1 Reach: Prevents the connection from being used as a Sympathetic Yantra.
++2 Reach: The caster may suppress all of the subject's connections.`,
         source: `MtAw2 p175`,
         id: `veil_sympathy`,
     },
@@ -2967,7 +3283,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `shielding`,
         primaryFactor: `duration`,
-        description: `Prevents space from being manipulated in an area.+1 Reach: The caster may specify a Key that can allow the manipulation of space.+2 Reach: The caster may ward an Iris.`,
+        description: `Prevents space from being manipulated in an area.
++1 Reach: The caster may specify a Key that can allow the manipulation of space.
++2 Reach: The caster may ward an Iris.`,
         source: `MtAw2 p176`,
         id: `ward`,
     },
@@ -2977,7 +3295,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `weaving`,
         primaryFactor: `duration`,
-        description: `Cuts an area off from the outside world, including light, sound, and air.Add Any Arcanum 2: Exclude phenomena under that Arcanum, or only Ban phenomena of that Arcanum.`,
+        description: `Cuts an area off from the outside world, including light, sound, and air.
+Add Any Arcanum 2: Exclude phenomena under that Arcanum, or only Ban phenomena of that Arcanum.`,
         source: `MtAw2 p176`,
         id: `ban`,
     },
@@ -2987,7 +3306,11 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `fraying`,
         primaryFactor: `duration`,
-        description: `Allows the overlapping of multiple locations. Individuals who can perceive this overlap may switch between locations reflexively once a turn.+1 Reach: Anything in the overlapped locations may be made visible to the naked eye.+1 Reach: The caster may make the Co-Location a two-dimensional plane, creating a portal.+1 Reach: The caster may specify a Key needed to use the overlap.+2 Reach: Individuals who can perceive the overlap may reflexively switch locations twice per turn instead of once.`,
+        description: `Allows the overlapping of multiple locations. Individuals who can perceive this overlap may switch between locations reflexively once a turn.
++1 Reach: Anything in the overlapped locations may be made visible to the naked eye.
++1 Reach: The caster may make the Co-Location a two-dimensional plane, creating a portal.
++1 Reach: The caster may specify a Key needed to use the overlap.
++2 Reach: Individuals who can perceive the overlap may reflexively switch locations twice per turn instead of once.`,
         source: `MtAw2 p176`,
         id: `co-location`,
     },
@@ -3008,7 +3331,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `perfecting`,
         primaryFactor: `duration`,
-        description: `Expand the dimensions within a container to allow it to hold larger objects than usual. Enhance the sized item a container can hold by its base size + Potency`,
+        description: `Expand the dimensions within a container to allow it to hold larger objects than usual. Enhance the sized item a container can hold by its base size 
++ Potency`,
         source: `SoS 66`,
         id: `optimal_container`,
     },
@@ -3018,7 +3342,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `perfecting`,
         primaryFactor: `duration`,
-        description: `Allows the subject to gain 8-Again when taking an action on a subject that is one of their Strong sympathies.+1 Reach: Can redirect spells at Sympathetic Range to a Strong connection instead.+1 Reach: For one Mana, the subject gains (Potency) rote actions when taking an action on a subject that is one of their Strong sympathies.+1 Reach: The benefits extend to Medium sympathetic connections.`,
+        description: `Allows the subject to gain 8-Again when taking an action on a subject that is one of their Strong sympathies.
++1 Reach: Can redirect spells at Sympathetic Range to a Strong connection instead.
++1 Reach: For one Mana, the subject gains (Potency) rote actions when taking an action on a subject that is one of their Strong sympathies.
++1 Reach: The benefits extend to Medium sympathetic connections.`,
         source: `MtAw2 p176`,
         id: `perfect_sympathy`,
     },
@@ -3028,7 +3355,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `fraying`,
         primaryFactor: `potency`,
-        description: `Deals bashing damage equal to Potency by twisting the space the subject occupies.+1 Reach: The pain inflicts the Arm Wrack or Leg Wrack Tilt.`,
+        description: `Deals bashing damage equal to Potency by twisting the space the subject occupies.
++1 Reach: The pain inflicts the Arm Wrack or Leg Wrack Tilt.`,
         source: `MtAw2 p177`,
         id: `warp`,
     },
@@ -3039,7 +3367,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `perfecting`,
         primaryFactor: `duration`,
         withstand: `composure`,
-        description: `Allows bolstering of a sympathetic connection.Add Time 2: The caster may use temporal sympathy to anything the subject touched in the target time.`,
+        description: `Allows bolstering of a sympathetic connection.
+Add Time 2: The caster may use temporal sympathy to anything the subject touched in the target time.`,
         source: `MtAw2 p177`,
         id: `web-weaver`,
     },
@@ -3049,7 +3378,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `patterning`,
         primaryFactor: `duration`,
-        description: `Allows the caster to change (Potency) absolute directions (e.g. north, south, up, down) in an area, or change directions relative to a chosen subject.+1 Reach: The caster can redefine directions in curves rather than just straight lines.`,
+        description: `Allows the caster to change (Potency) absolute directions (e.g. north, south, up, down) in an area, or change directions relative to a chosen subject.
++1 Reach: The caster can redefine directions in curves rather than just straight lines.`,
         source: `MtAw2 p177`,
         id: `alter_direction`,
     },
@@ -3059,7 +3389,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `unraveling`,
         primaryFactor: `potency`,
-        description: `Forces a subject and a chosen object to occupy the same space, dealing (Potency) lethal damage.+1 Reach: For 1 Mana, damage inflicted becomes Aggravated.+1 Reach: The co-located object remains inside the subject.`,
+        description: `Forces a subject and a chosen object to occupy the same space, dealing (Potency) lethal damage.
++1 Reach: For 1 Mana, damage inflicted becomes Aggravated.
++1 Reach: The co-located object remains inside the subject.`,
         source: `MtAw2 p177`,
         id: `collapse`,
     },
@@ -3070,7 +3402,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unraveling`,
         primaryFactor: `potency`,
         withstand: `sympathy (connection)`,
-        description: `Destroy a sympathetic connection, effect is lasting, but connection can be restored in time.+2 Reach: Remove the subject's sympathetic name. This is not lasting and only last until the spell expires`,
+        description: `Destroy a sympathetic connection, effect is lasting, but connection can be restored in time.
++2 Reach: Remove the subject's sympathetic name. This is not lasting and only last until the spell expires`,
         source: `MtAw2 p177`,
         id: `cut_threads`,
     },
@@ -3090,7 +3423,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `patterning`,
         primaryFactor: `potency`,
-        description: `Teleport a subject to another location. You may use the Sympathetic Range Attainment on either the subject or the location but not both.+1 Reach: You may swap the location of two subjects with no more a point of Size difference+2 Reach: You may now use two separate Sympathetic Ranges. The spell is Withstood by the worse of the two connections`,
+        description: `Teleport a subject to another location. You may use the Sympathetic Range Attainment on either the subject or the location but not both.
++1 Reach: You may swap the location of two subjects with no more a point of Size difference
++2 Reach: You may now use two separate Sympathetic Ranges. The spell is Withstood by the worse of the two connections`,
         source: `MtAw2 p178`,
         id: `teleportation`,
     },
@@ -3101,7 +3436,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `making`,
         primaryFactor: `potency`,
         withstand: `desired sympathy`,
-        description: `Create a new sympathetic connection for the subject. This is Lasting, but may fade with time.+1 Reach: The created connection is Lasting and never fades. Only magic can sever it now+2 Reach: Give a subject a new sympathetic name. This is not Lasting and fades when the spell ends`,
+        description: `Create a new sympathetic connection for the subject. This is Lasting, but may fade with time.
++1 Reach: The created connection is Lasting and never fades. Only magic can sever it now
++2 Reach: Give a subject a new sympathetic name. This is not Lasting and fades when the spell ends`,
         source: `MtAw2 p178`,
         id: `create_sympathy`,
     },
@@ -3121,7 +3458,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 5,
         practice: `making`,
         primaryFactor: `duration`,
-        description: `Create a space. By default this space is devoid of the other arcana: No Death or Spirit means no Twilight, No Time means things inside are held in stasis (unaging but also never growing/improving). Unless a portal connects the space to a point in the world the only way to get there is to teleport. Spells cast within never cause Paradox unless they sympathetic range is used to affect something outside of the space. The mage herself is considered a material sympathetic yantra for her own Pocket Dimension. If the space is ever destroyed or the spell expires objects within return to the exact location from which they entered the space.+1 Reach: Create an Iris to the Pocket Dimension in the physical world. For an additional Reach you may specify a Key for this Iris.Add Time 2: Time flows normally within the space mirroring time passed in the physical world. Without oxygen inside the space however this means anything inside can asphyxiate.Add Death 2, Mind 2 or Spirit 2: The space now contains a Twilight attuned to the Arcanum used`,
+        description: `Create a space. By default this space is devoid of the other arcana: No Death or Spirit means no Twilight, No Time means things inside are held in stasis (unaging but also never growing/improving). Unless a portal connects the space to a point in the world the only way to get there is to teleport. Spells cast within never cause Paradox unless they sympathetic range is used to affect something outside of the space. The mage herself is considered a material sympathetic yantra for her own Pocket Dimension. If the space is ever destroyed or the spell expires objects within return to the exact location from which they entered the space.
++1 Reach: Create an Iris to the Pocket Dimension in the physical world. For an additional Reach you may specify a Key for this Iris.
+Add Time 2: Time flows normally within the space mirroring time passed in the physical world. Without oxygen inside the space however this means anything inside can asphyxiate.
+Add Death 2, Mind 2 or Spirit 2: The space now contains a Twilight attuned to the Arcanum used`,
         source: `MtAw2 p178`,
         id: `pocket_dimension`,
     },
@@ -3131,7 +3471,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 5,
         practice: `unmaking`,
         primaryFactor: `duration`,
-        description: `Remove a subject from space altogether. The world adjusts for the missing space. A Quarantined house doesn't leave behind an empty space, instead the neighboring house would now find themselves adjacent. Meanwhile those within the Quarentined space will find they cannot leave. Similar to a Pocket Dimension except it still has it's own Time, Twilight, Matter and so forth+1 Reach: Specify a Key that allows access to and from the removed area.Add Mind 4: For the Duration of the spell no one remembers the area used to exist. Those within do still remember.Add Time 5: For the duration of the spell the area and those within retroactively never existed. History rewrites itself, but returns to normal when the spell expires`,
+        description: `Remove a subject from space altogether. The world adjusts for the missing space. A Quarantined house doesn't leave behind an empty space, instead the neighboring house would now find themselves adjacent. Meanwhile those within the Quarentined space will find they cannot leave. Similar to a Pocket Dimension except it still has it's own Time, Twilight, Matter and so forth
++1 Reach: Specify a Key that allows access to and from the removed area.
+Add Mind 4: For the Duration of the spell no one remembers the area used to exist. Those within do still remember.
+Add Time 5: For the duration of the spell the area and those within retroactively never existed. History rewrites itself, but returns to normal when the spell expires`,
         source: `MtAw2 p179`,
         id: `quarantine`,
     },
@@ -3142,7 +3485,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unmaking`,
         primaryFactor: `duration`,
         withstand: `composure`,
-        description: `The Mage Erases a subject's sympathetic name from existance, the exicised name is immediately replaced with one that matches whatever most sleepers would use to refer to her as. Any Sympathetic connections to the old name cease to exist as well. Any mage attempting to cast sympathetically using the mage faces a penalty until learning the new one.  Add Prime ●●●●●: The Spell can be used on an Awakened Subject's Shadow Name and Nimbus instead. The Shadow name isn't replaced immediately and the subject needs to build their Supernal identity from scratch`,
+        description: `The Mage Erases a subject's sympathetic name from existance, the exicised name is immediately replaced with one that matches whatever most sleepers would use to refer to her as. Any Sympathetic connections to the old name cease to exist as well. Any mage attempting to cast sympathetically using the mage faces a penalty until learning the new one.  
+Add Prime 5: The Spell can be used on an Awakened Subject's Shadow Name and Nimbus instead. The Shadow name isn't replaced immediately and the subject needs to build their Supernal identity from scratch`,
         source: `SoS 94`,
         id: `unnaming`,
     },
@@ -3163,7 +3507,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `unveiling`,
         primaryFactor: `duration`,
-        description: `See and speak with any Spirit, be they in Twilight, slumbering in an object or possessing somebody. Can also see the conduit of any Spirit with the Reaching Manifestation+1 Reach: Can see across the Gauntlet, Withstood by Gauntlet StrengthAdd Death 1 or Mind 1: These benefits extend to ghost or Goetia respectively`,
+        description: `See and speak with any Spirit, be they in Twilight, slumbering in an object or possessing somebody. Can also see the conduit of any Spirit with the Reaching Manifestation
++1 Reach: Can see across the Gauntlet, Withstood by Gauntlet Strength
+Add Death 1 or Mind 1: These benefits extend to ghost or Goetia respectively`,
         source: `MtAw2 p 180`,
         id: `exorcist's_eye`,
     },
@@ -3173,7 +3519,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `compelling`,
         primaryFactor: `potency`,
-        description: `Cause Spirit of object to hinder it's user. Each level of Potency causes one failure with the item to become a dramatic failure. A player's character can earn a Beat from this as per normal+1 Reach: As long as the object is within sensory range, can decide what failure become dramatic failures`,
+        description: `Cause Spirit of object to hinder it's user. Each level of Potency causes one failure with the item to become a dramatic failure. A player's character can earn a Beat from this as per normal
++1 Reach: As long as the object is within sensory range, can decide what failure become dramatic failures`,
         source: `MtAw2 p 180`,
         id: `gremlins`,
     },
@@ -3215,7 +3562,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `potency`,
-        description: `Move Essence equal to Potency but no higher than the Gnosis-derived Mana per turn, from a Resonant Condition or suitable receptacle to a Spirit. You can store Essence into your own Pattern which stays even after the spell has expired. You can hold an amount of Mana and Essence equal to Gnosis-derived maximum ManaAdd Death 2 or Mind 2: Spell may be cast on ghosts or Goetia respectively<b/>+1 Reach: Can siphon Essence directly from a Spirit, subject may resist with Rank`,
+        description: `Move Essence equal to Potency but no higher than the Gnosis-derived Mana per turn, from a Resonant Condition or suitable receptacle to a Spirit. You can store Essence into your own Pattern which stays even after the spell has expired. You can hold an amount of Mana and Essence equal to Gnosis-derived maximum Mana
+Add Death 2 or Mind 2: Spell may be cast on ghosts or Goetia respectively<b/>
++1 Reach: Can siphon Essence directly from a Spirit, subject may resist with Rank`,
         source: `MtAw2 p 180`,
         id: `channel_essence`,
     },
@@ -3236,7 +3585,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `shielding`,
         primaryFactor: `duration`,
-        description: `Any Spirit Numina, Influences and Manifestations, Spirit Spells  and werewolf Gifts aimed at subject provoke a Clash of Wills+1 Reach: A Spirits physical attacks are likewise affectedAdd Death 2 or Mind 2: Shield affects ghosts or Goetia respectively`,
+        description: `Any Spirit Numina, Influences and Manifestations, Spirit Spells  and werewolf Gifts aimed at subject provoke a Clash of Wills
++1 Reach: A Spirits physical attacks are likewise affected
+Add Death 2 or Mind 2: Shield affects ghosts or Goetia respectively`,
         source: `MtAw2 p 181`,
         id: `ephemeral_shield`,
     },
@@ -3246,7 +3597,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `ruling`,
         primaryFactor: `duration`,
-        description: `Can interact physically with Spirits in TwilightAdd Death 2 or Mind 2: Affects ghosts or Goetia respectively+1 Reach: Object you carry are likewise physical to Spirits+1 Reach: Unarmed attacks against Spirits deal Potency extra damage`,
+        description: `Can interact physically with Spirits in Twilight
+Add Death 2 or Mind 2: Affects ghosts or Goetia respectively
++1 Reach: Object you carry are likewise physical to Spirits
++1 Reach: Unarmed attacks against Spirits deal Potency extra damage`,
         source: `MtAw2 p 181`,
         id: `gossamer_touch`,
     },
@@ -3287,7 +3641,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `perfecting`,
         primaryFactor: `potency`,
-        description: `Heal a Spirit. Each level of Potency heals two bashing damage+1 Reach: Instead of healing, each level of Potency can increase one of the Spirit's Attributes by one for the duration of the spell+2 Reach: Spend one Mana to increase the Spirit's Rank by one.`,
+        description: `Heal a Spirit. Each level of Potency heals two bashing damage
++1 Reach: Instead of healing, each level of Potency can increase one of the Spirit's Attributes by one for the duration of the spell
++2 Reach: Spend one Mana to increase the Spirit's Rank by one.`,
         source: `MtAw2 p 181`,
         id: `bolster_spirit`,
     },
@@ -3297,7 +3653,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `fraying`,
         primaryFactor: `duration`,
-        description: `Remove a subject's Open or Resonant condition. This effect is Lasting+1 Reach: Any future attempts to create the Conditions suffers a penalty equal to Potency`,
+        description: `Remove a subject's Open or Resonant condition. This effect is Lasting
++1 Reach: Any future attempts to create the Conditions suffers a penalty equal to Potency`,
         source: `MtAw2 p 181`,
         id: `erode_resonance`,
     },
@@ -3307,7 +3664,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `fraying`,
         primaryFactor: `potency`,
-        description: `Attack spell deal bashing damage equal to Potency.+1 Reach: the subject gains the Open Condition+1 Reach: Can target beings on the other side of the Gauntlet, but is Withstood by Gauntlet Strength`,
+        description: `Attack spell deal bashing damage equal to Potency.
++1 Reach: the subject gains the Open Condition
++1 Reach: Can target beings on the other side of the Gauntlet, but is Withstood by Gauntlet Strength`,
         source: `MtAw2 p 182`,
         id: `howl_from_beyond`,
     },
@@ -3318,7 +3677,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `fraying or perfecting`,
         primaryFactor: `potency`,
         withstand: `gauntlet strength`,
-        description: `Raise or lower Gauntlet Strength in spell Area by Potency +1 Reach: Alter Gauntlet independently on either side. For example making it easier to enter the Shadow but harder to leave or vice versa`,
+        description: `Raise or lower Gauntlet Strength in spell Area by Potency 
++1 Reach: Alter Gauntlet independently on either side. For example making it easier to enter the Shadow but harder to leave or vice versa`,
         source: `MtAw2 p 182`,
         id: `place_of_power`,
     },
@@ -3329,7 +3689,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `weaving`,
         primaryFactor: `duration`,
         withstand: `gauntlet strength`,
-        description: `Interact physically and magically with things on the other side of the Gauntlet+1 Reach: Open an Iris between the physical world and the Shadow, which anybody can pass through. For another Reach may specify a Key`,
+        description: `Interact physically and magically with things on the other side of the Gauntlet
++1 Reach: Open an Iris between the physical world and the Shadow, which anybody can pass through. For another Reach may specify a Key`,
         source: `MtAw2 p 182`,
         id: `reaching`,
     },
@@ -3340,7 +3701,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `perfecting`,
         primaryFactor: `potency`,
         withstand: `rank`,
-        description: `Awaken a Spirit early Potency required is equal to the difference between the Spirit's current Essence and total Corpus+1 Reach: For each additional Reach, the Spirit wakes with an additional Corpus box cleared`,
+        description: `Awaken a Spirit early Potency required is equal to the difference between the Spirit's current Essence and total Corpus
++1 Reach: For each additional Reach, the Spirit wakes with an additional Corpus box cleared`,
         source: `MtAw2 p 182`,
         id: `rouse_spirit`,
     },
@@ -3351,7 +3713,11 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `perfecting`,
         primaryFactor: `duration`,
         withstand: `rank`,
-        description: `Call a Spirit in the local area to you+1 Reach: Spell also creates the Open Condition+1 Reach: Can give the Spirit a single word command to follow+1 Reach: Can call a Spirit form the Shadow instead. Spell it Withstood by the greater of Rank and Gauntlet Strength+2 Reach: Can give Spirit a complex command to follow`,
+        description: `Call a Spirit in the local area to you
++1 Reach: Spell also creates the Open Condition
++1 Reach: Can give the Spirit a single word command to follow
++1 Reach: Can call a Spirit form the Shadow instead. Spell it Withstood by the greater of Rank and Gauntlet Strength
++2 Reach: Can give Spirit a complex command to follow`,
         source: `MtAw2 p 182`,
         id: `spirit_summons`,
     },
@@ -3372,7 +3738,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unraveling`,
         primaryFactor: `potency`,
         withstand: `rank`,
-        description: `Strip a number of Manifestation Conditions equal to Potency. Effect is Lasting, but Conditions may be reasteablished as normal. No effect on Spirits above Rank 5Add Mind 4: affect Goetia  Add Death4: addect Ghosts+1 Reach: Conditions cannot be reestablished until spell duration has expired`,
+        description: `Strip a number of Manifestation Conditions equal to Potency. Effect is Lasting, but Conditions may be reasteablished as normal. No effect on Spirits above Rank 5
+Add Mind 4: affect Goetia  
+Add Death4: affect Ghosts
++1 Reach: Conditions cannot be reestablished until spell duration has expired`,
         source: `MtAw2 p 182`,
         id: `banishment`,
     },
@@ -3383,7 +3752,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `duration`,
         withstand: `rank`,
-        description: `Grant a number of Manifestation Conditions equal to Potency. No effect on Spirits above Rank 5Add Mind 4: effect GoetiaAdd Death 4: effect Ghosts`,
+        description: `Grant a number of Manifestation Conditions equal to Potency. No effect on Spirits above Rank 5
+Add Mind 4: effect Goetia
+Add Death 4: effect Ghosts`,
         source: `MtAw2 p 183`,
         id: `bind_spirit`,
     },
@@ -3394,7 +3765,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `duration`,
         withstand: `rank`,
-        description: `Create a Fetish an item that contains a Spirit. And can be used to call upon a number of one of the Spirit's Influence dots and Numina equal to Potency. These abilities cost Essence and the item has the Spirit's Essence pool. Triggering the bound Spirit's Ban or Bane destroys the fetish. A fetish without a Spirit may also be created and can hold 10+Potency Essence`,
+        description: `Create a Fetish an item that contains a Spirit. And can be used to call upon a number of one of the Spirit's Influence dots and Numina equal to Potency. These abilities cost Essence and the item has the Spirit's Essence pool. Triggering the bound Spirit's Ban or Bane destroys the fetish. A fetish without a Spirit may also be created and can hold 10
++Potency Essence`,
         source: `MtAw2 p 183`,
         id: `craft_fetish`,
     },
@@ -3415,7 +3787,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         secondaryRequiredArcana: `Prime ●`,
         practice: `patterning`,
         primaryFactor: `potency`,
-        withstand: `total arcanum dots of rote + rank`,
+        withstand: `total arcanum dots of rote 
++ rank`,
         description: `*Costs 1 Mana* The Mage binds a spirit to a grimoire, writing its essence into the vessel's pattern. This doesn't host the Spirits numina or influences nor does it have an essence pool. The Grimoire gains the Open and Resonant Conditions. When cast the spell is increased by the Spirits Rank for Primary Factor however the Spirit has a chance to escape with a Clash of Wills to the caster. When someone memorizes a Rote the Spirit has a chance to possess them using a CLash of Wills. This spell is a Wisdom Sin against Understanding`,
         source: `SoS 86`,
         id: `haunted_grimoire`,
@@ -3427,8 +3800,11 @@ const rotesList: Readonly<RoteDescription[]> = [
         secondaryRequiredArcana: `Prime ●`,
         practice: `patterning`,
         primaryFactor: `potency`,
-        withstand: `rank of attainment + (10 - caster's gnosis)`,
-        description: `*Cost 1 Mana* Scribe a Daimonomikon for the Mage's Legacy. A Mage must be of Gnosis 2 or above to cast this. Anyone initiated into a Legacy via a Daimonomikon must spend 1 Arcane Experience and if used to learn more Legacy Attainments must use the Experience cost listed for learning without a tutor. These serve as a sympathetic Yantra worth +2 Dice for members of the inscribed Legacy  +1 Reach: For 1 Mana, the Spell's Duration is Lasting`,
+        withstand: `rank of attainment 
++ (10 - caster's gnosis)`,
+        description: `*Cost 1 Mana* Scribe a Daimonomikon for the Mage's Legacy. A Mage must be of Gnosis 2 or above to cast this. Anyone initiated into a Legacy via a Daimonomikon must spend 1 Arcane Experience and if used to learn more Legacy Attainments must use the Experience cost listed for learning without a tutor. These serve as a sympathetic Yantra worth 
++2 Dice for members of the inscribed Legacy  
++1 Reach: For 1 Mana, the Spell's Duration is Lasting`,
         source: `SoS 87`,
         id: `scribe_daimonomikon`,
     },
@@ -3438,7 +3814,11 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `unraveling`,
         primaryFactor: `potency`,
-        description: `Deal Lethal damage equal to Potency. Can hit targets in Twilight+1 Reach: For one point of Mana damage is aggravated+1 Reach: Can destroy Essence divide Potency between regular and Essence damage+1 Reach: Target gains Open Condition+1 Reach: Can hit target on the other side of the Gauntlet`,
+        description: `Deal Lethal damage equal to Potency. Can hit targets in Twilight
++1 Reach: For one point of Mana damage is aggravated
++1 Reach: Can destroy Essence divide Potency between regular and Essence damage
++1 Reach: Target gains Open Condition
++1 Reach: Can hit target on the other side of the Gauntlet`,
         source: `MtAw2 p 183`,
         id: `shadow_scream`,
     },
@@ -3449,7 +3829,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `potency`,
         withstand: `rank`,
-        description: `Change a Spirit with a number of effects equal to Potency: Change nature, Redistribute Attribute dots, Heal one Lethal corpus, Redefine and redistribute Influences, Add/remove/replace one Manifestation, Add/remove/replace one Numen, Rewrite Ban or Bane. In addition can also change the Spirit's size, shape and appearance but no bigger than the spell's Scale factor. Traits must stay within Rank-derived maximums. Change revert at the end of spell duration+1 Reach: For one Mana heal aggravated damage`,
+        description: `Change a Spirit with a number of effects equal to Potency: Change nature, Redistribute Attribute dots, Heal one Lethal corpus, Redefine and redistribute Influences, Add/remove/replace one Manifestation, Add/remove/replace one Numen, Rewrite Ban or Bane. In addition can also change the Spirit's size, shape and appearance but no bigger than the spell's Scale factor. Traits must stay within Rank-derived maximums. Change revert at the end of spell duration
++1 Reach: For one Mana heal aggravated damage`,
         source: `MtAw2 p 184`,
         id: `shape_spirit`,
     },
@@ -3459,7 +3840,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `patterning`,
         primaryFactor: `duration`,
-        description: `Turn yourself(and whatever you're wearing) into Spirit-attuned ephemera, and thus in Twilight+1 Reach: can become immaterial even in realms where Twilight doesn't normally exist`,
+        description: `Turn yourself(and whatever you're wearing) into Spirit-attuned ephemera, and thus in Twilight
++1 Reach: can become immaterial even in realms where Twilight doesn't normally exist`,
         source: `MtAw2 p 184`,
         id: `twilit_body`,
     },
@@ -3470,7 +3852,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `potency`,
         withstand: `gauntlet strength`,
-        description: `Bring subject across the Gauntlet, no portal necessary+1 Reach: Give conjured Spirit Materialized Condition`,
+        description: `Bring subject across the Gauntlet, no portal necessary
++1 Reach: Give conjured Spirit Materialized Condition`,
         source: `MtAw2 p 184`,
         id: `world_walker`,
     },
@@ -3481,7 +3864,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `unmaking`,
         primaryFactor: `potency`,
         withstand: `rank`,
-        description: `Utterly destroy a Spirit. The Spirit may spend an Essence to roll Power + Finesse in a Clash of Wills to prevent this. But if the spell succeeds the Spirit is destroyed even if it still has Essence it won't go into hibernation the Spirit is simply gone. Cannot affect Spirits above Rank 5`,
+        description: `Utterly destroy a Spirit. The Spirit may spend an Essence to roll Power 
++ Finesse in a Clash of Wills to prevent this. But if the spell succeeds the Spirit is destroyed even if it still has Essence it won't go into hibernation the Spirit is simply gone. Cannot affect Spirits above Rank 5`,
         source: `MtAw2 p 184`,
         id: `annihilate_spirit`,
     },
@@ -3491,7 +3875,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 5,
         practice: `making`,
         primaryFactor: `duration`,
-        description: `Create a Rank 1 Spirit+1 Reach: For one Mana, create a Rank 2 Spirit`,
+        description: `Create a Rank 1 Spirit
++1 Reach: For one Mana, create a Rank 2 Spirit`,
         source: `MtAw2 p 184`,
         id: `birth_spirit`,
     },
@@ -3502,7 +3887,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `making`,
         primaryFactor: `duration`,
         withstand: `gauntlet strength`,
-        description: `Create a Locus at a location with the Resonant Condition+1 Reach: The Locus generates Essence equal to Potency per day`,
+        description: `Create a Locus at a location with the Resonant Condition
++1 Reach: The Locus generates Essence equal to Potency per day`,
         source: `MtAw2 p 184`,
         id: `create_locus`,
     },
@@ -3512,7 +3898,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 5,
         practice: `making`,
         primaryFactor: `potency`,
-        description: `Create Essence equal to Potency. The Essence has a Resonance of your choosing, as long as you have encountered it before+1 Reach: Flavor the Essence with multiple Resonances`,
+        description: `Create Essence equal to Potency. The Essence has a Resonance of your choosing, as long as you have encountered it before
++1 Reach: Flavor the Essence with multiple Resonances`,
         source: `MtAw2 p 185`,
         id: `essence_fountain`,
     },
@@ -3522,7 +3909,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 5,
         practice: `making`,
         primaryFactor: `duration`,
-        description: `Create a place in the Shadow for yourself and gain the Safe Place Merit with rating equal to Potency+1 Reach: You may create an Iris between this place and the material world and may give it a key. But the spell becomes Withstood by Gauntlet Strength`,
+        description: `Create a place in the Shadow for yourself and gain the Safe Place Merit with rating equal to Potency
++1 Reach: You may create an Iris between this place and the material world and may give it a key. But the spell becomes Withstood by Gauntlet Strength`,
         source: `MtAw2 p 185`,
         id: `spirit_manse`,
     },
@@ -3532,7 +3920,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `knowing`,
         primaryFactor: `potency`,
-        description: `Ask a general question regarding the future with an answer of "Yes", "No" or "Irrelevant" +1 Reach: The questions asked can be more specific and the answer gives more information`,
+        description: `Ask a general question regarding the future with an answer of "Yes", "No" or "Irrelevant" 
++1 Reach: The questions asked can be more specific and the answer gives more information`,
         source: `MtAw2ed p186`,
         id: `divination`,
     },
@@ -3572,7 +3961,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 1,
         practice: `unveiling`,
         primaryFactor: `potency`,
-        description: `The mage can see into the subject's past, wieving it all from a moment declared in "real time"+1 Reach: The mage can rewind, speed up, slow down and pause the vision at any given time  The mage does not lose Defense when watching the vision`,
+        description: `The mage can see into the subject's past, wieving it all from a moment declared in "real time"
++1 Reach: The mage can rewind, speed up, slow down and pause the vision at any given time  The mage does not lose Defense when watching the vision`,
         source: `MtAw2ed p187`,
         id: `postcognition`,
     },
@@ -3583,7 +3973,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `ruling`,
         primaryFactor: `potency`,
         withstand: `resolve`,
-        description: `You may roll twice for your next mundane dice roll. Then choose which takes effect.+2 Reach: May affect rolls for spellcasting and other supernatural powers`,
+        description: `You may roll twice for your next mundane dice roll. Then choose which takes effect.
++2 Reach: May affect rolls for spellcasting and other supernatural powers`,
         source: `MtAw2ed p187`,
         id: `choose_the_thread`,
     },
@@ -3613,7 +4004,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `veiling`,
         primaryFactor: `duration`,
-        description: `Anybody trying to view the subject through time, either by looking at the presently shielded subject's future or into a past when the subject was shielded. Provokes a Clash of Wills+1 Reach: Instead of simply preventing Time magic from seeing the subject. You may show a false series of events that the magic "discovers". If powers would seek to pierce the illusion anyway this provokes a Clash of Wills`,
+        description: `Anybody trying to view the subject through time, either by looking at the presently shielded subject's future or into a past when the subject was shielded. Provokes a Clash of Wills
++1 Reach: Instead of simply preventing Time magic from seeing the subject. You may show a false series of events that the magic "discovers". If powers would seek to pierce the illusion anyway this provokes a Clash of Wills`,
         source: `MtAw2ed p188`,
         id: `shield_of_chronos`,
     },
@@ -3634,7 +4026,11 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 2,
         practice: `shielding`,
         primaryFactor: `duration`,
-        description: `Protect a subject from Time's effects. The subject will not bleed out form wounds, poison, toxins and the progression of disease are stalled. New Conditions and Tilts cannot be imposed on the subject. Supernatural powers that would anyway provoke a Clash of Wills. Downsides of the spell: you no longer heal naturally while under the spell's effect. Healing through Pattern Restoration and Life magic will still work. Willpower and Mana cannot be restored and Experiences cannot be spend. The subjects ceases aging.+1 Reach: may ignore Persistent Conditions. Time spend under this spell does not count toward any time necessary for Conditions to lapse+1 Reach: may heal naturally+1 Reach: may regain Willpower+1 Reach: may regain Mana`,
+        description: `Protect a subject from Time's effects. The subject will not bleed out form wounds, poison, toxins and the progression of disease are stalled. New Conditions and Tilts cannot be imposed on the subject. Supernatural powers that would anyway provoke a Clash of Wills. Downsides of the spell: you no longer heal naturally while under the spell's effect. Healing through Pattern Restoration and Life magic will still work. Willpower and Mana cannot be restored and Experiences cannot be spend. The subjects ceases aging.
++1 Reach: may ignore Persistent Conditions. Time spend under this spell does not count toward any time necessary for Conditions to lapse
++1 Reach: may heal naturally
++1 Reach: may regain Willpower
++1 Reach: may regain Mana`,
         source: `MtAw2ed p188`,
         id: `veil_of_moments`,
     },
@@ -3655,7 +4051,9 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `fraying`,
         primaryFactor: `potency`,
         withstand: `stamina`,
-        description: `Slow a subject down. This reduces their Defense by Potency and divides their Speed by Potency, rounding down. Subject go last in a turn. +1 Reach: Spend one Mana, the subject loses all Defense against attacks+1 Reach: Multiply the time per roll of extended actions by Potency. This does not effect the ritaul casting times of mages`,
+        description: `Slow a subject down. This reduces their Defense by Potency and divides their Speed by Potency, rounding down. Subject go last in a turn. 
++1 Reach: Spend one Mana, the subject loses all Defense against attacks
++1 Reach: Multiply the time per roll of extended actions by Potency. This does not effect the ritaul casting times of mages`,
         source: `MtAw2ed p190`,
         id: `chronos'_curse`,
     },
@@ -3665,7 +4063,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `fraying`,
         primaryFactor: `potency`,
-        description: `The subject goes back in time a number of turns equal to Potency. Any injuries and Conditions obtained or Mana and Willpower spend in the reversed turns do not change back and stay as they are. Any spells cast in the reversed time are canceled. Once the subject catches up to the present, any changes made become Lasting +1 Reach: Travel back a full scene. This Reach may be applied multiple times`,
+        description: `The subject goes back in time a number of turns equal to Potency. Any injuries and Conditions obtained or Mana and Willpower spend in the reversed turns do not change back and stay as they are. Any spells cast in the reversed time are canceled. Once the subject catches up to the present, any changes made become Lasting 
++1 Reach: Travel back a full scene. This Reach may be applied multiple times`,
         source: `MtAw2ed p190`,
         id: `shifting_sands`,
     },
@@ -3686,7 +4085,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         secondaryRequiredArcana: `Prime ●●`,
         practice: `weaving`,
         primaryFactor: `duration`,
-        description: `The Caster instills a time limit on the effects of an imbued spell as she relinquishes it for one week per dot of Potency. This applies to one person each use so a new user can make the item work again but only for the time limit  +1 Reach: The spell's time limit is increased to one month per Potency`,
+        description: `The Caster instills a time limit on the effects of an imbued spell as she relinquishes it for one week per dot of Potency. This applies to one person each use so a new user can make the item work again but only for the time limit  
++1 Reach: The spell's time limit is increased to one month per Potency`,
         source: `SoS 71`,
         id: `time_limit`,
     },
@@ -3696,7 +4096,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 3,
         practice: `perfecting`,
         primaryFactor: `potency`,
-        description: `An attack spell. Deal Bashing damage equal to Potency. If used on objects or structures. Apply Potency directly as damage to Structure and reduce Durability by 1 for every 2 points of Structure lost+1 Reach: For living subjects the spell also reduces Athletics by Potency`,
+        description: `An attack spell. Deal Bashing damage equal to Potency. If used on objects or structures. Apply Potency directly as damage to Structure and reduce Durability by 1 for every 2 points of Structure lost
++1 Reach: For living subjects the spell also reduces Athletics by Potency`,
         source: `MtAw2ed p191`,
         id: `weight_of_years`,
     },
@@ -3716,7 +4117,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 4,
         practice: `patterning`,
         primaryFactor: `potency`,
-        description: `This spell works like "Divination" except that you can now ask 'what if?' questions. You can ask a number of question equal to Potency  +1 Reach: By applying this spell to Social interaction you may reduce a number of Doors equal to Potency`,
+        description: `This spell works like "Divination" except that you can now ask 'what if?' questions. You can ask a number of question equal to Potency  
++1 Reach: By applying this spell to Social interaction you may reduce a number of Doors equal to Potency`,
         source: `MtAw2ed p191`,
         id: `prophecy`,
     },
@@ -3737,7 +4139,10 @@ const rotesList: Readonly<RoteDescription[]> = [
         practice: `patterning`,
         primaryFactor: `potency`,
         withstand: `resolve`,
-        description: `Change the subject's timeline as though different choices were made. Without Temporal Sympathy only recent decisions can be rewritten. Once the spell ends the person instantly reverts to the original timeline. Memories of the time under this spell will seem hazy, distant and dreamlike but the subject will remember the time at least to some extent. Supernatural creatures are not normally affected by this spell  +1 Reach: Reassign a number of the subject's Skill or Merit dot equal to Potency. These can not exceed the subject's maximum  +1 Reach: Reassign a number of the subject's Attributes equal to Potency. These may no exceed the subject's natural maximum or below the character creation priorities of Primary, Secondary and Tertiary  +2 Reach: This spell can affect supernatural creatures. And may revert them back to before they acquired their supernatural template`,
+        description: `Change the subject's timeline as though different choices were made. Without Temporal Sympathy only recent decisions can be rewritten. Once the spell ends the person instantly reverts to the original timeline. Memories of the time under this spell will seem hazy, distant and dreamlike but the subject will remember the time at least to some extent. Supernatural creatures are not normally affected by this spell  
++1 Reach: Reassign a number of the subject's Skill or Merit dot equal to Potency. These can not exceed the subject's maximum  
++1 Reach: Reassign a number of the subject's Attributes equal to Potency. These may no exceed the subject's natural maximum or below the character creation priorities of Primary, Secondary and Tertiary  
++2 Reach: This spell can affect supernatural creatures. And may revert them back to before they acquired their supernatural template`,
         source: `MtAw2ed p191`,
         id: `rewrite_history`,
     },
@@ -3758,7 +4163,8 @@ const rotesList: Readonly<RoteDescription[]> = [
         level: 5,
         practice: `unmaking`,
         primaryFactor: `potency`,
-        description: `This spell turns the next extended action into a instant action. A number of rolls for the extended action may be made in this turn equal to Potency. This spell does not affect ritual casting time for mages  +2 Reach: For a point of Mana this spell can affect spellcasting times. Increase the effective Gnosis of a mage equal to Potency for calculating ritual casting times only. For every point over Gnosis 10 reduce the interval by one turn`,
+        description: `This spell turns the next extended action into a instant action. A number of rolls for the extended action may be made in this turn equal to Potency. This spell does not affect ritual casting time for mages  
++2 Reach: For a point of Mana this spell can affect spellcasting times. Increase the effective Gnosis of a mage equal to Potency for calculating ritual casting times only. For every point over Gnosis 10 reduce the interval by one turn`,
         source: `MtAw2ed p192`,
         id: `blink_of_an_eye`,
     },
@@ -3782,7 +4188,7 @@ const rotesList: Readonly<RoteDescription[]> = [
         source: `MtAw2ed p192`,
         id: `temporal_pocket`,
     },
-] as const
+]
 
 const rotesMap = rotesList.reduce((acc, r) => {
     acc[r.id] = r

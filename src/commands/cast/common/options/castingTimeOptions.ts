@@ -143,8 +143,7 @@ export const getQuickCastingTimeLabelAndCost = (
         additionalSympathyYantrasRequired: number
     },
 ) => {
-    // advanced casting time is limited by yantras count and mana spending
-    // FIXME: add mana spending?
+    // NOTE: should I add mana spending? most dice come from negating paradox and it's not handled for now
     const yantrasUsed = yantraValues.length + additionalSympathyYantrasRequired
     const isMantraUsed = yantraValues.includes(`mantra`)
     const minDurationByYantras = Math.max(yantrasUsed, isMantraUsed ? 2 : 1)

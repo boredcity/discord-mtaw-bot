@@ -17,7 +17,7 @@ export const getEffect = (
     mana,
 })
 
-// TODO: store all options as objects
+// NOTE: Might make sense to store all options as Record<value, option>to get n instead of n^2
 export const getSelectedValues = <T extends string, X extends SelectedValue<T>>(
     allOptions: X[],
     selectedValueNames: T[],

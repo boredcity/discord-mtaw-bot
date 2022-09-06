@@ -5,6 +5,7 @@
     "main": "./src/app.ts",
     "scripts": {
         "dev": "nodemon src/app.ts",
+        "build": "npx tsc",
         "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
         "lint": "eslint . --ext .ts",
         "prepare": "husky install",
