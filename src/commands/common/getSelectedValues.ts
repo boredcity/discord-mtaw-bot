@@ -17,7 +17,6 @@ export const getEffect = (
     mana,
 })
 
-
 // TODO: store all options as objects
 export const getSelectedValues = <T extends string, X extends SelectedValue<T>>(
     allOptions: X[],
