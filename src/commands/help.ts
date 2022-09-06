@@ -20,7 +20,7 @@ export const HELP_COMMAND: BotChatCommand = {
             [Locale.Russian]: `Информация о том, как использовать этого бота`,
         }),
     execute: async (interaction) => {
-        await interaction.deferReply()
+        await interaction.deferReply({ ephemeral: true })
         const locale = interaction.locale
         const helpEmbed = new EmbedBuilder()
         helpEmbed.setTitle(`Mage the Awakening (2nd Edition) Helper Bot`)

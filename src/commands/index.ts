@@ -12,7 +12,7 @@ import { R_COMMAND } from './diceRolls/r'
 import { ROLL_COMMAND } from './diceRolls/roll'
 import { CAST_IMPROVISED_COMMAND } from './cast/castImprovisedOrPraxis'
 import { CAST_ROTE_COMMAND } from './cast/castRote'
-import { AUTOCOMPLETE_ROTES_COMMAND } from './cast/roteOptions'
+import { AUTOCOMPLETE_ROTES_COMMAND } from './cast/common/options/roteOptions'
 
 export interface LocalizationWithDefault
     extends Partial<Record<Locale, string>> {

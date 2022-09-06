@@ -1,13 +1,13 @@
 import { ChatInputCommandInteraction } from 'discord.js'
-import { getCastingTimeValue } from './castingTimeOptions'
-import { getDurationChoices, getDurationValue } from './durationOptions'
+import { getCastingTimeValue } from './options/castingTimeOptions'
+import { getDurationChoices, getDurationValue } from './options/durationOptions'
 import { getSpellFactorsText, SpellInfo } from './getSpellResult'
-import { getPotencyChoices, getPotencyValue } from './potencyOptions'
-import { PrimaryFactorChoiceValue } from './primaryFactorOptions'
-import { getRangeValue } from './rangeOptions'
-import { getScaleValue } from './scaleOptions'
-import { getYantraValues } from './yantraOptions'
-import { getEffect, SelectedValue } from '../common/getSelectedValues'
+import { getPotencyChoices, getPotencyValue } from './options/potencyOptions'
+import { PrimaryFactorChoiceValue } from './options/primaryFactorOptions'
+import { getRangeValue } from './options/rangeOptions'
+import { getScaleValue } from './options/scaleOptions'
+import { getYantraValues } from './options/yantraOptions'
+import { getEffect, SelectedValue } from '../../common/getSelectedValues'
 
 type GetSpellFactorsParam = {
     mageArcanaDots: number

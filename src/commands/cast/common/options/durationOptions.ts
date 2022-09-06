@@ -6,12 +6,12 @@ import {
     SelectMenuBuilder,
     SelectMenuComponentOptionData,
 } from 'discord.js'
-import { getSameUserSelectInteractionFilter } from '../common/getSameUserSelectInteractionFilter'
+import { getSameUserSelectInteractionFilter } from '../../../common/getSameUserSelectInteractionFilter'
 import {
     getEffect,
     getSelectedValues,
     SelectedValue,
-} from '../common/getSelectedValues'
+} from '../../../common/getSelectedValues'
 
 export const DURATION_OPTION_NAME = `duration`
 

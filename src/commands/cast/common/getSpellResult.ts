@@ -1,18 +1,20 @@
-import { capitalize } from '../common/capitalize'
-import { SelectedValue, getEffect } from '../common/getSelectedValues'
+import { capitalize } from '../../common/capitalize'
+import { SelectedValue, getEffect } from '../../common/getSelectedValues'
 import {
     CastingTimeChoiceValue,
     isAdvancedCastingTimeValue,
-} from './castingTimeOptions'
-import { DurationChoiceValue } from './durationOptions'
+} from './options/castingTimeOptions'
+import { DurationChoiceValue } from './options/durationOptions'
 import { getManaSpendPerTurnLimit } from './gnosis'
-import { PotencyChoiceValue } from './potencyOptions'
-import { RangeChoiceValue } from './rangeOptions'
-import { ScaleChoiceValue } from './scaleOptions'
-import { YantraChoiceValue } from './yantraOptions'
-import { RoteDescription } from './roteOptions'
-
-type SpellType = `rote` | `praxis` | `improvised_spell`
+import { PotencyChoiceValue } from './options/potencyOptions'
+import { RangeChoiceValue } from './options/rangeOptions'
+import { ScaleChoiceValue } from './options/scaleOptions'
+import { YantraChoiceValue } from './options/yantraOptions'
+import { RoteDescription } from './options/roteOptions'
+import {
+    NonRoteSpellTypeChoiceValue,
+    SpellTypeChoiceValue,
+} from './options/spellTypeOptions'
 
 type SpellFactorsInfo = {
     castingTime: SelectedValue<CastingTimeChoiceValue>
@@ -30,11 +32,21 @@ export const defaultSpellFactors: SpellFactorsInfo = {
     scale: { value: `1`, label: `Not selected`, effect: getEffect() },
 } as const
 
+const isRote = (spellInfo: SpellInfo): spellInfo is RoteSpellInfo =>
+    spellInfo.spellType === `rote`
+
+const roteLabels: Record<SpellTypeChoiceValue, string> = {
+    praxis: `Praxis`,
+    improvised_ruling_arcana: `Improvised Spell`,
+    improvised_not_ruling_arcana: `Improvised Spell`,
+    rote: `Rote`,
+}
+
 type BaseSpellInfo = SpellFactorsInfo & {
     diceToRoll: number
     reachUsed: number
     manaCost: number
-    spellType: SpellType
+    spellType: SpellTypeChoiceValue
 }
 
 export type RoteSpellInfo = BaseSpellInfo &
@@ -44,7 +56,7 @@ export type RoteSpellInfo = BaseSpellInfo &
 
 export type ImprovisedOrPraxisSpellInfo = BaseSpellInfo & {
     practiceDots: number
-    spellType: `praxis` | `improvised_spell`
+    spellType: NonRoteSpellTypeChoiceValue
 }
 
 export type SpellInfo = RoteSpellInfo | ImprovisedOrPraxisSpellInfo
@@ -58,12 +70,10 @@ type SpellResultParam = {
     gnosisDots: number
 }
 
-export const getSpellResultContent = ({
-    freeReach,
-    spellInfo,
-    chosenYantras,
-    gnosisDots,
-}: SpellResultParam): string => {
+export const getSpellResultContent = (
+    casterName: string,
+    { freeReach, spellInfo, chosenYantras, gnosisDots }: SpellResultParam,
+): string => {
     const { diceToRoll, reachUsed, manaCost, castingTime } = spellInfo
     const isDedicatedToolUsed = chosenYantras.some(
         (y) => y.value === `dedicated_tool`,
@@ -89,12 +99,14 @@ export const getSpellResultContent = ({
     }
 
     return `
-${getSpellInformation(spellInfo)}
+${getSpellInformation(casterName, spellInfo)}
 Dice pool: **${diceToRoll}**  ${diceToRollDisclaimer}
     - *remember, you can spending 1 Willpower (+3 dice)*
     - *add all extra dice from Merits, Fate Spells, Artifacts, etc.*
 
-Reaches: **${reachUsed}** (**${freeReach}** free)
+Reaches: **${reachUsed}** (**${freeReach}** free) ${
+        reachUsed > freeReach ? `👹` : ``
+    }
     - *add 1 Reach for each active spell above Gnosis*
     - *add Reach ${
         spellInfo.spellType === `rote`
@@ -143,13 +155,17 @@ export const getSpellFactorsText = (si: SpellInfo) => {
     Casting Time: ${si.castingTime.label}`
 }
 
-const getSpellInformation = (spellInfo: SpellInfo) => {
+const getSpellInformation = (casterName: string, spellInfo: SpellInfo) => {
     const { spellType } = spellInfo
-    const prefix = `You are casting a${
-        spellType === `praxis` ? `n` : ``
-    } ${capitalize(spellType)}`
+    const prefix = `${casterName} is casting a${
+        [`improvised_not_ruling_arcana`, `improvised_ruling_arcana`].includes(
+            spellType,
+        )
+            ? `n`
+            : ``
+    } ${capitalize(roteLabels[spellType] ?? `Spell`)}`
 
-    if (spellType === `rote`) {
+    if (isRote(spellInfo)) {
         const {
             name,
             arcana,

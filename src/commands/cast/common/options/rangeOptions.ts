@@ -6,12 +6,12 @@ import {
     SelectMenuBuilder,
     SelectMenuComponentOptionData,
 } from 'discord.js'
-import { getSameUserSelectInteractionFilter } from '../common/getSameUserSelectInteractionFilter'
+import { getSameUserSelectInteractionFilter } from '../../../common/getSameUserSelectInteractionFilter'
 import {
+    getEffect,
     getSelectedValues,
     SelectedValue,
-    getEffect,
-} from '../common/getSelectedValues'
+} from '../../../common/getSelectedValues'
 
 export const RANGE_OPTION_NAME = `range`
 export type RangeChoiceValue = `standard` | `sensory` | `sympathetic`

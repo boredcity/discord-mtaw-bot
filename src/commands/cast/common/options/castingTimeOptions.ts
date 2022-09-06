@@ -1,4 +1,3 @@
-import { SelectedValue } from './../common/getSelectedValues'
 import {
     ActionRowBuilder,
     ChatInputCommandInteraction,
@@ -6,9 +5,10 @@ import {
     MessageActionRowComponentBuilder,
     SelectMenuBuilder,
 } from 'discord.js'
-import { getRitualDurationByGnosis, TimeDuration } from './gnosis'
+import { getSameUserSelectInteractionFilter } from '../../../common/getSameUserSelectInteractionFilter'
+import { SelectedValue } from '../../../common/getSelectedValues'
+import { getRitualDurationByGnosis, TimeDuration } from '../gnosis'
 import { YantraChoiceValue } from './yantraOptions'
-import { getSameUserSelectInteractionFilter } from '../common/getSameUserSelectInteractionFilter'
 
 export const IS_RULING_OPTION_NAME = `is_ruling`
 

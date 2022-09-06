@@ -6,8 +6,11 @@ import {
     SelectMenuBuilder,
     SelectMenuComponentOptionData,
 } from 'discord.js'
-import { getSameUserSelectInteractionFilter } from '../common/getSameUserSelectInteractionFilter'
-import { getSelectedValues, SelectedValue } from '../common/getSelectedValues'
+import { getSameUserSelectInteractionFilter } from '../../../common/getSameUserSelectInteractionFilter'
+import {
+    getSelectedValues,
+    SelectedValue,
+} from '../../../common/getSelectedValues'
 
 export const SCALE_OPTION_NAME = `scale`
 export type ScaleChoiceValue = `a${number}` | `${number}`

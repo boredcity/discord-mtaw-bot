@@ -1,5 +1,5 @@
 import { AutocompleteInteraction, SlashCommandStringOption } from 'discord.js'
-import { capitalize } from '../common/capitalize'
+import { capitalize } from '../../../common/capitalize'
 import { PrimaryFactorChoiceValue } from './primaryFactorOptions'
 export const ROTE_OPTION_NAME = `rote_name`
 

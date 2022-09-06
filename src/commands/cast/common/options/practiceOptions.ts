@@ -1,5 +1,5 @@
 import { SlashCommandIntegerOption } from 'discord.js'
-import { ArrayOfOptions } from '..'
+import { ArrayOfOptions } from '../../..'
 
 export const PARCTICE_OPTION_NAME = `practice`
 export type PracticeChoiceValue = 1 | 2 | 3 | 4 | 5

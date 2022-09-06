@@ -8,13 +8,22 @@ import {
     getRoteDataByName,
     ROTE_OPTION_NAME,
     RoteChoiceValue,
-} from './roteOptions'
+} from './common/options/roteOptions'
 import {
     RoteSpellInfo,
     getSpellResultContent,
     defaultSpellFactors,
-} from './getSpellResult'
-import { getSpellFactorsAndYantras } from './getSpellFactorsAndYantras'
+} from './common/getSpellResult'
+import { getSpellFactorsAndYantras } from './common/getSpellFactorsAndYantras'
+import { getUserNickname } from '../common/getUserNickname'
+import {
+    gnosisDotsBuilder,
+    GNOSIS_DOTS_OPTION_NAME,
+} from './common/options/gnosisDotsOptions'
+import {
+    mageArcanaDotsBuilder,
+    MAGE_ARCANA_DOTS_OPTION_NAME,
+} from './common/options/mageArcanaDotsOptions'
 
 const name = `cast_rote`
 
@@ -23,27 +32,12 @@ const description: LocalizationWithDefault = {
     ru: `рассчитывает, сколько кубов, Усилий и Маны нужно для создания Рутины`,
 }
 
-const GNOSIS_DOTS_OPTION_NAME = `gnosis_dots`
-const gnosisDotsBuilder = getIntegerOptionsBuilder({
-    name: { default: GNOSIS_DOTS_OPTION_NAME, ru: `точки_мага_в_гнозисе` },
-    description: { default: `How many dots mage has in Gnosis?` },
-    minValue: 1,
-    maxValue: 10,
-    isRequired: true,
-})
-
-const MAGE_ARCANA_DOTS_OPTION_NAME = `mage_arcana_dots`
-const mageArcanaDotsBuilder = getIntegerOptionsBuilder({
-    name: { default: MAGE_ARCANA_DOTS_OPTION_NAME, ru: `точки_мага_в_аркане` },
-    description: { default: `How many dots mage has in this Arcana?` },
-    minValue: 0,
-    maxValue: 5,
-    isRequired: true,
-})
-
 const MUDRA_SKILL_DOTS_OPTION_NAME = `mudra_skill_dots`
 const mudraSkillDotsBuilder = getIntegerOptionsBuilder({
-    name: { default: MUDRA_SKILL_DOTS_OPTION_NAME, ru: `точки_мага_в_мудре` },
+    name: {
+        default: MUDRA_SKILL_DOTS_OPTION_NAME,
+        ru: `точки_мага_в_навыке_рутины`,
+    },
     description: { default: `How skilled are you in the Rote's mudra?` },
     minValue: 0,
     maxValue: 5,
@@ -123,7 +117,7 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
 
     await interaction.followUp({
         ephemeral: false,
-        content: getSpellResultContent({
+        content: getSpellResultContent(await getUserNickname(interaction), {
             freeReach,
             spellInfo,
             chosenYantras,

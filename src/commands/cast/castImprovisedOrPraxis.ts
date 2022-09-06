@@ -1,28 +1,35 @@
-import { practiceOptionsBuilder, PARCTICE_OPTION_NAME } from './practiceOptions'
+import {
+    practiceOptionsBuilder,
+    PARCTICE_OPTION_NAME,
+} from './common/options/practiceOptions'
 import { SlashCommandBuilder } from '@discordjs/builders'
 import { ChatInputCommandInteraction } from 'discord.js'
 import { BotChatCommand, LocalizationWithDefault } from '../index'
 import {
-    isRulingOptionsBuilder,
-    IS_RULING_OPTION_NAME,
-} from './isRulingOptions'
-import { getIntegerOptionsBuilder } from '../common/getNumberOptionsBuilder'
-
-import {
-    isPraxisOptionsBuilder,
-    SPELL_TYPE_OPTION_NAME,
-} from './isPraxisOptions'
-import {
     primaryFactorOptionsBuilder,
     PRIMARY_FACTOR_OPTION_NAME,
     PrimaryFactorChoiceValue,
-} from './primaryFactorOptions'
+} from './common/options/primaryFactorOptions'
 import {
     defaultSpellFactors,
     getSpellResultContent,
     ImprovisedOrPraxisSpellInfo,
-} from './getSpellResult'
-import { getSpellFactorsAndYantras } from './getSpellFactorsAndYantras'
+} from './common/getSpellResult'
+import { getSpellFactorsAndYantras } from './common/getSpellFactorsAndYantras'
+import { getUserNickname } from '../common/getUserNickname'
+import {
+    NonRoteSpellTypeChoiceValue,
+    spellTypeOptionsBuilder,
+    SPELL_TYPE_OPTION_NAME,
+} from './common/options/spellTypeOptions'
+import {
+    gnosisDotsBuilder,
+    GNOSIS_DOTS_OPTION_NAME,
+} from './common/options/gnosisDotsOptions'
+import {
+    mageArcanaDotsBuilder,
+    MAGE_ARCANA_DOTS_OPTION_NAME,
+} from './common/options/mageArcanaDotsOptions'
 
 const name = `cast_improvised`
 
@@ -31,38 +38,13 @@ const description: LocalizationWithDefault = {
     ru: `рассчитывает, сколько кубов, Усилий и Маны нужно для создания импровизированного заклинания или Праксиса`,
 }
 
-const GNOSIS_DOTS_OPTION_NAME = `gnosis_dots`
-const gnosisDotsBuilder = getIntegerOptionsBuilder({
-    name: { default: GNOSIS_DOTS_OPTION_NAME },
-    description: {
-        default: `How many dots mage has in Gnosis?`,
-        ru: `точки_мага_в_гнозисе`,
-    },
-    minValue: 1,
-    maxValue: 10,
-    isRequired: true,
-})
-
-const MAGE_ARCANA_DOTS_OPTION_NAME = `mage_arcana_dots`
-const mageArcanaDotsBuilder = getIntegerOptionsBuilder({
-    name: { default: MAGE_ARCANA_DOTS_OPTION_NAME },
-    description: {
-        default: `How many dots mage has in this Arcana?`,
-        ru: `точки_мага_в_аркане`,
-    },
-    minValue: 0,
-    maxValue: 5,
-    isRequired: true,
-})
-
 const builder = new SlashCommandBuilder()
     .setName(name)
     .setDescription(`Cast a spell`)
     .setDMPermission(false)
     .addIntegerOption(gnosisDotsBuilder)
     .addIntegerOption(mageArcanaDotsBuilder)
-    .addBooleanOption(isPraxisOptionsBuilder)
-    .addBooleanOption(isRulingOptionsBuilder)
+    .addStringOption(spellTypeOptionsBuilder)
     .addIntegerOption(practiceOptionsBuilder)
     .addStringOption(primaryFactorOptionsBuilder)
 
@@ -70,13 +52,14 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
     await interaction.deferReply({
         ephemeral: true,
     })
-    const isPraxis = interaction.options.getBoolean(SPELL_TYPE_OPTION_NAME)
+    const spellType = interaction.options.getString(
+        SPELL_TYPE_OPTION_NAME,
+    ) as NonRoteSpellTypeChoiceValue
     const practiceDots = interaction.options.getInteger(PARCTICE_OPTION_NAME)
     const gnosisDots = interaction.options.getInteger(GNOSIS_DOTS_OPTION_NAME)
     const mageArcanaDots = interaction.options.getInteger(
         MAGE_ARCANA_DOTS_OPTION_NAME,
     )
-    const isRulingArcana = interaction.options.getBoolean(IS_RULING_OPTION_NAME)
     const primaryFactor = interaction.options.getString(
         PRIMARY_FACTOR_OPTION_NAME,
     ) as PrimaryFactorChoiceValue | null
@@ -85,9 +68,8 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
         !practiceDots ||
         !gnosisDots ||
         !mageArcanaDots ||
-        isRulingArcana === null ||
-        primaryFactor === null ||
-        isPraxis === null
+        spellType === null ||
+        primaryFactor === null
     ) {
         console.error(
             `Some data not provided`,
@@ -95,9 +77,8 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
                 practiceDots,
                 gnosisDots,
                 mageArcanaDots,
-                isRulingArcana,
                 primaryFactor,
-                isPraxis,
+                spellType,
             }),
         )
         return interaction.editReply(`Ooops, something went wrong, sorry :(`)
@@ -110,7 +91,7 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
     const spellInfo: ImprovisedOrPraxisSpellInfo = {
         ...defaultSpellFactors,
         practiceDots,
-        spellType: isPraxis ? `praxis` : `improvised_spell`,
+        spellType,
         manaCost: 0,
         diceToRoll: gnosisDots + mageArcanaDots,
         reachUsed: 0,
@@ -118,7 +99,7 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
     const freeReach = mageArcanaDots - practiceDots + 1
 
     // ruling arcana
-    if (!isRulingArcana && !isPraxis) {
+    if (spellType === `improvised_not_ruling_arcana`) {
         spellInfo.manaCost += 1
     }
 
@@ -139,7 +120,7 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
     await interaction.followUp({
         ephemeral: false,
         components: [],
-        content: getSpellResultContent({
+        content: getSpellResultContent(await getUserNickname(interaction), {
             freeReach,
             spellInfo,
             chosenYantras,

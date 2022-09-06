@@ -6,9 +6,12 @@ import {
     SelectMenuBuilder,
     SelectMenuComponentOptionData,
 } from 'discord.js'
-import { getSameUserSelectInteractionFilter } from '../common/getSameUserSelectInteractionFilter'
-import { getSelectedValues, SelectedValue } from '../common/getSelectedValues'
-import { getMaxYantrasByGnosis } from './gnosis'
+import { getSameUserSelectInteractionFilter } from '../../../common/getSameUserSelectInteractionFilter'
+import {
+    getSelectedValues,
+    SelectedValue,
+} from '../../../common/getSelectedValues'
+import { getMaxYantrasByGnosis } from '../gnosis'
 
 export type YantraChoiceValue =
     | `location`
