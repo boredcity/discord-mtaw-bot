@@ -8,7 +8,7 @@ interface DieRollResultInfo {
 
 export function getRollResults({
     count,
-    target = 7,
+    target = 8,
     rule,
 }: {
     count: number
@@ -29,11 +29,11 @@ export function getRollResults({
         switch (rule) {
             case `ruleNoAgain`:
                 break
-            case `rule9Again`:
-                if (dieRollResult >= 9) shouldExplode = true
-                break
             case `rule8Again`:
                 if (dieRollResult >= 8) shouldExplode = true
+                break
+            case `rule9Again`:
+                if (dieRollResult >= 9) shouldExplode = true
                 break
             default:
                 if (dieRollResult === 10) shouldExplode = true
