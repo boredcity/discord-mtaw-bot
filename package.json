@@ -1,5 +1,5 @@
 {
-    "name": "discord-npc-bot",
+    "name": "discord-mtaw-bot",
     "version": "0.1.1",
     "description": "",
     "main": "./src/app.ts",
