@@ -19,12 +19,13 @@ import { getSpellFactorsAndYantras } from './getSpellFactorsAndYantras'
 const name = `cast_rote`
 
 const description: LocalizationWithDefault = {
-    default: `cast a Rote spell`,
+    default: `calculates dice, reach and mana needed to cast a Rote`,
+    ru: `рассчитывает, сколько кубов, Усилий и Маны нужно для создания Рутины`,
 }
 
 const GNOSIS_DOTS_OPTION_NAME = `gnosis_dots`
 const gnosisDotsBuilder = getIntegerOptionsBuilder({
-    name: { default: GNOSIS_DOTS_OPTION_NAME },
+    name: { default: GNOSIS_DOTS_OPTION_NAME, ru: `точки_мага_в_гнозисе` },
     description: { default: `How many dots mage has in Gnosis?` },
     minValue: 1,
     maxValue: 10,
@@ -33,7 +34,7 @@ const gnosisDotsBuilder = getIntegerOptionsBuilder({
 
 const MAGE_ARCANA_DOTS_OPTION_NAME = `mage_arcana_dots`
 const mageArcanaDotsBuilder = getIntegerOptionsBuilder({
-    name: { default: MAGE_ARCANA_DOTS_OPTION_NAME },
+    name: { default: MAGE_ARCANA_DOTS_OPTION_NAME, ru: `точки_мага_в_аркане` },
     description: { default: `How many dots mage has in this Arcana?` },
     minValue: 0,
     maxValue: 5,
@@ -42,7 +43,7 @@ const mageArcanaDotsBuilder = getIntegerOptionsBuilder({
 
 const MUDRA_SKILL_DOTS_OPTION_NAME = `mudra_skill_dots`
 const mudraSkillDotsBuilder = getIntegerOptionsBuilder({
-    name: { default: MUDRA_SKILL_DOTS_OPTION_NAME },
+    name: { default: MUDRA_SKILL_DOTS_OPTION_NAME, ru: `точки_мага_в_мудре` },
     description: { default: `How skilled are you in the Rote's mudra?` },
     minValue: 0,
     maxValue: 5,

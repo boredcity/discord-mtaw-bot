@@ -62,6 +62,7 @@ export const practiceChoices: ArrayOfOptions<PracticeChoiceValue> = [
 export const practiceOptionsBuilder = (option: SlashCommandIntegerOption) =>
     option
         .setRequired(true)
+        .setNameLocalizations({ ru: `практика` })
         .setName(PARCTICE_OPTION_NAME)
         .setDescription(`What practice is used?`)
         .addChoices(...practiceChoices)

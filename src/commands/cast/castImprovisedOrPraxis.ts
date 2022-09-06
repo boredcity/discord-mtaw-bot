@@ -27,13 +27,17 @@ import { getSpellFactorsAndYantras } from './getSpellFactorsAndYantras'
 const name = `cast_improvised`
 
 const description: LocalizationWithDefault = {
-    default: `cast improvised spell or Praxis`,
+    default: `calculates dice, reach and mana needed to cast an improvised spell or Praxis`,
+    ru: `рассчитывает, сколько кубов, Усилий и Маны нужно для создания импровизированного заклинания или Праксиса`,
 }
 
 const GNOSIS_DOTS_OPTION_NAME = `gnosis_dots`
 const gnosisDotsBuilder = getIntegerOptionsBuilder({
     name: { default: GNOSIS_DOTS_OPTION_NAME },
-    description: { default: `How many dots mage has in Gnosis?` },
+    description: {
+        default: `How many dots mage has in Gnosis?`,
+        ru: `точки_мага_в_гнозисе`,
+    },
     minValue: 1,
     maxValue: 10,
     isRequired: true,
@@ -42,7 +46,10 @@ const gnosisDotsBuilder = getIntegerOptionsBuilder({
 const MAGE_ARCANA_DOTS_OPTION_NAME = `mage_arcana_dots`
 const mageArcanaDotsBuilder = getIntegerOptionsBuilder({
     name: { default: MAGE_ARCANA_DOTS_OPTION_NAME },
-    description: { default: `How many dots mage has in this Arcana?` },
+    description: {
+        default: `How many dots mage has in this Arcana?`,
+        ru: `точки_мага_в_аркане`,
+    },
     minValue: 0,
     maxValue: 5,
     isRequired: true,

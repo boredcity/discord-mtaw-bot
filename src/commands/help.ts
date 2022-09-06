@@ -24,11 +24,6 @@ export const HELP_COMMAND: BotChatCommand = {
         const locale = interaction.locale
         const helpEmbed = new EmbedBuilder()
         helpEmbed.setTitle(`Mage the Awakening (2nd Edition) Helper Bot`)
-        helpEmbed.setDescription(
-            locale === Locale.Russian
-                ? `Этот бот создан, чтоб помочь с играми в сеттинге "Хроники Тьмы"`
-                : `This discord bot is designed to help you with "Chronicles of Darkness" games`,
-        )
         helpEmbed.addFields(
             ALL_CHAT_INTERACTION_COMMANDS.map((c) => ({
                 name: `\`${c.name}\``,
@@ -39,9 +34,7 @@ export const HELP_COMMAND: BotChatCommand = {
             })),
         )
         helpEmbed.setFooter({
-            text: `${locale === Locale.Russian ? `Версия` : `Version`} ${
-                process.env.npm_package_version
-            }`,
+            text: `v. ${process.env.npm_package_version}`,
         })
         await interaction.editReply({ embeds: [helpEmbed] })
         return

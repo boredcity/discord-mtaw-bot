@@ -9,8 +9,8 @@ import { getRollResults } from './common/getRollResults'
 const name = `chance`
 
 const description: LocalizationWithDefault = {
-    default: `rolls a single d10 chance die according to CoD setting rules`,
-    ru: `кидает один куб d10 (бросок на удачу) с учетом правил Хроник Тьмы`,
+    default: `rolls a single d10 chance die`,
+    ru: `кидает один куб d10 (бросок на удачу)`,
 }
 
 const builder = new SlashCommandBuilder()

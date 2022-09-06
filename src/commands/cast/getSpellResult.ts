@@ -81,12 +81,16 @@ export const getSpellResultContent = ({
             requiredForChanceRoll === 1 ? `die` : `dice`
         }!`
     } else if (diceToRoll < 1) {
-        diceToRollDisclaimer = `🚧 chance die!`
+        diceToRollDisclaimer = `🎲 chance die!`
+    } else {
+        diceToRollDisclaimer = `🧙 exceptional success on ${
+            spellInfo.spellType === `praxis` ? 3 : 5
+        } roll successes.!`
     }
 
     return `
 ${getSpellInformation(spellInfo)}
-Dice pool: **${diceToRoll}** ${diceToRollDisclaimer}
+Dice pool: **${diceToRoll}**  ${diceToRollDisclaimer}
     - *remember, you can spending 1 Willpower (+3 dice)*
     - *add all extra dice from Merits, Fate Spells, Artifacts, etc.*
 

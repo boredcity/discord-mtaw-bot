@@ -1,7 +1,7 @@
 import { AutocompleteInteraction, SlashCommandStringOption } from 'discord.js'
 import { capitalize } from '../common/capitalize'
 import { PrimaryFactorChoiceValue } from './primaryFactorOptions'
-export const ROTE_OPTION_NAME = `rote`
+export const ROTE_OPTION_NAME = `rote_name`
 
 export type RoteChoiceValue = typeof rotesList[0][`id`]
 
@@ -3793,6 +3793,9 @@ export const roteOptionsBuilder = (option: SlashCommandStringOption) =>
     option
         .setRequired(true)
         .setName(ROTE_OPTION_NAME)
+        .setNameLocalizations({
+            ru: `назване_рутины`,
+        })
         .setDescription(
             `What is the Rote's name? Valid options: "postcognition", "Life3", etc.`,
         )

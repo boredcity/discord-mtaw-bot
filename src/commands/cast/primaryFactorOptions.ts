@@ -18,6 +18,7 @@ export const primaryFactorChoices: ArrayOfOptions<PrimaryFactorChoiceValue> = [
 export const primaryFactorOptionsBuilder = (option: SlashCommandStringOption) =>
     option
         .setRequired(true)
+        .setNameLocalizations({ ru: `первичный_фактор` })
         .setName(PRIMARY_FACTOR_OPTION_NAME)
         .setDescription(`What's the spell's primary factor?`)
         .addChoices(...primaryFactorChoices)
