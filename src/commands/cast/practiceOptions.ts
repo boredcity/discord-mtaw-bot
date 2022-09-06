@@ -26,7 +26,7 @@ export const practiceChoices: ArrayOfOptions<PracticeChoiceValue> = [
         value: 2,
     },
     {
-        name: `●● Veiling - hide or camouflage from/by Arcanum`,
+        name: `●● Veiling - hide or camouflage from or by Arcanum`,
         value: 2,
     },
     {

@@ -7,7 +7,11 @@ import {
     SelectMenuComponentOptionData,
 } from 'discord.js'
 import { getSameUserSelectInteractionFilter } from '../common/getSameUserSelectInteractionFilter'
-import { getSelectedValues, SelectedValue } from '../common/getSelectedValues'
+import {
+    getEffect,
+    getSelectedValues,
+    SelectedValue,
+} from '../common/getSelectedValues'
 
 export const DURATION_OPTION_NAME = `duration`
 
@@ -36,10 +40,14 @@ export const getDurationChoices = (
         { value: `10_turns` as const, label: `10 Turns` },
         { value: `20_turns` as const, label: `20 Turns / 1 Minute` },
     ]
-        .map(({ label, value }, i) => ({
-            value,
-            label: (label += ` (-${Math.max(0, i - freeSteps) * 2} dice)`),
-        }))
+        .map(({ label, value }, i) => {
+            const cost = Math.max(0, i - freeSteps) * 2
+            return {
+                value,
+                label: (label += ` (-${cost} dice)`),
+                effect: getEffect(-cost),
+            }
+        })
         .slice(freeSteps)
 
     const advancedDurations = [
@@ -52,20 +60,21 @@ export const getDurationChoices = (
         { value: `a_month` as const, label: `Month` },
         { value: `a_year` as const, label: `Year` },
     ]
-        .map(({ label, value }, i) => ({
-            value,
-            label: (label += ` (-${
-                Math.max(0, i - freeSteps) * 2
-            } dice, 1 Reach)`),
-        }))
+        .map(({ label, value }, i) => {
+            const cost = Math.max(0, i - freeSteps) * 2
+            return {
+                value,
+                label: (label += ` (-${cost} dice, 1 Reach)`),
+                effect: getEffect(-cost, 1),
+            }
+        })
         .slice(freeSteps)
 
+    const indefiniteCost = Math.max(0, 10 - freeSteps * 2)
     const indefiniteDuration = {
         value: `aa_indefinite` as const,
-        label: `Indefinite (${Math.max(
-            0,
-            10 - freeSteps,
-        )} dice, -1 Mana, 2 Reach)`,
+        label: `Indefinite (-${indefiniteCost} dice, -1 Mana, 2 Reach)`,
+        effect: getEffect(-indefiniteCost, 2, 1),
     }
 
     return [...basicDurations, ...advancedDurations, indefiniteDuration]
@@ -108,56 +117,4 @@ export const getDurationValue = async ({
         durationChoices,
         values as DurationChoiceValue[],
     )[0]
-}
-
-export const getDurationCost = (
-    duration: DurationChoiceValue,
-    freeSteps: number,
-) => {
-    let dice = 0
-    let reach = 0
-    let mana = 0
-    switch (duration) {
-        case `1_turn`:
-        case `a_scene_or_hour`:
-            dice = 0
-            break
-        case `2_turns`:
-        case `a_day`:
-            dice = 2
-            break
-        case `3_turns`:
-        case `a_week`:
-            dice = 4
-            break
-        case `5_turns`:
-        case `a_month`:
-            dice = 6
-            break
-        case `10_turns`:
-        case `a_year`:
-            dice = 8
-            break
-        case `20_turns`:
-        case `aa_indefinite`:
-            dice = 10
-            break
-    }
-    switch (duration) {
-        case `a_scene_or_hour`:
-        case `a_day`:
-        case `a_week`:
-        case `a_month`:
-        case `a_year`:
-            reach = 1
-            break
-        case `aa_indefinite`:
-            reach = 2
-            mana = 1
-    }
-    return {
-        reach,
-        mana,
-        dice: Math.max(0, dice - freeSteps * 2),
-    }
 }

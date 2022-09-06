@@ -1,20 +1,13 @@
 import { ChatInputCommandInteraction } from 'discord.js'
 import { getCastingTimeValue } from './castingTimeOptions'
-import {
-    getDurationChoices,
-    getDurationCost,
-    getDurationValue,
-} from './durationOptions'
+import { getDurationChoices, getDurationValue } from './durationOptions'
 import { getSpellFactorsText, SpellInfo } from './getSpellResult'
-import {
-    getPotencyChoices,
-    getPotencyCost,
-    getPotencyValue,
-} from './potencyOptions'
+import { getPotencyChoices, getPotencyValue } from './potencyOptions'
 import { PrimaryFactorChoiceValue } from './primaryFactorOptions'
-import { getRangeCost, getRangeValue } from './rangeOptions'
-import { getScaleCost, getScaleValue } from './scaleOptions'
+import { getRangeValue } from './rangeOptions'
+import { getScaleValue } from './scaleOptions'
 import { getYantraValues } from './yantraOptions'
+import { getEffect, SelectedValue } from '../common/getSelectedValues'
 
 type GetSpellFactorsParam = {
     mageArcanaDots: number
@@ -45,9 +38,7 @@ export const getSpellFactorsAndYantras = async ({
         interaction,
         potencyChoices,
     })
-    const potencyCost = getPotencyCost(potency.value, potencyFreeSteps)
-    spellInfo.diceToRoll -= potencyCost.dice
-    spellInfo.reachUsed += potencyCost.reach
+    changeSpellInfoByEffect(spellInfo, potency.effect)
     spellInfo.potency = potency
 
     // duration
@@ -60,28 +51,21 @@ export const getSpellFactorsAndYantras = async ({
         durationChoices,
         currentSpellInfoText,
     })
-    const durationCost = getDurationCost(duration.value, durationFreeSteps)
-    spellInfo.manaCost += durationCost.mana
-    spellInfo.diceToRoll -= durationCost.dice
-    spellInfo.reachUsed += durationCost.reach
+    changeSpellInfoByEffect(spellInfo, duration.effect)
     spellInfo.duration = duration
 
     // range
     currentSpellInfoText = getCurrentSpellInfoText(spellInfo, freeReach)
     const range = await getRangeValue({ interaction, currentSpellInfoText })
-    const rangeCost = getRangeCost(range.value)
     const additionalSympathyYantrasRequired =
         range.value === `sympathetic` ? 1 : 0
-    spellInfo.manaCost += rangeCost.mana
-    spellInfo.reachUsed += rangeCost.reach
+    changeSpellInfoByEffect(spellInfo, range.effect)
     spellInfo.range = range
 
     // scale
     currentSpellInfoText = getCurrentSpellInfoText(spellInfo, freeReach)
     const scale = await getScaleValue({ interaction, currentSpellInfoText })
-    const scaleCost = getScaleCost(scale.value)
-    spellInfo.diceToRoll -= scaleCost.dice
-    spellInfo.reachUsed += scaleCost.reach
+    changeSpellInfoByEffect(spellInfo, scale.effect)
     spellInfo.scale = scale
 
     // yantras
@@ -94,7 +78,14 @@ export const getSpellFactorsAndYantras = async ({
         mudraSkillDots:
             spellInfo.spellType === `rote` ? mudraSkillDots : undefined,
     })
-    chosenYantras.forEach((y) => (spellInfo.diceToRoll += y.diceBonus))
+    const overallYantrasEffect = chosenYantras.reduce((acc, y) => {
+        acc.dice += y.effect.dice
+        acc.reach += y.effect.reach
+        acc.mana += y.effect.mana
+        return acc
+    }, getEffect())
+    overallYantrasEffect.dice = Math.min(5, overallYantrasEffect.dice)
+    changeSpellInfoByEffect(spellInfo, overallYantrasEffect)
 
     // casting time
     currentSpellInfoText = getCurrentSpellInfoText(spellInfo, freeReach)
@@ -105,11 +96,8 @@ export const getSpellFactorsAndYantras = async ({
         yantraValues: chosenYantras.map((y) => y.value),
         additionalSympathyYantrasRequired,
     })
-    spellInfo.diceToRoll += castingTime.diceBonus
-    spellInfo.reachUsed += castingTime.cost.reach
-    spellInfo.manaCost += castingTime.cost.mana
+    changeSpellInfoByEffect(spellInfo, castingTime.effect)
     spellInfo.castingTime = castingTime
-
     return { chosenYantras, spellInfo }
 }
 
@@ -124,3 +112,12 @@ Current spell cost:
 
 Current spell factors:${getSpellFactorsText(spellInfo)}
 `
+
+const changeSpellInfoByEffect = (
+    spellInfo: SpellInfo,
+    effect: SelectedValue[`effect`],
+) => {
+    spellInfo.manaCost += effect.mana
+    spellInfo.reachUsed += effect.reach
+    spellInfo.diceToRoll += effect.dice
+}

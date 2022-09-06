@@ -16,31 +16,31 @@ const baseScales = [
         subjects: 1,
         sizeOfLargest: 5,
         area: `Arm's reach from a central point`,
-        cost: { dice: 0, reach: 0 },
+        effect: { dice: -0, reach: 0, mana: 0 },
     },
     {
         subjects: 2,
         sizeOfLargest: 6,
         area: `A small room`,
-        cost: { dice: 2, reach: 0 },
+        effect: { dice: -2, reach: 0, mana: 0 },
     },
     {
         subjects: 4,
         sizeOfLargest: 7,
         area: `A large room`,
-        cost: { dice: 4, reach: 0 },
+        effect: { dice: -4, reach: 0, mana: 0 },
     },
     {
         subjects: 8,
         sizeOfLargest: 8,
         area: `Several rooms, or a single floor of a house`,
-        cost: { dice: 6, reach: 0 },
+        effect: { dice: -6, reach: 0, mana: 0 },
     },
     {
         subjects: 16,
         sizeOfLargest: 9,
         area: `A ballroom or small house`,
-        cost: { dice: 8, reach: 0 },
+        effect: { dice: -8, reach: 0, mana: 0 },
     },
 ]
 const advancedScales = [
@@ -48,37 +48,37 @@ const advancedScales = [
         subjects: 5,
         sizeOfLargest: 5,
         area: `A large house or building`,
-        cost: { dice: 0, reach: 1 },
+        effect: { dice: -0, reach: 1, mana: 0 },
     },
     {
         subjects: 10,
         sizeOfLargest: 10,
         area: `A small warehouse or parking lot`,
-        cost: { dice: 2, reach: 1 },
+        effect: { dice: -2, reach: 1, mana: 0 },
     },
     {
         subjects: 20,
         sizeOfLargest: 15,
         area: `A large warehouse or supermarket`,
-        cost: { dice: 4, reach: 1 },
+        effect: { dice: -4, reach: 1, mana: 0 },
     },
     {
         subjects: 40,
         sizeOfLargest: 20,
         area: `A small factory, or a shopping mall`,
-        cost: { dice: 6, reach: 1 },
+        effect: { dice: -6, reach: 1, mana: 0 },
     },
     {
         subjects: 80,
         sizeOfLargest: 25,
         area: `A large factory, or a city block`,
-        cost: { dice: 8, reach: 1 },
+        effect: { dice: -8, reach: 1, mana: 0 },
     },
     {
         subjects: 160,
         sizeOfLargest: 30,
         area: `A campus, or a small neighborhood`,
-        cost: { dice: 10, reach: 1 },
+        effect: { dice: -10, reach: 1, mana: 0 },
     },
 ]
 
@@ -99,13 +99,15 @@ export const scaleChoices: (SelectedValue<ScaleChoiceValue> &
     SelectMenuComponentOptionData)[] = [
     ...baseScales.map((s, i) => ({
         value: `${i}` as ScaleChoiceValue,
+        effect: s.effect,
         label: `${s.area} or ${s.subjects} ${
             s.subjects === 1 ? `man` : `men`
-        } (up to Size ${s.sizeOfLargest}) (-${s.cost.dice} dice)`,
+        } (up to Size ${s.sizeOfLargest}) (${s.effect.dice} dice)`,
     })),
     ...advancedScales.map((s, i) => ({
         value: (`a` + `${i}`) as ScaleChoiceValue,
-        label: `${s.area} or ${s.subjects} men (up to Size ${s.sizeOfLargest}) (-${s.cost.dice} dice, 1 Reach)`,
+        effect: s.effect,
+        label: `${s.area} or ${s.subjects} men (up to Size ${s.sizeOfLargest}) (${s.effect.dice} dice, 1 Reach)`,
     })),
 ]
 

@@ -1,7 +1,22 @@
 export type SelectedValue<T extends string = string> = {
     value: T
     label: string
+    effect: {
+        dice: number
+        reach: number
+        mana: number
+    }
 }
+export const getEffect = (
+    dice = 0,
+    reach = 0,
+    mana = 0,
+): SelectedValue[`effect`] => ({
+    dice,
+    reach,
+    mana,
+})
+
 
 // TODO: store all options as objects
 export const getSelectedValues = <T extends string, X extends SelectedValue<T>>(

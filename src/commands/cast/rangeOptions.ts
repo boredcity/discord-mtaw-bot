@@ -7,7 +7,11 @@ import {
     SelectMenuComponentOptionData,
 } from 'discord.js'
 import { getSameUserSelectInteractionFilter } from '../common/getSameUserSelectInteractionFilter'
-import { getSelectedValues, SelectedValue } from '../common/getSelectedValues'
+import {
+    getSelectedValues,
+    SelectedValue,
+    getEffect,
+} from '../common/getSelectedValues'
 
 export const RANGE_OPTION_NAME = `range`
 export type RangeChoiceValue = `standard` | `sensory` | `sympathetic`
@@ -20,11 +24,12 @@ export const getRangeCost = (value: RangeChoiceValue) => {
 
 export const rangeChoices: (SelectMenuComponentOptionData &
     SelectedValue<RangeChoiceValue>)[] = [
-    { value: `standard`, label: `Self/touch or Aimed` },
-    { value: `sensory`, label: `Sensory` },
+    { value: `standard`, label: `Self/touch or Aimed`, effect: getEffect(0) },
+    { value: `sensory`, label: `Sensory (1 Reach)`, effect: getEffect(0, 1) },
     {
         value: `sympathetic`,
-        label: `Sympathetic Range (Space ●●, Yantra, -1 Mana)`,
+        effect: getEffect(0, 1, 1),
+        label: `Sympathetic Range (needs Space ●● and Yantra; 1 Reach, -1 Mana)`,
     },
     // TODO: should I add temporal sympathy?
 ]

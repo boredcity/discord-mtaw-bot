@@ -81,14 +81,6 @@ export const isAdvancedCastingTimeValue = (
 ): value is AdvancedCastingTimeChoiceValue =>
     value === `quick` || value === `time_in_a_bottle`
 
-export type CastingTimeFullValue = SelectedValue<CastingTimeChoiceValue> & {
-    diceBonus: number
-    cost: {
-        reach: number
-        mana: number
-    }
-}
-
 export const getCastingTimeValue = async ({
     interaction,
     gnosisDots,
@@ -101,7 +93,7 @@ export const getCastingTimeValue = async ({
     currentSpellInfoText: string
     yantraValues: YantraChoiceValue[]
     additionalSympathyYantrasRequired: number
-}): Promise<CastingTimeFullValue> => {
+}): Promise<SelectedValue<CastingTimeChoiceValue>> => {
     const ritualDuration = getRitualDurationByGnosis(gnosisDots)
     const castingTimeRow =
         new ActionRowBuilder<MessageActionRowComponentBuilder>().addComponents(
@@ -135,9 +127,8 @@ export const getCastingTimeValue = async ({
 
     const castingTimeInfo = getCastingTimeInfo(ritualDuration, +value)
     return {
-        diceBonus: castingTimeInfo.bonus,
         label: castingTimeInfo.label,
-        cost: { reach: 0, mana: 0 },
+        effect: { reach: 0, mana: 0, dice: castingTimeInfo.bonus },
         value: value as `${number}`,
     }
 }
@@ -151,14 +142,7 @@ export const getQuickCastingTimeLabelAndCost = (
         yantraValues: YantraChoiceValue[]
         additionalSympathyYantrasRequired: number
     },
-): {
-    label: string
-    diceBonus: 0
-    cost: {
-        reach: number
-        mana: number
-    }
-} => {
+) => {
     // advanced casting time is limited by yantras count and mana spending
     // FIXME: add mana spending?
     const yantrasUsed = yantraValues.length + additionalSympathyYantrasRequired
@@ -166,8 +150,8 @@ export const getQuickCastingTimeLabelAndCost = (
     const minDurationByYantras = Math.max(yantrasUsed, isMantraUsed ? 2 : 1)
     return {
         label: `${minDurationByYantras} turn(s)`,
-        diceBonus: 0,
-        cost: {
+        effect: {
+            dice: 0,
             reach: value === `quick` ? 1 : 0,
             mana: value === `time_in_a_bottle` ? 1 : 0,
         },

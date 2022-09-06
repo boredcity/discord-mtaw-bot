@@ -1,5 +1,5 @@
 import { capitalize } from '../common/capitalize'
-import { SelectedValue } from '../common/getSelectedValues'
+import { SelectedValue, getEffect } from '../common/getSelectedValues'
 import {
     CastingTimeChoiceValue,
     isAdvancedCastingTimeValue,
@@ -23,12 +23,12 @@ type SpellFactorsInfo = {
 }
 
 export const defaultSpellFactors: SpellFactorsInfo = {
-    castingTime: { value: `1`, label: `Not selected` },
-    potency: { value: `1`, label: `Not selected` },
-    duration: { value: `1_turn`, label: `Not selected` },
-    range: { value: `standard`, label: `Not selected` },
-    scale: { value: `1`, label: `Not selected` },
-}
+    castingTime: { value: `1`, label: `Not selected`, effect: getEffect() },
+    potency: { value: `1`, label: `Not selected`, effect: getEffect() },
+    duration: { value: `1_turn`, label: `Not selected`, effect: getEffect() },
+    range: { value: `standard`, label: `Not selected`, effect: getEffect() },
+    scale: { value: `1`, label: `Not selected`, effect: getEffect() },
+} as const
 
 type BaseSpellInfo = SpellFactorsInfo & {
     diceToRoll: number
@@ -91,7 +91,7 @@ Dice pool: **${diceToRoll}** ${diceToRollDisclaimer}
     - *add all extra dice from Merits, Fate Spells, Artifacts, etc.*
 
 Reaches: **${reachUsed}** (**${freeReach}** free)
-    - *add +1 Reach for each active spell above Gnosis*
+    - *add 1 Reach for each active spell above Gnosis*
     - *add Reach ${
         spellInfo.spellType === `rote`
             ? `per optional Rotes requirements`
@@ -106,10 +106,10 @@ Mana cost: **${manaCost}** ${manaSpendReminder}
             : `*for calling to Supernal perfection*`
     }
 
-Yantras used:\n${chosenYantras
+Yantras bonuses:\n${chosenYantras
         .map(
             (y) =>
-                `   - **${y.label}** ${
+                `   - ${y.label} ${
                     y.description ? `(*${y.description}*)` : ``
                 }`,
         )
@@ -132,11 +132,11 @@ Yantras used:\n${chosenYantras
 
 export const getSpellFactorsText = (si: SpellInfo) => {
     return `
-    Casting Time: ${si.castingTime.label}
     Potency: ${si.potency.label}
     Duration: ${si.duration.label}
     Range: ${si.range.label}
-    Scale: ${si.scale.label}`
+    Scale: ${si.scale.label}
+    Casting Time: ${si.castingTime.label}`
 }
 
 const getSpellInformation = (spellInfo: SpellInfo) => {
