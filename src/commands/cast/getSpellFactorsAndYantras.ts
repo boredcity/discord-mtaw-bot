@@ -113,7 +113,10 @@ export const getSpellFactorsAndYantras = async ({
     return { chosenYantras, spellInfo }
 }
 
-export const getCurrentSpellInfoText = (spellInfo: SpellInfo, freeReach: number) => `
+export const getCurrentSpellInfoText = (
+    spellInfo: SpellInfo,
+    freeReach: number,
+) => `
 Current spell cost:
     Dice to roll: **${spellInfo.diceToRoll}**
     Reach uses: **${spellInfo.reachUsed}** (${freeReach} for free)
