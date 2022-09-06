@@ -12,7 +12,7 @@ import { ScaleChoiceValue } from './scaleOptions'
 import { YantraChoiceValue } from './yantraOptions'
 import { RoteDescription } from './roteOptions'
 
-type SpellType = 'rote' | 'praxis' | 'improvised_spell'
+type SpellType = `rote` | `praxis` | `improvised_spell`
 
 type BaseSpellInfo = {
     diceToRoll: number
@@ -23,11 +23,11 @@ type BaseSpellInfo = {
 
 export type RoteSpellInfo = BaseSpellInfo &
     RoteDescription & {
-        spellType: 'rote'
+        spellType: `rote`
     }
 export type ImprovisedOrPraxisSpellInfo = BaseSpellInfo & {
     practiceDots: number
-    spellType: 'praxis' | 'improvised_spell'
+    spellType: `praxis` | `improvised_spell`
 }
 export type SpellInfo = RoteSpellInfo | ImprovisedOrPraxisSpellInfo
 
@@ -56,22 +56,22 @@ export const getSpellResultContent = ({
 }: SpellResultParam): string => {
     const { diceToRoll, reachUsed, manaCost } = spellInfo
     const isDedicatedToolUsed = chosenYantras.some(
-        (y) => y.value === 'dedicated_tool',
+        (y) => y.value === `dedicated_tool`,
     )
 
     const manaSpendPerTurnLimit = getManaSpendPerTurnLimit(gnosisDots)
     const manaSpendReminder = isAdvancedCastingTimeValue(castingTime.value)
         ? `Spending Mana above ${manaSpendPerTurnLimit} Mana per Turn might increase Casting Time`
-        : ''
+        : ``
 
-    let diceToRollDisclaimer = ''
+    let diceToRollDisclaimer = ``
     if (diceToRoll < -5) {
         const requiredForChanceRoll = Math.abs(diceToRoll) - 5
         diceToRollDisclaimer = `🚧 you need at least ${requiredForChanceRoll} more ${
-            requiredForChanceRoll === 1 ? 'die' : 'dice'
+            requiredForChanceRoll === 1 ? `die` : `dice`
         }!`
     } else if (diceToRoll < 1) {
-        diceToRollDisclaimer = '🚧 chance die!'
+        diceToRollDisclaimer = `🚧 chance die!`
     }
 
     return `
@@ -84,20 +84,20 @@ Dice pool: **${diceToRoll}** ${diceToRollDisclaimer}
 Reaches: **${reachUsed}** (**${freeReach}** free)
     - *add +1 Reach for each active spell above Gnosis*
     - *add Reach ${
-        spellInfo.spellType === 'rote'
-            ? 'per optional Rotes requirements'
-            : 'for amazing feats'
+        spellInfo.spellType === `rote`
+            ? `per optional Rotes requirements`
+            : `for amazing feats`
     }*
 
 Mana cost: **${manaCost}** (${manaSpendReminder})
     - *add Mana to mitigate Paradox*
     - add Mana ${
-        spellInfo.spellType === 'rote'
-            ? 'per optional Rotes requirements'
-            : '*for calling to Supernal perfection*'
+        spellInfo.spellType === `rote`
+            ? `per optional Rotes requirements`
+            : `*for calling to Supernal perfection*`
     }
 
-Yantras used:\n**${chosenYantras.map((y) => `   - ${y.label}`).join('\n')}**
+Yantras used:\n**${chosenYantras.map((y) => `   - ${y.label}`).join(`\n`)}**
 
 👹 Don't forget to tell your ST about things that can affect their Paradox roll:
         - How many times have mage Reached (+1 Paradox die per Reach above ${freeReach})?
@@ -106,8 +106,10 @@ Yantras used:\n**${chosenYantras.map((y) => `   - ${y.label}`).join('\n')}**
         - Is mage inured to the spell (+2 Paradox dice)
 
         - Is dedicated tool used? ${
-            isDedicatedToolUsed ? '✅' : '❌'
-        } -2 Paradox dice
+            isDedicatedToolUsed
+                ? `✅ (-2 Paradox dice)`
+                : `❌ (-0 Paradox dice)`
+        }
         - How much mana was spent to mitigate it? (-1 Paradox die per Mana)
 
 🧑‍🔬 Spell Factors:
@@ -122,10 +124,10 @@ Yantras used:\n**${chosenYantras.map((y) => `   - ${y.label}`).join('\n')}**
 const getSpellInformation = (spellInfo: SpellInfo) => {
     const { spellType } = spellInfo
     const prefix = `You are casting a${
-        spellType === 'praxis' ? 'n' : ''
+        spellType === `praxis` ? `n` : ``
     } ${capitalize(spellType)}`
 
-    if (spellType === 'rote') {
+    if (spellType === `rote`) {
         const {
             name,
             arcana,
@@ -135,19 +137,19 @@ const getSpellInformation = (spellInfo: SpellInfo) => {
             withstand,
         } = spellInfo
 
-        const primaryArcanaAndDots = `${capitalize(arcana)} ${'●'.repeat(
+        const primaryArcanaAndDots = `${capitalize(arcana)} ${`●`.repeat(
             level,
         )}`
 
         const secondaryArcanaAndDots = secondaryRequiredArcana
             ? `+${capitalize(secondaryRequiredArcana)}`
-            : ''
+            : ``
 
         const firstLine = `${prefix} "${name}" (${primaryArcanaAndDots}${secondaryArcanaAndDots})`
         const secondLine = `*${description}*`
-        const thirdLine = withstand ? `Withstand: ${capitalize(withstand)}` : ''
-        return `${firstLine}\n${secondLine}\n${thirdLine}\n`
+        const thirdLine = withstand ? `Withstand: ${capitalize(withstand)}` : ``
+        return `${firstLine}\n${secondLine}\n${thirdLine}`
     } else {
-        return `(${'●'.repeat(spellInfo.practiceDots)})\n`
+        return `${prefix} (${`●`.repeat(spellInfo.practiceDots)})`
     }
 }

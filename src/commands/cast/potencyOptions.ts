@@ -8,8 +8,10 @@ import {
 } from 'discord.js'
 import { getSameUserSelectInteractionFilter } from '../common/getSameUserSelectInteractionFilter'
 import { getSelectedValues, SelectedValue } from '../common/getSelectedValues'
+import { getCurrentSpellCost } from './getSpellFactorsAndYantras'
+import { SpellInfo } from './getSpellResult'
 
-export const POTENCY_OPTION_NAME = 'potency'
+export const POTENCY_OPTION_NAME = `potency`
 export type PotencyChoiceValue = `a${number}` | `${number}`
 
 export const getPotencyCost = (
@@ -17,7 +19,7 @@ export const getPotencyCost = (
     freeSteps: number,
 ) => {
     let reach = 0
-    if (valueString.startsWith('a')) {
+    if (valueString.startsWith(`a`)) {
         reach = 1
     }
     let potencyDotsBought = +valueString.slice(-1)
@@ -54,16 +56,18 @@ export const getPotencyOptionsBuilder = (
     potencyChoices: SelectMenuComponentOptionData[],
 ) => {
     return new SelectMenuBuilder()
-        .setCustomId('select_potency')
-        .setPlaceholder('Select potency')
+        .setCustomId(`select_potency`)
+        .setPlaceholder(`Select potency`)
         .addOptions(potencyChoices)
 }
 
 export const getPotencyValue = async ({
     interaction,
     potencyChoices,
+    currentSpellCosts,
 }: {
     interaction: ChatInputCommandInteraction
+    currentSpellCosts: string
     potencyChoices: (SelectedValue<PotencyChoiceValue> &
         SelectMenuComponentOptionData)[]
 }): Promise<SelectedValue<PotencyChoiceValue>> => {
@@ -73,7 +77,7 @@ export const getPotencyValue = async ({
         )
     const msg = await interaction.editReply({
         components: [row],
-        content: 'How powerful should the spell be?',
+        content: `${currentSpellCosts}How powerful should the spell be?`,
     })
 
     const values = (

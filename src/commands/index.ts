@@ -24,7 +24,7 @@ export type BotChatCommand = {
     description: LocalizationWithDefault
     builder:
         | SlashCommandBuilder
-        | Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>
+        | Omit<SlashCommandBuilder, `addSubcommand` | `addSubcommandGroup`>
         | SlashCommandSubcommandsOnlyBuilder
     execute: (interaction: ChatInputCommandInteraction) => Promise<unknown>
 }

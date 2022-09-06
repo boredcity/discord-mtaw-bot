@@ -16,19 +16,19 @@ import {
     RULE_OPTION_NAME,
 } from './common/ruleOptions'
 
-const name = 'roll'
+const name = `roll`
 
 const description: LocalizationWithDefault = {
-    default: 'rolls d10s; you can choose reroll/explosion rule',
-    ru: 'кидает кубы d10; можно выбрать, какие взрываются/перебрасываются',
+    default: `rolls d10s; you can choose reroll/explosion rule`,
+    ru: `кидает кубы d10; можно выбрать, какие взрываются/перебрасываются`,
 }
 
 const builder = new SlashCommandBuilder()
     .setName(name)
     .setDMPermission(false)
-    .setDescription('Customize dice roll')
+    .setDescription(`Customize dice roll`)
     .setDescriptionLocalizations({
-        [Locale.Russian]: 'Настроить бросок кубов',
+        [Locale.Russian]: `Настроить бросок кубов`,
     })
     .addIntegerOption(diceCountOptionsBuilder)
     .addStringOption(ruleOptionsBuilder)

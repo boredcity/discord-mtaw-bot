@@ -7,7 +7,7 @@ const commands = ALL_CHAT_INTERACTION_COMMANDS.map((command) =>
     command.builder.toJSON(),
 )
 
-const rest = new REST({ version: '10' }).setToken(envs.BOT_TOKEN)
+const rest = new REST({ version: `10` }).setToken(envs.BOT_TOKEN)
 
 ;(async () => {
     try {
@@ -19,7 +19,7 @@ const rest = new REST({ version: '10' }).setToken(envs.BOT_TOKEN)
             Routes.applicationGuildCommands(envs.APP_ID, envs.GUILD_ID),
             { body: [] },
         )
-        console.log('Successfully deleted old guild commands.')
+        console.log(`Successfully deleted old guild commands.`)
 
         const data = await rest.put(
             Routes.applicationGuildCommands(envs.APP_ID, envs.GUILD_ID),

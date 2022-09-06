@@ -10,7 +10,7 @@ import { getRitualDurationByGnosis, TimeDuration } from './gnosis'
 import { YantraChoiceValue } from './yantraOptions'
 import { getSameUserSelectInteractionFilter } from '../common/getSameUserSelectInteractionFilter'
 
-export const IS_RULING_OPTION_NAME = 'is_ruling'
+export const IS_RULING_OPTION_NAME = `is_ruling`
 
 export const getCastingTimeInfo = (
     ritualDuration: TimeDuration,
@@ -18,7 +18,7 @@ export const getCastingTimeInfo = (
 ) => {
     const value = ritualDuration.value * multiplier
     let label = `${value} ${ritualDuration.unit}`
-    if (ritualDuration.unit === 'minute(s)') {
+    if (ritualDuration.unit === `minute(s)`) {
         const hoursValue = Math.floor(value / 60)
         const minutesValue = value % 60
         const hoursLabel = `${hoursValue} hour(s)`
@@ -48,7 +48,7 @@ export const getCastingTimeOptionsBuilder = (
                 multiplier,
             )
             return {
-                label: `${label} (+${bonus} ${bonus === 1 ? 'die' : 'dice'})`,
+                label: `${label} (+${bonus} ${bonus === 1 ? `die` : `dice`})`,
                 value: `${multiplier}`,
             }
         }),
@@ -56,28 +56,28 @@ export const getCastingTimeOptionsBuilder = (
     if (!usesRunes) {
         options.unshift(
             {
-                label: 'Quick spell (+0 dice, 1 Reach)',
-                value: 'quick',
+                label: `Quick spell (+0 dice, 1 Reach)`,
+                value: `quick`,
             },
             {
-                label: 'Time in a Bottle (+0 dice, Time ●●●●, -1 Mana)',
-                value: 'time_in_a_bottle',
+                label: `Time in a Bottle (+0 dice, Time ●●●●, -1 Mana)`,
+                value: `time_in_a_bottle`,
             },
         )
     }
 
     return new SelectMenuBuilder()
-        .setCustomId('select_casting_time')
-        .setPlaceholder('Select spell casting time')
+        .setCustomId(`select_casting_time`)
+        .setPlaceholder(`Select spell casting time`)
         .addOptions(options)
 }
 
-type AdvancedCastingTimeOptionValue = 'quick' | 'time_in_a_bottle'
+type AdvancedCastingTimeOptionValue = `quick` | `time_in_a_bottle`
 type CastingTimeOptionValue = AdvancedCastingTimeOptionValue | `${number}`
 export const isAdvancedCastingTimeValue = (
     value: string,
 ): value is AdvancedCastingTimeOptionValue =>
-    value === 'quick' || value === 'time_in_a_bottle'
+    value === `quick` || value === `time_in_a_bottle`
 
 export type CastingTimeValue = SelectedValue<CastingTimeOptionValue> & {
     diceBonus: number
@@ -102,12 +102,12 @@ export const getCastingTimeValueAndInfo = async ({
         new ActionRowBuilder<MessageActionRowComponentBuilder>().addComponents(
             getCastingTimeOptionsBuilder(
                 ritualDuration,
-                yantraValues.includes('runes'),
+                yantraValues.includes(`runes`),
             ),
         )
     const castingTimeMsg = await interaction.editReply({
         components: [castingTimeRow],
-        content: 'How quickly it needs to be cast?',
+        content: `How quickly it needs to be cast?`,
     })
 
     const value = (
@@ -156,12 +156,12 @@ export const getQuickCastingTimeLabelAndCost = (
     // advanced casting time is limited by yantras count and mana spending
     // FIXME: add mana spending?
     const yantrasUsed = yantraValues.length + additionalSympathyYantrasRequired
-    const isMantraUsed = yantraValues.includes('mantra')
+    const isMantraUsed = yantraValues.includes(`mantra`)
     const minDurationByYantras = Math.max(yantrasUsed, isMantraUsed ? 2 : 1)
     return {
         label: `${minDurationByYantras} turn(s)`,
         diceBonus: 0,
-        reachCost: value === 'quick' ? 1 : 0,
-        manaCost: value === 'time_in_a_bottle' ? 1 : 0,
+        reachCost: value === `quick` ? 1 : 0,
+        manaCost: value === `time_in_a_bottle` ? 1 : 0,
     }
 }

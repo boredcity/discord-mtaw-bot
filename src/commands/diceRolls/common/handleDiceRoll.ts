@@ -11,14 +11,14 @@ export const handleDiceRoll = async (
         return await interaction.reply({
             content:
                 interaction.locale === Locale.Russian
-                    ? 'Ooops, something went wrong, sorry :('
-                    : 'Упс, что-то пошло не так, извините :(',
+                    ? `Ooops, something went wrong, sorry :(`
+                    : `Упс, что-то пошло не так, извините :(`,
             ephemeral: true,
         })
     }
 
     await interaction.deferReply()
-    rule ??= 'rule10Again'
+    rule ??= `rule10Again`
 
     const { successes, rolled } = getRollResults({ count, rule })
 
@@ -26,13 +26,13 @@ export const handleDiceRoll = async (
         .sort((a, b) => a.value - b.value)
         .map(
             (roll) =>
-                `${roll.exploaded ? '💥' : ''}${roll.rerolled ? '♻️' : ''}${
+                `${roll.exploaded ? `💥` : ``}${roll.rerolled ? `♻️` : ``}${
                     roll.value
                 }`,
         )
-        .join(', ')
+        .join(`, `)
 
-    let ruleNamePostfix = ''
+    let ruleNamePostfix = ``
     if (rule !== defaultRuleChoice) {
         const ruleChoice = ruleChoices.find((c) => c.value === rule)
         const ruLocale = ruleChoice?.name_localizations?.ru
@@ -42,15 +42,15 @@ export const handleDiceRoll = async (
         }
     }
 
-    let resultEmoji = '😨'
+    let resultEmoji = `😨`
     if (successes >= 5) {
-        resultEmoji = '🔥'
+        resultEmoji = `🔥`
     } else if (successes >= 1) {
-        resultEmoji = '✅'
+        resultEmoji = `✅`
     }
 
     const resultText = `${
-        interaction.locale === Locale.Russian ? 'Успехи' : 'Successes'
+        interaction.locale === Locale.Russian ? `Успехи` : `Successes`
     }: *${successes}* ${resultEmoji}`
 
     const detailsText = `\`${rolledString}\` ${ruleNamePostfix}`

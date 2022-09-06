@@ -6,7 +6,7 @@ export const envs = load({
     PUB_KEY: String,
     GUILD_ID: String,
     NODE_ENV: {
-        type: ['production', 'development'],
-        default: 'production',
+        type: [`production`, `development`],
+        default: `production`,
     },
 })

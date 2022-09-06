@@ -3,7 +3,7 @@ export const getMaxYantrasByGnosis = (gnosisDots: number) =>
 
 export type TimeDuration = {
     value: number
-    unit: 'hour(s)' | 'minute(s)'
+    unit: `hour(s)` | `minute(s)`
 }
 export const getRitualDurationByGnosis = (gnosisDots: number): TimeDuration => {
     switch (gnosisDots) {
@@ -11,32 +11,32 @@ export const getRitualDurationByGnosis = (gnosisDots: number): TimeDuration => {
         case 2:
             return {
                 value: 3,
-                unit: 'hour(s)',
+                unit: `hour(s)`,
             }
         case 3:
         case 4:
             return {
                 value: 1,
-                unit: 'hour(s)',
+                unit: `hour(s)`,
             }
         case 5:
         case 6:
             return {
                 value: 30,
-                unit: 'minute(s)',
+                unit: `minute(s)`,
             }
         case 7:
         case 8:
             return {
                 value: 10,
-                unit: 'minute(s)',
+                unit: `minute(s)`,
             }
         case 9:
         case 10:
         default:
             return {
                 value: 1,
-                unit: 'minute(s)',
+                unit: `minute(s)`,
             }
     }
 }

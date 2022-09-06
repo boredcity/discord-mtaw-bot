@@ -5,9 +5,9 @@ import {
     ALL_CHAT_INTERACTION_COMMANDS,
 } from '../commands'
 
-export const INTERACTION_CREATE_HANDLER: ClientEventHandler<'interactionCreate'> =
+export const INTERACTION_CREATE_HANDLER: ClientEventHandler<`interactionCreate`> =
     {
-        eventName: 'interactionCreate',
+        eventName: `interactionCreate`,
         async execute(interaction: Interaction) {
             if (interaction.isAutocomplete()) {
                 return ALL_AUTOCOMPLETE_COMMANDS.find(

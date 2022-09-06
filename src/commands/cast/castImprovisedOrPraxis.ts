@@ -23,25 +23,25 @@ import {
 } from './getSpellResult'
 import { getSpellFactorsAndYantras } from './getSpellFactorsAndYantras'
 
-const name = 'cast_improvised'
+const name = `cast_improvised`
 
 const description: LocalizationWithDefault = {
-    default: 'cast improvised spell or Praxis',
+    default: `cast improvised spell or Praxis`,
 }
 
-const GNOSIS_DOTS_OPTION_NAME = 'gnosis_dots'
+const GNOSIS_DOTS_OPTION_NAME = `gnosis_dots`
 const gnosisDotsBuilder = getIntegerOptionsBuilder({
     name: { default: GNOSIS_DOTS_OPTION_NAME },
-    description: { default: 'How many dots mage has in Gnosis?' },
+    description: { default: `How many dots mage has in Gnosis?` },
     minValue: 1,
     maxValue: 10,
     isRequired: true,
 })
 
-const MAGE_ARCANA_DOTS_OPTION_NAME = 'mage_arcana_dots'
+const MAGE_ARCANA_DOTS_OPTION_NAME = `mage_arcana_dots`
 const mageArcanaDotsBuilder = getIntegerOptionsBuilder({
     name: { default: MAGE_ARCANA_DOTS_OPTION_NAME },
-    description: { default: 'How many dots mage has in this Arcana?' },
+    description: { default: `How many dots mage has in this Arcana?` },
     minValue: 0,
     maxValue: 5,
     isRequired: true,
@@ -49,7 +49,7 @@ const mageArcanaDotsBuilder = getIntegerOptionsBuilder({
 
 const builder = new SlashCommandBuilder()
     .setName(name)
-    .setDescription('Cast a spell')
+    .setDescription(`Cast a spell`)
     .setDMPermission(false)
     .addIntegerOption(gnosisDotsBuilder)
     .addIntegerOption(mageArcanaDotsBuilder)
@@ -80,7 +80,7 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
         isPraxis === null
     ) {
         console.error(
-            'Some data not provided',
+            `Some data not provided`,
             JSON.stringify({
                 practiceDots,
                 gnosisDots,
@@ -90,16 +90,16 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
                 isPraxis,
             }),
         )
-        return interaction.editReply('Ooops, something went wrong, sorry :(')
+        return interaction.editReply(`Ooops, something went wrong, sorry :(`)
     }
 
     if (practiceDots > mageArcanaDots) {
-        return interaction.editReply('Not enough dots in the arcana :(')
+        return interaction.editReply(`Not enough dots in the arcana :(`)
     }
 
     const spellInfo: ImprovisedOrPraxisSpellInfo = {
         practiceDots,
-        spellType: isPraxis ? 'praxis' : 'improvised_spell',
+        spellType: isPraxis ? `praxis` : `improvised_spell`,
         manaCost: 0,
         diceToRoll: gnosisDots + mageArcanaDots,
         reachUsed: 0,

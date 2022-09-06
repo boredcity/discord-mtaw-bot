@@ -27,12 +27,12 @@ export function getRollResults({
         if (isSuccess) successes++
         let shouldExplode = false
         switch (rule) {
-            case 'ruleNoAgain':
+            case `ruleNoAgain`:
                 break
-            case 'rule9Again':
+            case `rule9Again`:
                 if (dieRollResult >= 9) shouldExplode = true
                 break
-            case 'rule8Again':
+            case `rule8Again`:
                 if (dieRollResult >= 8) shouldExplode = true
                 break
             default:
@@ -47,13 +47,13 @@ export function getRollResults({
         rolled.push({
             value: dieRollResult,
             exploaded: shouldExplode,
-            rerolled: rule === 'ruleRoteQuality' && !isSuccess,
+            rerolled: rule === `ruleRoteQuality` && !isSuccess,
         })
     }
 
-    if (rule === 'ruleRoteQuality' && successes < 25) {
+    if (rule === `ruleRoteQuality` && successes < 25) {
         const secondRollResults = getRollResults({
-            rule: 'rule10Again',
+            rule: `rule10Again`,
             count: rolled.length - successes,
         })
         successes += secondRollResults.successes

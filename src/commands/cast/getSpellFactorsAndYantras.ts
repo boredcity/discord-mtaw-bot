@@ -34,10 +34,12 @@ export const getSpellFactorsAndYantras = async ({
     spellInfo,
 }: GetSpellFactorsParam) => {
     // potency
+    let currentSpellCosts = getCurrentSpellCost(spellInfo)
     const potencyFreeSteps =
-        primaryFactor === 'potency' ? mageArcanaDots - 1 : 0
+        primaryFactor === `potency` ? mageArcanaDots - 1 : 0
     const potencyChoices = getPotencyChoices(potencyFreeSteps)
     const potency = await getPotencyValue({
+        currentSpellCosts,
         interaction,
         potencyChoices,
     })
@@ -46,12 +48,14 @@ export const getSpellFactorsAndYantras = async ({
     spellInfo.reachUsed += potencyCost.reach
 
     // duration
+    currentSpellCosts = getCurrentSpellCost(spellInfo)
     const durationFreeSteps =
-        primaryFactor === 'duration' ? mageArcanaDots - 1 : 0
+        primaryFactor === `duration` ? mageArcanaDots - 1 : 0
     const durationChoices = getDurationChoices(durationFreeSteps)
     const duration = await getDurationValue({
         interaction,
         durationChoices,
+        currentSpellCosts,
     })
     const durationCost = getDurationCost(duration.value, durationFreeSteps)
     spellInfo.manaCost += durationCost.mana
@@ -59,10 +63,11 @@ export const getSpellFactorsAndYantras = async ({
     spellInfo.reachUsed += durationCost.reach
 
     // range
-    const range = await getRangeValue({ interaction })
+    currentSpellCosts = getCurrentSpellCost(spellInfo)
+    const range = await getRangeValue({ interaction, currentSpellCosts })
     const rangeCost = getRangeCost(range.value)
     const additionalSympathyYantrasRequired =
-        range.value === 'sympathetic' ? 1 : 0
+        range.value === `sympathetic` ? 1 : 0
     spellInfo.manaCost += rangeCost.mana
     spellInfo.reachUsed += rangeCost.reach
 
@@ -78,7 +83,7 @@ export const getSpellFactorsAndYantras = async ({
         additionalSympathyYantrasRequired,
         interaction,
         mudraSkillDots:
-            spellInfo.spellType === 'rote' ? mudraSkillDots : undefined,
+            spellInfo.spellType === `rote` ? mudraSkillDots : undefined,
     })
     chosenYantras.forEach((y) => (spellInfo.diceToRoll += y.diceBonus))
 
@@ -95,3 +100,11 @@ export const getSpellFactorsAndYantras = async ({
 
     return { chosenYantras, castingTime, potency, duration, range, scale }
 }
+
+export const getCurrentSpellCost = (spellInfo: SpellInfo) => `
+Current spell cost:
+    Dice to roll: **${spellInfo.diceToRoll}**
+    Reach uses: **${spellInfo.reachUsed}**
+    Mana cost: **${spellInfo.manaCost}**
+
+`

@@ -9,34 +9,36 @@ import {
 import { getSameUserSelectInteractionFilter } from '../common/getSameUserSelectInteractionFilter'
 import { getSelectedValues, SelectedValue } from '../common/getSelectedValues'
 
-export const RANGE_OPTION_NAME = 'range'
-export type RangeChoiceValue = 'standard' | 'sensory' | 'sympathetic'
+export const RANGE_OPTION_NAME = `range`
+export type RangeChoiceValue = `standard` | `sensory` | `sympathetic`
 
 export const getRangeCost = (value: RangeChoiceValue) => {
-    if (value === 'sensory') return { reach: 1, mana: 0 }
-    if (value === 'sympathetic') return { reach: 1, mana: 1 }
+    if (value === `sensory`) return { reach: 1, mana: 0 }
+    if (value === `sympathetic`) return { reach: 1, mana: 1 }
     return { reach: 0, mana: 0 }
 }
 
 export const rangeChoices: (SelectMenuComponentOptionData &
     SelectedValue<RangeChoiceValue>)[] = [
-    { value: 'standard', label: 'Self/touch or Aimed' },
-    { value: 'sensory', label: 'Sensory' },
+    { value: `standard`, label: `Self/touch or Aimed` },
+    { value: `sensory`, label: `Sensory` },
     {
-        value: 'sympathetic',
-        label: 'Sympathetic Range (Space ●●, Yantra, -1 Mana)',
+        value: `sympathetic`,
+        label: `Sympathetic Range (Space ●●, Yantra, -1 Mana)`,
     },
     // TODO: should I add temporal sympathy?
 ]
 
 export const rangeOptionsBuilder = new SelectMenuBuilder()
-    .setCustomId('select_range')
-    .setPlaceholder('Select range')
+    .setCustomId(`select_range`)
+    .setPlaceholder(`Select range`)
     .addOptions(rangeChoices)
 
 export const getRangeValue = async ({
     interaction,
+    currentSpellCosts,
 }: {
+    currentSpellCosts: string
     interaction: ChatInputCommandInteraction
 }): Promise<SelectedValue<RangeChoiceValue>> => {
     const row =
@@ -45,7 +47,7 @@ export const getRangeValue = async ({
         )
     const msg = await interaction.editReply({
         components: [row],
-        content: "What is the spell's range?",
+        content: `${currentSpellCosts}What is the spell's range?`,
     })
 
     const values = (

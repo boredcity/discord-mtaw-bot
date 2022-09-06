@@ -11,19 +11,19 @@ import {
 import { handleDiceRoll } from './common/handleDiceRoll'
 import { defaultRuleChoice } from './common/ruleOptions'
 
-const name = 'r'
+const name = `r`
 
 const description: LocalizationWithDefault = {
-    default: 'rolls d10s with 10again rule',
-    ru: 'кидает кубы d10, 10-ки взрываются',
+    default: `rolls d10s with 10again rule`,
+    ru: `кидает кубы d10, 10-ки взрываются`,
 }
 
 const builder = new SlashCommandBuilder()
     .setName(name)
     .setDMPermission(false)
-    .setDescription('Roll dice')
+    .setDescription(`Roll dice`)
     .setDescriptionLocalizations({
-        [Locale.Russian]: 'Кинуть кубы',
+        [Locale.Russian]: `Кинуть кубы`,
     })
     .addIntegerOption(diceCountOptionsBuilder)
 

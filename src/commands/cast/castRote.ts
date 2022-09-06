@@ -12,34 +12,34 @@ import {
 import { RoteSpellInfo, getSpellResultContent } from './getSpellResult'
 import { getSpellFactorsAndYantras } from './getSpellFactorsAndYantras'
 
-const name = 'cast_rote'
+const name = `cast_rote`
 
 const description: LocalizationWithDefault = {
-    default: 'cast a Rote spell',
+    default: `cast a Rote spell`,
 }
 
-const GNOSIS_DOTS_OPTION_NAME = 'gnosis_dots'
+const GNOSIS_DOTS_OPTION_NAME = `gnosis_dots`
 const gnosisDotsBuilder = getIntegerOptionsBuilder({
     name: { default: GNOSIS_DOTS_OPTION_NAME },
-    description: { default: 'How many dots mage has in Gnosis?' },
+    description: { default: `How many dots mage has in Gnosis?` },
     minValue: 1,
     maxValue: 10,
     isRequired: true,
 })
 
-const MAGE_ARCANA_DOTS_OPTION_NAME = 'mage_arcana_dots'
+const MAGE_ARCANA_DOTS_OPTION_NAME = `mage_arcana_dots`
 const mageArcanaDotsBuilder = getIntegerOptionsBuilder({
     name: { default: MAGE_ARCANA_DOTS_OPTION_NAME },
-    description: { default: 'How many dots mage has in this Arcana?' },
+    description: { default: `How many dots mage has in this Arcana?` },
     minValue: 0,
     maxValue: 5,
     isRequired: true,
 })
 
-const MUDRA_SKILL_DOTS_OPTION_NAME = 'mudra_skill_dots'
+const MUDRA_SKILL_DOTS_OPTION_NAME = `mudra_skill_dots`
 const mudraSkillDotsBuilder = getIntegerOptionsBuilder({
     name: { default: MUDRA_SKILL_DOTS_OPTION_NAME },
-    description: { default: "How skilled are you in the Rote's mudra?" },
+    description: { default: `How skilled are you in the Rote's mudra?` },
     minValue: 0,
     maxValue: 5,
     isRequired: true,
@@ -47,7 +47,7 @@ const mudraSkillDotsBuilder = getIntegerOptionsBuilder({
 
 const builder = new SlashCommandBuilder()
     .setName(name)
-    .setDescription('Cast a spell')
+    .setDescription(`Cast a spell`)
     .setDMPermission(false)
     .addIntegerOption(gnosisDotsBuilder)
     .addIntegerOption(mageArcanaDotsBuilder)
@@ -71,14 +71,14 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
 
     if (!gnosisDots || !mageArcanaDots || mudraSkillDots === null) {
         console.error(
-            'Some data not provided',
+            `Some data not provided`,
             JSON.stringify({
                 gnosisDots,
                 mageArcanaDots,
                 mudraSkillDots,
             }),
         )
-        return interaction.editReply('Ooops, something went wrong, sorry :(')
+        return interaction.editReply(`Ooops, something went wrong, sorry :(`)
     }
 
     if (!roteName || !roteData) {
@@ -86,12 +86,12 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
     }
 
     if (roteData.level > mageArcanaDots) {
-        return interaction.editReply('Not enough dots in the arcana :(')
+        return interaction.editReply(`Not enough dots in the arcana :(`)
     }
 
     const spellInfo: RoteSpellInfo = {
         ...roteData,
-        spellType: 'rote',
+        spellType: `rote`,
         manaCost: 0,
         diceToRoll: gnosisDots + mageArcanaDots,
         reachUsed: 0,
