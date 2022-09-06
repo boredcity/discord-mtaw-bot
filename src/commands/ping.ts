@@ -13,6 +13,7 @@ const builder = new SlashCommandBuilder()
 
 async function execute(interaction: ChatInputCommandInteraction) {
     await interaction.reply({
+        ephemeral: true,
         content: `Pong! ${Date.now() - interaction.createdTimestamp} ms.`,
     })
 }
