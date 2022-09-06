@@ -4131,7 +4131,9 @@ export const roteOptionsBuilder = (option: SlashCommandStringOption) =>
     option
         .setRequired(true)
         .setName(ROTE_OPTION_NAME)
-        .setDescription("What is the Rote's name?")
+        .setDescription(
+            'What is the Rote\'s name? Valid options: "postcognition", "Life3", etc.',
+        )
         .setAutocomplete(true)
 
 export const autocompleteRoteInput = async (
@@ -4139,8 +4141,16 @@ export const autocompleteRoteInput = async (
 ) => {
     const focusedValue = interaction.options.getFocused().toLocaleLowerCase()
     const filtered = rotesList
-        .filter((r) => r.name.toLocaleLowerCase().startsWith(focusedValue))
+        .filter((r) => r.name.toLocaleLowerCase().includes(focusedValue))
         .slice(0, 25)
+
+    if (filtered.length < 25) {
+        filtered.push(
+            ...rotesList
+                .filter((r) => (r.arcana + r.level).startsWith(focusedValue))
+                .slice(0, 25 - filtered.length),
+        )
+    }
     await interaction.respond(
         filtered.map((r) => ({
             name: `${capitalize(r.arcana)} ${'●'.repeat(r.level)}${

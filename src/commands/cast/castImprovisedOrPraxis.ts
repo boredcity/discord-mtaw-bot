@@ -7,8 +7,11 @@ import {
     IS_RULING_OPTION_NAME,
 } from './isRulingOptions'
 import { getIntegerOptionsBuilder } from '../common/getNumberOptionsBuilder'
-import { PrimaryFactorChoiceValue } from './primaryFactorOptions'
-import { getDurationCost, getDurationChoices } from './durationOptions'
+import {
+    getDurationCost,
+    getDurationChoices,
+    getDurationValue,
+} from './durationOptions'
 import {
     getPotencyCost,
     getPotencyValue,
@@ -22,15 +25,15 @@ import {
 import {
     primaryFactorOptionsBuilder,
     PRIMARY_FACTOR_OPTION_NAME,
+    PrimaryFactorChoiceValue,
 } from './primaryFactorOptions'
-import { getManaSpendPerTurnLimit, getMaxYantrasByGnosis } from './gnosis'
-import {
-    getCastingTimeValueAndInfo,
-    isAdvancedCastingTimeValue,
-} from './castingTimeOptions'
-import { getDurationValue } from './durationOptions'
+import { getCastingTimeValueAndInfo } from './castingTimeOptions'
 import { getScaleCost, getScaleValue } from './scaleOptions'
 import { getRangeCost, getRangeValue } from './rangeOptions'
+import {
+    getSpellResultContent,
+    ImprovisedOrPraxisSpellInfo,
+} from './getSpellResult'
 
 const name = 'cast_improvised'
 
@@ -96,10 +99,12 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
         return interaction.editReply('Not enough dots in the arcana :(')
     }
 
-    const spellInfo = {
+    const spellInfo: ImprovisedOrPraxisSpellInfo = {
+        practiceDots,
+        spellType: isPraxis ? 'praxis' : 'improvised_spell',
         manaCost: 0,
         diceToRoll: gnosisDots + mageArcanaDots,
-        reachesUsed: 0,
+        reachUsed: 0,
     }
     const freeReach = mageArcanaDots - practiceDots + 1
 
@@ -118,7 +123,7 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
     })
     const potencyCost = getPotencyCost(potency.value, potencyFreeSteps)
     spellInfo.diceToRoll -= potencyCost.dice
-    spellInfo.reachesUsed += potencyCost.reach
+    spellInfo.reachUsed += potencyCost.reach
 
     // duration
     const durationFreeSteps =
@@ -131,95 +136,54 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
     const durationCost = getDurationCost(duration.value, durationFreeSteps)
     spellInfo.manaCost += durationCost.mana
     spellInfo.diceToRoll -= durationCost.dice
-    spellInfo.reachesUsed += durationCost.reach
+    spellInfo.reachUsed += durationCost.reach
 
+    // range
     const range = await getRangeValue({ interaction })
     const rangeCost = getRangeCost(range.value)
     const additionalSympathyYantrasRequired =
         range.value === 'sympathetic' ? 1 : 0
     spellInfo.manaCost += rangeCost.mana
-    spellInfo.reachesUsed += rangeCost.reach
+    spellInfo.reachUsed += rangeCost.reach
 
+    // scale
     const scale = await getScaleValue({ interaction })
     const scaleCost = getScaleCost(scale.value)
     spellInfo.diceToRoll -= scaleCost.dice
-    spellInfo.reachesUsed += scaleCost.reach
+    spellInfo.reachUsed += scaleCost.reach
 
+    // yantras
     const chosenYantras = await getYantraValues({
-        maxAllowedYantras:
-            getMaxYantrasByGnosis(gnosisDots) -
-            additionalSympathyYantrasRequired,
+        gnosisDots,
+        additionalSympathyYantrasRequired,
         interaction,
     })
-    let isDedicatedToolUsed = false
-    for (const y of chosenYantras) {
-        spellInfo.diceToRoll += y.diceBonus
-        if (y.value === 'dedicated_tool') isDedicatedToolUsed = true
-    }
+    chosenYantras.forEach((y) => (spellInfo.diceToRoll += y.diceBonus))
 
-    const {
-        diceBonus: castingTimeDiceBonus,
-        manaCost: castingTimeManaCost,
-        reachCost: castingTimeReachCost,
-        label: castingTimeLabel,
-        value: castingTime,
-    } = await getCastingTimeValueAndInfo({
+    // castingTime
+    const castingTime = await getCastingTimeValueAndInfo({
         interaction,
         gnosisDots,
         yantraValues: chosenYantras.map((y) => y.value),
         additionalSympathyYantrasRequired,
     })
-    spellInfo.diceToRoll += castingTimeDiceBonus
-    spellInfo.reachesUsed += castingTimeReachCost
-    spellInfo.manaCost += castingTimeManaCost
-
-    const manaSpendPerTurnLimit = getManaSpendPerTurnLimit(gnosisDots)
-    const manaSpendReminder = isAdvancedCastingTimeValue(castingTime)
-        ? `(but remember: you can spend only ${manaSpendPerTurnLimit} Mana per Turn!)`
-        : ''
+    spellInfo.diceToRoll += castingTime.diceBonus
+    spellInfo.reachUsed += castingTime.reachCost
+    spellInfo.manaCost += castingTime.manaCost
 
     await interaction.editReply({
         components: [],
-        content: `
-You are casting a ${isPraxis ? 'Praxis' : 'Improvised Spell'} (${'●'.repeat(
-            practiceDots,
-        )})
-
-Dice pool: **${spellInfo.diceToRoll}**
-Reaches used: **${spellInfo.reachesUsed}** (**${freeReach}** free)
-Mana cost: **${spellInfo.manaCost}**
-Yantras used:\n**${chosenYantras.map((y) => `   - ${y.label}`).join('\n')}**
-${
-    additionalSympathyYantrasRequired
-        ? `Plus ${additionalSympathyYantrasRequired} required sympathetic Yantra(s)\n`
-        : ''
-}
-🧑‍🔧 You may have to adjust the values above:
-    **Extra Reach**
-        - active spells (+1 for each spell above Gnosis)
-        - per amazing feats
-    **+Dice**:
-        - spending willpower (+3 dice)
-        - extra dice from merits, magic, artifacts, etc.
-    **-Mana**:
-        - mitigating Paradox
-        - calling to Supernal perfection in improvised spells
-
-👹 Don't forget to tell your ST about things that can affect their Paradox roll:
-        - Are there any Sleeper whitnesses around? (+1 dice and 9/8-again or rote quality)
-        - Have mage rolled for paradox in this scene (+1 per roll)
-        - Is mage inured to the spell (+2 dice)
-
-        - Is dedicated tool used? ${isDedicatedToolUsed ? '✅' : '❌'} -2 dice
-        - How much mana was spent to mitigate it? (-1 dice per Mana)
-
-🧑‍🔬 Spell Factors:
-    Casting Time: ${castingTimeLabel} ${manaSpendReminder}
-    Potency: ${potency.label}
-    Duration: ${duration.label}
-    Range: ${range.label}
-    Scale: ${scale.label}
-`,
+        content: getSpellResultContent({
+            freeReach,
+            spellInfo,
+            chosenYantras,
+            castingTime,
+            potency,
+            duration,
+            range,
+            scale,
+            gnosisDots,
+        }),
     })
 }
 

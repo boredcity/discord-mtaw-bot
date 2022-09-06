@@ -1,3 +1,4 @@
+import { SelectedValue } from './../common/getSelectedValues'
 import {
     ActionRowBuilder,
     ChatInputCommandInteraction,
@@ -72,11 +73,17 @@ export const getCastingTimeOptionsBuilder = (
 }
 
 type AdvancedCastingTimeOptionValue = 'quick' | 'time_in_a_bottle'
-
+type CastingTimeOptionValue = AdvancedCastingTimeOptionValue | `${number}`
 export const isAdvancedCastingTimeValue = (
     value: string,
 ): value is AdvancedCastingTimeOptionValue =>
     value === 'quick' || value === 'time_in_a_bottle'
+
+export type CastingTimeValue = SelectedValue<CastingTimeOptionValue> & {
+    diceBonus: number
+    reachCost: number
+    manaCost: number
+}
 
 export const getCastingTimeValueAndInfo = async ({
     interaction,
@@ -88,13 +95,7 @@ export const getCastingTimeValueAndInfo = async ({
     gnosisDots: number
     yantraValues: YantraChoiceValue[]
     additionalSympathyYantrasRequired: number
-}): Promise<{
-    label: string
-    diceBonus: number
-    reachCost: number
-    manaCost: number
-    value: AdvancedCastingTimeOptionValue | `${number}`
-}> => {
+}): Promise<CastingTimeValue> => {
     // casting time:
     const ritualDuration = getRitualDurationByGnosis(gnosisDots)
     const castingTimeRow =

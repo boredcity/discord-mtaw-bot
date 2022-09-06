@@ -8,6 +8,7 @@ import {
 } from 'discord.js'
 import { getSameUserSelectInteractionFilter } from '../common/getSameUserSelectInteractionFilter'
 import { getSelectedValues, SelectedValue } from '../common/getSelectedValues'
+import { getMaxYantrasByGnosis } from './gnosis'
 
 export type YantraChoiceValue =
     | 'location'
@@ -27,6 +28,7 @@ export type YantraChoiceValue =
     | 'persona1'
     | 'persona2'
     | 'persona3'
+    | 'required_sympathy'
 // plus required sympathy tool at +0
 
 export const getYantraChoices = (
@@ -163,6 +165,14 @@ export const getYantraChoices = (
     ]
 }
 
+export const requiredSympatheticYantra: {
+    diceBonus: number
+} & SelectedValue<YantraChoiceValue> = {
+    diceBonus: 0,
+    value: 'required_sympathy',
+    label: 'Required sympathetic yantra (+0)',
+}
+
 export const getYantraOptionsBuilder = (
     yantraChoices: SelectMenuComponentOptionData[],
     maxCount: number,
@@ -176,16 +186,20 @@ export const getYantraOptionsBuilder = (
 export const getYantraValues = async ({
     interaction,
     mudraSkillDots,
-    maxAllowedYantras,
+    gnosisDots,
+    additionalSympathyYantrasRequired,
 }: {
     interaction: ChatInputCommandInteraction
     mudraSkillDots?: number
-    maxAllowedYantras: number
+    gnosisDots: number
+    additionalSympathyYantrasRequired: number
 }): Promise<({ diceBonus: number } & SelectedValue<YantraChoiceValue>)[]> => {
     const yantraChoices = getYantraChoices(mudraSkillDots)
+    const maxCount =
+        getMaxYantrasByGnosis(gnosisDots) - additionalSympathyYantrasRequired
     const yantrasRow =
         new ActionRowBuilder<MessageActionRowComponentBuilder>().addComponents(
-            getYantraOptionsBuilder(yantraChoices, maxAllowedYantras),
+            getYantraOptionsBuilder(yantraChoices, maxCount),
         )
     const yantrasMsg = await interaction.editReply({
         components: [yantrasRow],
@@ -200,5 +214,12 @@ export const getYantraValues = async ({
         })
     ).values as YantraChoiceValue[]
 
-    return getSelectedValues(yantraChoices, values)
+    const chosenYantras = getSelectedValues(yantraChoices, values)
+
+    while (additionalSympathyYantrasRequired > 0) {
+        additionalSympathyYantrasRequired--
+        chosenYantras.push(requiredSympatheticYantra)
+    }
+
+    return chosenYantras
 }
