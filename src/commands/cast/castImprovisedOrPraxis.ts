@@ -7,17 +7,7 @@ import {
     IS_RULING_OPTION_NAME,
 } from './isRulingOptions'
 import { getIntegerOptionsBuilder } from '../common/getNumberOptionsBuilder'
-import {
-    getDurationCost,
-    getDurationChoices,
-    getDurationValue,
-} from './durationOptions'
-import {
-    getPotencyCost,
-    getPotencyValue,
-    getPotencyChoices,
-} from './potencyOptions'
-import { getYantraValues } from './yantraOptions'
+
 import {
     isPraxisOptionsBuilder,
     SPELL_TYPE_OPTION_NAME,
@@ -27,13 +17,11 @@ import {
     PRIMARY_FACTOR_OPTION_NAME,
     PrimaryFactorChoiceValue,
 } from './primaryFactorOptions'
-import { getCastingTimeValueAndInfo } from './castingTimeOptions'
-import { getScaleCost, getScaleValue } from './scaleOptions'
-import { getRangeCost, getRangeValue } from './rangeOptions'
 import {
     getSpellResultContent,
     ImprovisedOrPraxisSpellInfo,
 } from './getSpellResult'
+import { getSpellFactorsAndYantras } from './getSpellFactorsAndYantras'
 
 const name = 'cast_improvised'
 
@@ -91,7 +79,17 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
         primaryFactor === null ||
         isPraxis === null
     ) {
-        // TODO: handle
+        console.error(
+            'Some data not provided',
+            JSON.stringify({
+                practiceDots,
+                gnosisDots,
+                mageArcanaDots,
+                isRulingArcana,
+                primaryFactor,
+                isPraxis,
+            }),
+        )
         return interaction.editReply('Ooops, something went wrong, sorry :(')
     }
 
@@ -113,63 +111,14 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
         spellInfo.manaCost += 1
     }
 
-    // potency
-    const potencyFreeSteps =
-        primaryFactor === 'potency' ? mageArcanaDots - 1 : 0
-    const potencyChoices = getPotencyChoices(potencyFreeSteps)
-    const potency = await getPotencyValue({
-        interaction,
-        potencyChoices,
-    })
-    const potencyCost = getPotencyCost(potency.value, potencyFreeSteps)
-    spellInfo.diceToRoll -= potencyCost.dice
-    spellInfo.reachUsed += potencyCost.reach
-
-    // duration
-    const durationFreeSteps =
-        primaryFactor === 'duration' ? mageArcanaDots - 1 : 0
-    const durationChoices = getDurationChoices(durationFreeSteps)
-    const duration = await getDurationValue({
-        interaction,
-        durationChoices,
-    })
-    const durationCost = getDurationCost(duration.value, durationFreeSteps)
-    spellInfo.manaCost += durationCost.mana
-    spellInfo.diceToRoll -= durationCost.dice
-    spellInfo.reachUsed += durationCost.reach
-
-    // range
-    const range = await getRangeValue({ interaction })
-    const rangeCost = getRangeCost(range.value)
-    const additionalSympathyYantrasRequired =
-        range.value === 'sympathetic' ? 1 : 0
-    spellInfo.manaCost += rangeCost.mana
-    spellInfo.reachUsed += rangeCost.reach
-
-    // scale
-    const scale = await getScaleValue({ interaction })
-    const scaleCost = getScaleCost(scale.value)
-    spellInfo.diceToRoll -= scaleCost.dice
-    spellInfo.reachUsed += scaleCost.reach
-
-    // yantras
-    const chosenYantras = await getYantraValues({
-        gnosisDots,
-        additionalSympathyYantrasRequired,
-        interaction,
-    })
-    chosenYantras.forEach((y) => (spellInfo.diceToRoll += y.diceBonus))
-
-    // castingTime
-    const castingTime = await getCastingTimeValueAndInfo({
-        interaction,
-        gnosisDots,
-        yantraValues: chosenYantras.map((y) => y.value),
-        additionalSympathyYantrasRequired,
-    })
-    spellInfo.diceToRoll += castingTime.diceBonus
-    spellInfo.reachUsed += castingTime.reachCost
-    spellInfo.manaCost += castingTime.manaCost
+    const { chosenYantras, castingTime, potency, duration, range, scale } =
+        await getSpellFactorsAndYantras({
+            interaction,
+            mageArcanaDots,
+            primaryFactor,
+            spellInfo,
+            gnosisDots,
+        })
 
     await interaction.editReply({
         components: [],

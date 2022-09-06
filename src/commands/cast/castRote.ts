@@ -3,20 +3,6 @@ import { ChatInputCommandInteraction } from 'discord.js'
 import { BotChatCommand, LocalizationWithDefault } from '../index'
 import { getIntegerOptionsBuilder } from '../common/getNumberOptionsBuilder'
 import {
-    getDurationCost,
-    getDurationChoices,
-    getDurationValue,
-} from './durationOptions'
-import {
-    getPotencyCost,
-    getPotencyValue,
-    getPotencyChoices,
-} from './potencyOptions'
-import { getYantraValues } from './yantraOptions'
-import { getCastingTimeValueAndInfo } from './castingTimeOptions'
-import { getScaleCost, getScaleValue } from './scaleOptions'
-import { getRangeCost, getRangeValue } from './rangeOptions'
-import {
     roteOptionsBuilder,
     RoteDescription,
     getRoteDataByName,
@@ -84,12 +70,19 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
     const roteData: RoteDescription | undefined = getRoteDataByName(roteName)
 
     if (!gnosisDots || !mageArcanaDots || mudraSkillDots === null) {
-        // TODO: handle
+        console.error(
+            'Some data not provided',
+            JSON.stringify({
+                gnosisDots,
+                mageArcanaDots,
+                mudraSkillDots,
+            }),
+        )
         return interaction.editReply('Ooops, something went wrong, sorry :(')
     }
 
     if (!roteName || !roteData) {
-        return interaction.editReply(`Rote ${roteName} not found :(`)
+        return interaction.editReply(`Rote "${roteName}" not found :(`)
     }
 
     if (roteData.level > mageArcanaDots) {
@@ -112,6 +105,7 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
             primaryFactor: spellInfo.primaryFactor,
             spellInfo,
             gnosisDots,
+            mudraSkillDots,
         })
 
     await interaction.editReply({

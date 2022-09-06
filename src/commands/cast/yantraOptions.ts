@@ -29,6 +29,7 @@ export type YantraChoiceValue =
     | 'persona2'
     | 'persona3'
     | 'required_sympathy'
+    | 'nothing'
 // plus required sympathy tool at +0
 
 export const getYantraChoices = (
@@ -126,15 +127,12 @@ export const getYantraChoices = (
             diceBonus: 1,
         },
         {
-            label: 'Sacrament (+2 die)',
-            description: 'Rare symbolic object mage destroys during casting.',
+            label: 'Rare sacrament (+2 die)',
             value: 'sacrament2',
             diceBonus: 2,
         },
         {
-            label: 'Sacrament (+3 dice)',
-            description:
-                'Supernal symbolic object mage destroys during casting.',
+            label: 'Supernal sacrament (+3 dice)',
             value: 'sacrament3',
             diceBonus: 3,
         },
@@ -146,18 +144,17 @@ export const getYantraChoices = (
         },
         {
             label: 'Persona (+2 dice)',
-            description: 'Based on Shadow Name or Cabal Theme Merit.',
             value: 'persona2',
             diceBonus: 2,
         },
         {
             label: 'Persona (+3 dice)',
-            description: 'Based on Shadow Name or Cabal Theme Merit.',
             value: 'persona3',
             diceBonus: 3,
         },
     ] as const
     return [
+        noYantra,
         ...actionYantras,
         ...toolYantras,
         ...locationYantras,
@@ -170,7 +167,15 @@ export const requiredSympatheticYantra: {
 } & SelectedValue<YantraChoiceValue> = {
     diceBonus: 0,
     value: 'required_sympathy',
-    label: 'Required sympathetic yantra (+0)',
+    label: 'Required sympathetic yantra (+0 dice)',
+}
+
+const noYantra: {
+    diceBonus: number
+} & SelectedValue<YantraChoiceValue> = {
+    diceBonus: 0,
+    value: 'nothing',
+    label: 'Nothing (+0 dice)',
 }
 
 export const getYantraOptionsBuilder = (
