@@ -116,8 +116,10 @@ export const scaleOptionsBuilder = new SelectMenuBuilder()
 
 export const getScaleValue = async ({
     interaction,
+    currentSpellInfoText,
 }: {
     interaction: ChatInputCommandInteraction
+    currentSpellInfoText: string
 }): Promise<SelectedValue<ScaleChoiceValue>> => {
     const row =
         new ActionRowBuilder<MessageActionRowComponentBuilder>().addComponents(
@@ -125,7 +127,7 @@ export const getScaleValue = async ({
         )
     const msg = await interaction.editReply({
         components: [row],
-        content: `How huge should the spell be?`,
+        content: `${currentSpellInfoText}How huge should the spell be?`,
     })
 
     const values = (

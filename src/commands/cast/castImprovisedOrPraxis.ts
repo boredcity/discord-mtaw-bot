@@ -18,6 +18,7 @@ import {
     PrimaryFactorChoiceValue,
 } from './primaryFactorOptions'
 import {
+    defaultSpellFactors,
     getSpellResultContent,
     ImprovisedOrPraxisSpellInfo,
 } from './getSpellResult'
@@ -59,7 +60,9 @@ const builder = new SlashCommandBuilder()
     .addStringOption(primaryFactorOptionsBuilder)
 
 const execute = async (interaction: ChatInputCommandInteraction) => {
-    await interaction.deferReply()
+    await interaction.deferReply({
+        ephemeral: true,
+    })
     const isPraxis = interaction.options.getBoolean(SPELL_TYPE_OPTION_NAME)
     const practiceDots = interaction.options.getInteger(PARCTICE_OPTION_NAME)
     const gnosisDots = interaction.options.getInteger(GNOSIS_DOTS_OPTION_NAME)
@@ -98,6 +101,7 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
     }
 
     const spellInfo: ImprovisedOrPraxisSpellInfo = {
+        ...defaultSpellFactors,
         practiceDots,
         spellType: isPraxis ? `praxis` : `improvised_spell`,
         manaCost: 0,
@@ -111,26 +115,27 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
         spellInfo.manaCost += 1
     }
 
-    const { chosenYantras, castingTime, potency, duration, range, scale } =
-        await getSpellFactorsAndYantras({
-            interaction,
-            mageArcanaDots,
-            primaryFactor,
-            spellInfo,
-            gnosisDots,
-        })
+    const { chosenYantras } = await getSpellFactorsAndYantras({
+        interaction,
+        mageArcanaDots,
+        primaryFactor,
+        spellInfo,
+        gnosisDots,
+        freeReach,
+    })
 
     await interaction.editReply({
+        components: [],
+        content: `Calculating...`,
+    })
+
+    await interaction.followUp({
+        ephemeral: false,
         components: [],
         content: getSpellResultContent({
             freeReach,
             spellInfo,
             chosenYantras,
-            castingTime,
-            potency,
-            duration,
-            range,
-            scale,
             gnosisDots,
         }),
     })

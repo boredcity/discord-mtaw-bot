@@ -9,7 +9,11 @@ import {
     ROTE_OPTION_NAME,
     RoteChoiceValue,
 } from './roteOptions'
-import { RoteSpellInfo, getSpellResultContent } from './getSpellResult'
+import {
+    RoteSpellInfo,
+    getSpellResultContent,
+    defaultSpellFactors,
+} from './getSpellResult'
 import { getSpellFactorsAndYantras } from './getSpellFactorsAndYantras'
 
 const name = `cast_rote`
@@ -55,7 +59,9 @@ const builder = new SlashCommandBuilder()
     .addStringOption(roteOptionsBuilder)
 
 const execute = async (interaction: ChatInputCommandInteraction) => {
-    await interaction.deferReply()
+    await interaction.deferReply({
+        ephemeral: true,
+    })
     const roteName = interaction.options.getString(
         ROTE_OPTION_NAME,
     ) as RoteChoiceValue
@@ -90,6 +96,7 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
     }
 
     const spellInfo: RoteSpellInfo = {
+        ...defaultSpellFactors,
         ...roteData,
         spellType: `rote`,
         manaCost: 0,
@@ -98,27 +105,27 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
     }
     const freeReach = 5 - roteData.level + 1
 
-    const { chosenYantras, castingTime, potency, duration, range, scale } =
-        await getSpellFactorsAndYantras({
-            interaction,
-            mageArcanaDots,
-            primaryFactor: spellInfo.primaryFactor,
-            spellInfo,
-            gnosisDots,
-            mudraSkillDots,
-        })
+    const { chosenYantras } = await getSpellFactorsAndYantras({
+        interaction,
+        mageArcanaDots,
+        primaryFactor: spellInfo.primaryFactor,
+        spellInfo,
+        gnosisDots,
+        mudraSkillDots,
+        freeReach,
+    })
 
     await interaction.editReply({
         components: [],
+        content: `Calculating...`,
+    })
+
+    await interaction.followUp({
+        ephemeral: false,
         content: getSpellResultContent({
             freeReach,
             spellInfo,
             chosenYantras,
-            castingTime,
-            potency,
-            duration,
-            range,
-            scale,
             gnosisDots,
         }),
     })

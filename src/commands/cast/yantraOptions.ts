@@ -36,6 +36,7 @@ export const getYantraChoices = (
     mudraSkillValue?: number,
 ): (SelectMenuComponentOptionData & {
     diceBonus: number
+    description?: string
 } & SelectedValue<YantraChoiceValue>)[] => {
     const locationYantras = [
         {
@@ -190,13 +191,20 @@ export const getYantraValues = async ({
     interaction,
     mudraSkillDots,
     gnosisDots,
+    currentSpellInfoText,
     additionalSympathyYantrasRequired,
 }: {
     interaction: ChatInputCommandInteraction
     mudraSkillDots?: number
+    currentSpellInfoText: string
     gnosisDots: number
     additionalSympathyYantrasRequired: number
-}): Promise<({ diceBonus: number } & SelectedValue<YantraChoiceValue>)[]> => {
+}): Promise<
+    ({
+        diceBonus: number
+        description?: string
+    } & SelectedValue<YantraChoiceValue>)[]
+> => {
     const yantraChoices = getYantraChoices(mudraSkillDots)
     const maxCount =
         getMaxYantrasByGnosis(gnosisDots) - additionalSympathyYantrasRequired
@@ -206,7 +214,7 @@ export const getYantraValues = async ({
         )
     const yantrasMsg = await interaction.editReply({
         components: [yantrasRow],
-        content: `What helps the spell to blossom?`,
+        content: `${currentSpellInfoText}What helps the Imago to stabilize?`,
     })
 
     const values = (

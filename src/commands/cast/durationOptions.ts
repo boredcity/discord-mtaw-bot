@@ -82,9 +82,9 @@ export const getDurationOptionsBuilder = (
 export const getDurationValue = async ({
     interaction,
     durationChoices,
-    currentSpellCosts,
+    currentSpellInfoText,
 }: {
-    currentSpellCosts: string
+    currentSpellInfoText: string
     interaction: ChatInputCommandInteraction
     durationChoices: (SelectedValue<DurationChoiceValue> &
         SelectMenuComponentOptionData)[]
@@ -94,7 +94,7 @@ export const getDurationValue = async ({
             getDurationOptionsBuilder(durationChoices),
         )
     const msg = await interaction.editReply({
-        content: `${currentSpellCosts}How long should the spell work?`,
+        content: `${currentSpellInfoText}How long should the spell work?`,
         components: [row],
     })
 

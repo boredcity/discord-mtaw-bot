@@ -1,11 +1,11 @@
 import { ChatInputCommandInteraction } from 'discord.js'
-import { getCastingTimeValueAndInfo } from './castingTimeOptions'
+import { getCastingTimeValue } from './castingTimeOptions'
 import {
     getDurationChoices,
     getDurationCost,
     getDurationValue,
 } from './durationOptions'
-import { SpellInfo } from './getSpellResult'
+import { getSpellFactorsText, SpellInfo } from './getSpellResult'
 import {
     getPotencyChoices,
     getPotencyCost,
@@ -22,6 +22,7 @@ type GetSpellFactorsParam = {
     primaryFactor: PrimaryFactorChoiceValue
     spellInfo: SpellInfo
     gnosisDots: number
+    freeReach: number
     mudraSkillDots?: number
 }
 
@@ -32,54 +33,62 @@ export const getSpellFactorsAndYantras = async ({
     primaryFactor,
     mudraSkillDots,
     spellInfo,
+    freeReach,
 }: GetSpellFactorsParam) => {
     // potency
-    let currentSpellCosts = getCurrentSpellCost(spellInfo)
+    let currentSpellInfoText = getCurrentSpellInfoText(spellInfo, freeReach)
     const potencyFreeSteps =
         primaryFactor === `potency` ? mageArcanaDots - 1 : 0
     const potencyChoices = getPotencyChoices(potencyFreeSteps)
     const potency = await getPotencyValue({
-        currentSpellCosts,
+        currentSpellInfoText,
         interaction,
         potencyChoices,
     })
     const potencyCost = getPotencyCost(potency.value, potencyFreeSteps)
     spellInfo.diceToRoll -= potencyCost.dice
     spellInfo.reachUsed += potencyCost.reach
+    spellInfo.potency = potency
 
     // duration
-    currentSpellCosts = getCurrentSpellCost(spellInfo)
+    currentSpellInfoText = getCurrentSpellInfoText(spellInfo, freeReach)
     const durationFreeSteps =
         primaryFactor === `duration` ? mageArcanaDots - 1 : 0
     const durationChoices = getDurationChoices(durationFreeSteps)
     const duration = await getDurationValue({
         interaction,
         durationChoices,
-        currentSpellCosts,
+        currentSpellInfoText,
     })
     const durationCost = getDurationCost(duration.value, durationFreeSteps)
     spellInfo.manaCost += durationCost.mana
     spellInfo.diceToRoll -= durationCost.dice
     spellInfo.reachUsed += durationCost.reach
+    spellInfo.duration = duration
 
     // range
-    currentSpellCosts = getCurrentSpellCost(spellInfo)
-    const range = await getRangeValue({ interaction, currentSpellCosts })
+    currentSpellInfoText = getCurrentSpellInfoText(spellInfo, freeReach)
+    const range = await getRangeValue({ interaction, currentSpellInfoText })
     const rangeCost = getRangeCost(range.value)
     const additionalSympathyYantrasRequired =
         range.value === `sympathetic` ? 1 : 0
     spellInfo.manaCost += rangeCost.mana
     spellInfo.reachUsed += rangeCost.reach
+    spellInfo.range = range
 
     // scale
-    const scale = await getScaleValue({ interaction })
+    currentSpellInfoText = getCurrentSpellInfoText(spellInfo, freeReach)
+    const scale = await getScaleValue({ interaction, currentSpellInfoText })
     const scaleCost = getScaleCost(scale.value)
     spellInfo.diceToRoll -= scaleCost.dice
     spellInfo.reachUsed += scaleCost.reach
+    spellInfo.scale = scale
 
     // yantras
+    currentSpellInfoText = getCurrentSpellInfoText(spellInfo, freeReach)
     const chosenYantras = await getYantraValues({
         gnosisDots,
+        currentSpellInfoText,
         additionalSympathyYantrasRequired,
         interaction,
         mudraSkillDots:
@@ -88,23 +97,27 @@ export const getSpellFactorsAndYantras = async ({
     chosenYantras.forEach((y) => (spellInfo.diceToRoll += y.diceBonus))
 
     // casting time
-    const castingTime = await getCastingTimeValueAndInfo({
+    currentSpellInfoText = getCurrentSpellInfoText(spellInfo, freeReach)
+    const castingTime = await getCastingTimeValue({
         interaction,
+        currentSpellInfoText,
         gnosisDots,
         yantraValues: chosenYantras.map((y) => y.value),
         additionalSympathyYantrasRequired,
     })
     spellInfo.diceToRoll += castingTime.diceBonus
-    spellInfo.reachUsed += castingTime.reachCost
-    spellInfo.manaCost += castingTime.manaCost
+    spellInfo.reachUsed += castingTime.cost.reach
+    spellInfo.manaCost += castingTime.cost.mana
+    spellInfo.castingTime = castingTime
 
-    return { chosenYantras, castingTime, potency, duration, range, scale }
+    return { chosenYantras, spellInfo }
 }
 
-export const getCurrentSpellCost = (spellInfo: SpellInfo) => `
+export const getCurrentSpellInfoText = (spellInfo: SpellInfo, freeReach: number) => `
 Current spell cost:
     Dice to roll: **${spellInfo.diceToRoll}**
-    Reach uses: **${spellInfo.reachUsed}**
+    Reach uses: **${spellInfo.reachUsed}** (${freeReach} for free)
     Mana cost: **${spellInfo.manaCost}**
 
+Current spell factors:${getSpellFactorsText(spellInfo)}
 `

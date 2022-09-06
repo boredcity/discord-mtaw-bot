@@ -72,31 +72,36 @@ export const getCastingTimeOptionsBuilder = (
         .addOptions(options)
 }
 
-type AdvancedCastingTimeOptionValue = `quick` | `time_in_a_bottle`
-type CastingTimeOptionValue = AdvancedCastingTimeOptionValue | `${number}`
+type AdvancedCastingTimeChoiceValue = `quick` | `time_in_a_bottle`
+export type CastingTimeChoiceValue =
+    | AdvancedCastingTimeChoiceValue
+    | `${number}`
 export const isAdvancedCastingTimeValue = (
     value: string,
-): value is AdvancedCastingTimeOptionValue =>
+): value is AdvancedCastingTimeChoiceValue =>
     value === `quick` || value === `time_in_a_bottle`
 
-export type CastingTimeValue = SelectedValue<CastingTimeOptionValue> & {
+export type CastingTimeFullValue = SelectedValue<CastingTimeChoiceValue> & {
     diceBonus: number
-    reachCost: number
-    manaCost: number
+    cost: {
+        reach: number
+        mana: number
+    }
 }
 
-export const getCastingTimeValueAndInfo = async ({
+export const getCastingTimeValue = async ({
     interaction,
     gnosisDots,
     yantraValues,
+    currentSpellInfoText,
     additionalSympathyYantrasRequired,
 }: {
     interaction: ChatInputCommandInteraction
     gnosisDots: number
+    currentSpellInfoText: string
     yantraValues: YantraChoiceValue[]
     additionalSympathyYantrasRequired: number
-}): Promise<CastingTimeValue> => {
-    // casting time:
+}): Promise<CastingTimeFullValue> => {
     const ritualDuration = getRitualDurationByGnosis(gnosisDots)
     const castingTimeRow =
         new ActionRowBuilder<MessageActionRowComponentBuilder>().addComponents(
@@ -107,7 +112,7 @@ export const getCastingTimeValueAndInfo = async ({
         )
     const castingTimeMsg = await interaction.editReply({
         components: [castingTimeRow],
-        content: `How quickly it needs to be cast?`,
+        content: `${currentSpellInfoText}How quickly spell needs to be cast?`,
     })
 
     const value = (
@@ -132,14 +137,13 @@ export const getCastingTimeValueAndInfo = async ({
     return {
         diceBonus: castingTimeInfo.bonus,
         label: castingTimeInfo.label,
-        reachCost: 0,
-        manaCost: 0,
+        cost: { reach: 0, mana: 0 },
         value: value as `${number}`,
     }
 }
 
 export const getQuickCastingTimeLabelAndCost = (
-    value: AdvancedCastingTimeOptionValue,
+    value: AdvancedCastingTimeChoiceValue,
     {
         yantraValues,
         additionalSympathyYantrasRequired,
@@ -150,8 +154,10 @@ export const getQuickCastingTimeLabelAndCost = (
 ): {
     label: string
     diceBonus: 0
-    reachCost: number
-    manaCost: number
+    cost: {
+        reach: number
+        mana: number
+    }
 } => {
     // advanced casting time is limited by yantras count and mana spending
     // FIXME: add mana spending?
@@ -161,7 +167,9 @@ export const getQuickCastingTimeLabelAndCost = (
     return {
         label: `${minDurationByYantras} turn(s)`,
         diceBonus: 0,
-        reachCost: value === `quick` ? 1 : 0,
-        manaCost: value === `time_in_a_bottle` ? 1 : 0,
+        cost: {
+            reach: value === `quick` ? 1 : 0,
+            mana: value === `time_in_a_bottle` ? 1 : 0,
+        },
     }
 }

@@ -36,9 +36,9 @@ export const rangeOptionsBuilder = new SelectMenuBuilder()
 
 export const getRangeValue = async ({
     interaction,
-    currentSpellCosts,
+    currentSpellInfoText,
 }: {
-    currentSpellCosts: string
+    currentSpellInfoText: string
     interaction: ChatInputCommandInteraction
 }): Promise<SelectedValue<RangeChoiceValue>> => {
     const row =
@@ -47,7 +47,7 @@ export const getRangeValue = async ({
         )
     const msg = await interaction.editReply({
         components: [row],
-        content: `${currentSpellCosts}What is the spell's range?`,
+        content: `${currentSpellInfoText}What is the spell's range?`,
     })
 
     const values = (
