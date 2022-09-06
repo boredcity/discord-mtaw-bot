@@ -5,7 +5,7 @@ import {
     isAdvancedCastingTimeValue,
 } from './options/castingTimeOptions'
 import { DurationChoiceValue } from './options/durationOptions'
-import { getManaSpendPerTurnLimit } from './gnosis'
+import { getManaSpendPerTurnLimit } from './gnosisHelpers'
 import { PotencyChoiceValue } from './options/potencyOptions'
 import { RangeChoiceValue } from './options/rangeOptions'
 import { ScaleChoiceValue } from './options/scaleOptions'

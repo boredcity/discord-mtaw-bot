@@ -11,7 +11,7 @@ import {
     getSelectedValues,
     SelectedValue,
 } from '../../../common/getSelectedValues'
-import { getMaxYantrasByGnosis } from '../gnosis'
+import { getMaxYantrasByGnosis } from '../gnosisHelpers'
 
 export type YantraChoiceValue =
     | `location`

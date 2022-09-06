@@ -7,7 +7,7 @@ import {
 } from 'discord.js'
 import { getSameUserSelectInteractionFilter } from '../../../common/getSameUserSelectInteractionFilter'
 import { SelectedValue } from '../../../common/getSelectedValues'
-import { getRitualDurationByGnosis, TimeDuration } from '../gnosis'
+import { getRitualDurationByGnosis, TimeDuration } from '../gnosisHelpers'
 import { YantraChoiceValue } from './yantraOptions'
 
 export const IS_RULING_OPTION_NAME = `is_ruling`
