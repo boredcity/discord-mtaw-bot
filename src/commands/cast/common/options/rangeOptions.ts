@@ -12,6 +12,7 @@ import {
     getSelectedValues,
     SelectedValue,
 } from '../../../common/getSelectedValues'
+import { AWAIT_DURATION } from '../constants'
 
 export const RANGE_OPTION_NAME = `range`
 export type RangeChoiceValue = `standard` | `sensory` | `sympathetic`
@@ -59,7 +60,7 @@ export const getRangeValue = async ({
         await msg.awaitMessageComponent({
             filter: getSameUserSelectInteractionFilter(interaction),
             componentType: ComponentType.SelectMenu,
-            time: 120000,
+            time: AWAIT_DURATION,
         })
     ).values as RangeChoiceValue[]
 

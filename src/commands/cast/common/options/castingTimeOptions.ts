@@ -7,6 +7,7 @@ import {
 } from 'discord.js'
 import { getSameUserSelectInteractionFilter } from '../../../common/getSameUserSelectInteractionFilter'
 import { SelectedValue } from '../../../common/getSelectedValues'
+import { AWAIT_DURATION } from '../constants'
 import { getRitualDurationByGnosis, TimeDuration } from '../gnosisHelpers'
 import { YantraChoiceValue } from './yantraOptions'
 
@@ -111,7 +112,7 @@ export const getCastingTimeValue = async ({
         await castingTimeMsg.awaitMessageComponent({
             filter: getSameUserSelectInteractionFilter(interaction),
             componentType: ComponentType.SelectMenu,
-            time: 120000,
+            time: AWAIT_DURATION,
         })
     ).values[0]
 

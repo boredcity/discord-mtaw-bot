@@ -8,6 +8,7 @@ import {
     getRoteDataByName,
     ROTE_OPTION_NAME,
     RoteChoiceValue,
+    autocompleteRoteInput,
 } from './common/options/roteOptions'
 import {
     RoteSpellInfo,
@@ -46,7 +47,7 @@ const mudraSkillDotsBuilder = getIntegerOptionsBuilder({
 
 const builder = new SlashCommandBuilder()
     .setName(name)
-    .setDescription(`Cast a spell`)
+    .setDescription(`Cast Rote`)
     .setDMPermission(false)
     .addIntegerOption(gnosisDotsBuilder)
     .addIntegerOption(mageArcanaDotsBuilder)
@@ -131,4 +132,9 @@ export const CAST_ROTE_COMMAND: BotChatCommand = {
     description,
     builder,
     execute,
+}
+
+export const CAST_ROTE_AUTOCOMPLETE_COMMAND = {
+    name: `cast_rote`,
+    execute: autocompleteRoteInput,
 }

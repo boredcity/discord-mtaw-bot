@@ -11,6 +11,7 @@ import {
     getSelectedValues,
     SelectedValue,
 } from '../../../common/getSelectedValues'
+import { AWAIT_DURATION } from '../constants'
 
 export const SCALE_OPTION_NAME = `scale`
 export type ScaleChoiceValue = `a${number}` | `${number}`
@@ -139,7 +140,7 @@ export const getScaleValue = async ({
         await msg.awaitMessageComponent({
             filter: getSameUserSelectInteractionFilter(interaction),
             componentType: ComponentType.SelectMenu,
-            time: 120000,
+            time: AWAIT_DURATION,
         })
     ).values as ScaleChoiceValue[]
 

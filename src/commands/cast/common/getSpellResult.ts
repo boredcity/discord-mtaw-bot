@@ -32,32 +32,36 @@ export const defaultSpellFactors: SpellFactorsInfo = {
     scale: { value: `1`, label: `Not selected`, effect: getEffect() },
 } as const
 
-const isRote = (spellInfo: SpellInfo): spellInfo is RoteSpellInfo =>
-    spellInfo.spellType === `rote`
+const isBaseRoteSpellInfo = (
+    spellInfo: BaseRoteSpellInfo | BaseImprovisedOrPraxisSpellInfo,
+): spellInfo is BaseRoteSpellInfo => spellInfo.spellType === `rote`
 
-const roteLabels: Record<SpellTypeChoiceValue, string> = {
+const spellTypeLabels: Record<SpellTypeChoiceValue, string> = {
     praxis: `Praxis`,
     improvised_ruling_arcana: `Improvised Spell`,
     improvised_not_ruling_arcana: `Improvised Spell`,
     rote: `Rote`,
 }
 
-type BaseSpellInfo = SpellFactorsInfo & {
+type BaseCastingInfo = SpellFactorsInfo & {
     diceToRoll: number
     reachUsed: number
     manaCost: number
     spellType: SpellTypeChoiceValue
 }
 
-export type RoteSpellInfo = BaseSpellInfo &
-    RoteDescription & {
-        spellType: `rote`
-    }
+export type BaseRoteSpellInfo = RoteDescription & {
+    spellType: `rote`
+}
 
-export type ImprovisedOrPraxisSpellInfo = BaseSpellInfo & {
+export type BaseImprovisedOrPraxisSpellInfo = {
     practiceDots: number
     spellType: NonRoteSpellTypeChoiceValue
 }
+
+export type RoteSpellInfo = BaseCastingInfo & BaseRoteSpellInfo
+export type ImprovisedOrPraxisSpellInfo = BaseCastingInfo &
+    BaseImprovisedOrPraxisSpellInfo
 
 export type SpellInfo = RoteSpellInfo | ImprovisedOrPraxisSpellInfo
 
@@ -99,7 +103,7 @@ export const getSpellResultContent = (
     }
 
     return `
-${getSpellInformation(casterName, spellInfo)}
+${getSpellInformation(spellInfo, casterName)}
 Dice pool: **${diceToRoll}**  ${diceToRollDisclaimer}
     - *remember, you can spending 1 Willpower (+3 dice)*
     - *add all extra dice from Merits, Fate Spells, Artifacts, etc.*
@@ -155,17 +159,20 @@ export const getSpellFactorsText = (si: SpellInfo) => {
     Casting Time: ${si.castingTime.label}`
 }
 
-const getSpellInformation = (casterName: string, spellInfo: SpellInfo) => {
+export const getSpellInformation = (
+    spellInfo: BaseRoteSpellInfo | BaseImprovisedOrPraxisSpellInfo,
+    casterName?: string,
+) => {
     const { spellType } = spellInfo
-    const prefix = `${casterName} is casting a${
+    const prefix = `${casterName ?? `The mage`} is casting a${
         [`improvised_not_ruling_arcana`, `improvised_ruling_arcana`].includes(
             spellType,
         )
             ? `n`
             : ``
-    } ${capitalize(roteLabels[spellType] ?? `Spell`)}`
+    } ${capitalize(spellTypeLabels[spellType] ?? `Spell`)}`
 
-    if (isRote(spellInfo)) {
+    if (isBaseRoteSpellInfo(spellInfo)) {
         const {
             name,
             arcana,
@@ -183,12 +190,12 @@ const getSpellInformation = (casterName: string, spellInfo: SpellInfo) => {
             ? `+${capitalize(secondaryRequiredArcana)}`
             : ``
 
-        const firstLine = `${prefix} "${name}" (${primaryArcanaAndDots}${secondaryArcanaAndDots})`
-        const secondLine = `*${description}*`
-        const thirdLine = withstand
+        const spellNameAndArcanas = `"${name}" (${primaryArcanaAndDots}${secondaryArcanaAndDots})`
+        const spellDescription = `*${description}*`
+        const spellWithstand = withstand
             ? `Withstand: ${capitalize(withstand)}\n`
             : ``
-        return `${firstLine}\n${secondLine}\n${thirdLine}`
+        return `${prefix} ${spellNameAndArcanas}\n${spellDescription}\n${spellWithstand}`
     } else {
         return `${prefix} (${`●`.repeat(spellInfo.practiceDots)})\n`
     }

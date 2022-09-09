@@ -40,7 +40,7 @@ const description: LocalizationWithDefault = {
 
 const builder = new SlashCommandBuilder()
     .setName(name)
-    .setDescription(`Cast a spell`)
+    .setDescription(`Cast improvised spell or Praxis`)
     .setDMPermission(false)
     .addIntegerOption(gnosisDotsBuilder)
     .addIntegerOption(mageArcanaDotsBuilder)

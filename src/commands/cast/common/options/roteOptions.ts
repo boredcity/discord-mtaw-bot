@@ -4233,8 +4233,3 @@ export const autocompleteRoteInput = async (
         })),
     )
 }
-
-export const AUTOCOMPLETE_ROTES_COMMAND = {
-    name: `cast_rote`,
-    execute: autocompleteRoteInput,
-}

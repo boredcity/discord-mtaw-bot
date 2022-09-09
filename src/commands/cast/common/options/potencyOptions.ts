@@ -11,6 +11,7 @@ import {
     getSelectedValues,
     SelectedValue,
 } from '../../../common/getSelectedValues'
+import { AWAIT_DURATION } from '../constants'
 
 export const POTENCY_OPTION_NAME = `potency`
 export type PotencyChoiceValue = `a${number}` | `${number}`
@@ -74,7 +75,7 @@ export const getPotencyValue = async ({
         await msg.awaitMessageComponent({
             filter: getSameUserSelectInteractionFilter(interaction),
             componentType: ComponentType.SelectMenu,
-            time: 120000,
+            time: AWAIT_DURATION,
         })
     ).values as PotencyChoiceValue[]
 

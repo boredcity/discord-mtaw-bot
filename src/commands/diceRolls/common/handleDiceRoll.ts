@@ -23,7 +23,6 @@ export const handleDiceRoll = async (
     const { successes, rolled } = getRollResults({ count, rule })
 
     const rolledString = rolled
-        .sort((a, b) => a.value - b.value)
         .map(
             (roll) =>
                 `${roll.exploaded ? `💥` : ``}${roll.rerolled ? `♻️` : ``}${

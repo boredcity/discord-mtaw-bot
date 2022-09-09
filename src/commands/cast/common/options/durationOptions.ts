@@ -12,6 +12,7 @@ import {
     getSelectedValues,
     SelectedValue,
 } from '../../../common/getSelectedValues'
+import { AWAIT_DURATION } from '../constants'
 
 export const DURATION_OPTION_NAME = `duration`
 
@@ -110,7 +111,7 @@ export const getDurationValue = async ({
     const { values } = await msg.awaitMessageComponent({
         filter: getSameUserSelectInteractionFilter(interaction),
         componentType: ComponentType.SelectMenu,
-        time: 120000,
+        time: AWAIT_DURATION,
     })
 
     return getSelectedValues(

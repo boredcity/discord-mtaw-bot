@@ -11,6 +11,7 @@ import {
     getSelectedValues,
     SelectedValue,
 } from '../../../common/getSelectedValues'
+import { AWAIT_DURATION } from '../constants'
 import { getMaxYantrasByGnosis } from '../gnosisHelpers'
 
 export type YantraChoiceValue =
@@ -226,7 +227,7 @@ export const getYantraValues = async ({
         await yantrasMsg.awaitMessageComponent({
             filter: getSameUserSelectInteractionFilter(interaction),
             componentType: ComponentType.SelectMenu,
-            time: 120000,
+            time: AWAIT_DURATION,
         })
     ).values as YantraChoiceValue[]
 
