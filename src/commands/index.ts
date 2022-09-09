@@ -15,7 +15,10 @@ import {
     CAST_ROTE_AUTOCOMPLETE_COMMAND,
     CAST_ROTE_COMMAND,
 } from './cast/castRote'
-import { LOOKUP_ROTE_AUTOCOMPLETE_COMMAND } from './cast/findRote'
+import {
+    LOOKUP_ROTE_AUTOCOMPLETE_COMMAND,
+    LOOKUP_ROTE_COMMAND,
+} from './cast/findRote'
 
 export interface LocalizationWithDefault
     extends Partial<Record<Locale, string>> {
@@ -45,6 +48,7 @@ export const ALL_CHAT_INTERACTION_COMMANDS: BotChatCommand[] = [
     R_COMMAND,
     CAST_ROTE_COMMAND,
     CAST_IMPROVISED_COMMAND,
+    LOOKUP_ROTE_COMMAND,
 ].sort((c1, c2) => c1.name.localeCompare(c2.name))
 
 export const ALL_AUTOCOMPLETE_COMMANDS: AutocompleteCommand[] = [
