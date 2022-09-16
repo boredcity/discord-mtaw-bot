@@ -1,3 +1,4 @@
+import { pluralizeLabel } from './../../../common/pluralize'
 import {
     ActionRowBuilder,
     ChatInputCommandInteraction,
@@ -49,7 +50,7 @@ export const getCastingTimeOptionsBuilder = (
                 multiplier,
             )
             return {
-                label: `${label} (+${bonus} ${bonus === 1 ? `die` : `dice`})`,
+                label: `${label} (+${pluralizeLabel(bonus, `die`, `dice`)})`,
                 value: `${multiplier}`,
             }
         }),

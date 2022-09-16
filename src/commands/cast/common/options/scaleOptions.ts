@@ -1,3 +1,4 @@
+import { pluralizeLabel } from './../../../common/pluralize'
 import {
     ActionRowBuilder,
     ChatInputCommandInteraction,
@@ -104,9 +105,11 @@ export const scaleChoices: (SelectedValue<ScaleChoiceValue> &
     ...baseScales.map((s, i) => ({
         value: `${i}` as ScaleChoiceValue,
         effect: s.effect,
-        label: `${s.area} or ${s.subjects} ${
-            s.subjects === 1 ? `man` : `men`
-        } (up to Size ${s.sizeOfLargest}) (${s.effect.dice} dice)`,
+        label: `${s.area} or ${pluralizeLabel(
+            s.subjects,
+            `man`,
+            `men`,
+        )} (up to Size ${s.sizeOfLargest}) (${s.effect.dice} dice)`,
     })),
     ...advancedScales.map((s, i) => ({
         value: (`a` + `${i}`) as ScaleChoiceValue,

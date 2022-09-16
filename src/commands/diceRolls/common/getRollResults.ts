@@ -6,15 +6,17 @@ interface DieRollResultInfo {
     rerolled: boolean
 }
 
+type GetRollResultsParams = {
+    count: number
+    target?: number
+    rule: RuleChoiceValue
+}
+
 export function getRollResults({
     count,
     target = 8,
     rule,
-}: {
-    count: number
-    target?: number
-    rule: RuleChoiceValue
-}): {
+}: GetRollResultsParams): {
     successes: number
     rolled: DieRollResultInfo[]
 } {

@@ -5,7 +5,7 @@ import { READY_HANDLER } from './ready'
 export type ClientEventHandler<K extends keyof ClientEvents> = {
     eventName: K
     once?: boolean
-    execute: (...args: ClientEvents[K]) => void
+    execute: () => void
 }
 
 export const ALL_EVENT_HANDLERS = [READY_HANDLER, INTERACTION_CREATE_HANDLER]

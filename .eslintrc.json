@@ -16,6 +16,7 @@
         "ecmaVersion": 2022
     },
     "rules": {
+        "@typescript-eslint/no-unused-vars": ["error"],
         "arrow-spacing": ["warn", { "before": true, "after": true }],
         "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
         "comma-dangle": ["error", "always-multiline"],

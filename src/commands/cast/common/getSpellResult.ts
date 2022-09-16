@@ -5,7 +5,10 @@ import {
     isAdvancedCastingTimeValue,
 } from './options/castingTimeOptions'
 import { DurationChoiceValue } from './options/durationOptions'
-import { getManaSpendPerTurnLimit } from './gnosisHelpers'
+import {
+    getManaSpendPerTurnLimit,
+    getParadoxDiceCountPerReachByGnosis,
+} from './gnosisHelpers'
 import { PotencyChoiceValue } from './options/potencyOptions'
 import { RangeChoiceValue } from './options/rangeOptions'
 import { ScaleChoiceValue } from './options/scaleOptions'
@@ -15,6 +18,7 @@ import {
     NonRoteSpellTypeChoiceValue,
     SpellTypeChoiceValue,
 } from './options/spellTypeOptions'
+import { pluralize, pluralizeLabel } from '../../common/pluralize'
 
 type SpellFactorsInfo = {
     castingTime: SelectedValue<CastingTimeChoiceValue>
@@ -91,16 +95,20 @@ export const getSpellResultContent = (
     let diceToRollDisclaimer = ``
     if (diceToRoll < -5) {
         const requiredForChanceRoll = Math.abs(diceToRoll) - 5
-        diceToRollDisclaimer = `🚧 you need at least ${requiredForChanceRoll} more ${
-            requiredForChanceRoll === 1 ? `die` : `dice`
-        }!`
+        diceToRollDisclaimer = `🚧 you need at least ${requiredForChanceRoll} more ${pluralize(
+            requiredForChanceRoll,
+            `die`,
+            `dice`,
+        )}!`
     } else if (diceToRoll < 1) {
         diceToRollDisclaimer = `🎲 chance die!`
     } else {
         diceToRollDisclaimer = `🧙 exceptional success on ${
             spellInfo.spellType === `praxis` ? 3 : 5
-        } roll successes.!`
+        } roll successes!`
     }
+
+    const paradoxPerReach = getParadoxDiceCountPerReachByGnosis(gnosisDots)
 
     return `
 ${getSpellInformation(spellInfo, casterName)}
@@ -136,7 +144,11 @@ Yantras bonuses:\n${chosenYantras
         .join(`\n`)}
 
 👹 Don't forget to tell your ST about things that can affect their Paradox roll:
-    - How many times have mage Reached (+1 Paradox die per Reach above ${freeReach})?
+    - How many times have mage Reached (+${pluralizeLabel(
+        paradoxPerReach,
+        `die`,
+        `dice`,
+    )} per Reach above ${freeReach})?
     - Are there any Sleeper whitnesses around? (+1 Paradox die, 9-again (👩‍👦), 8-again (👨‍👨‍👦) or rote quality (👩‍👩‍👧‍👧))
     - Have mage rolled for paradox in this scene (+1 Paradox die per roll)
     - Is mage inured to the spell (+2 Paradox dice)

@@ -1,6 +1,9 @@
 export const getMaxYantrasByGnosis = (gnosisDots: number) =>
     Math.ceil(gnosisDots / 2) + 1
 
+export const getParadoxDiceCountPerReachByGnosis = (gnosisDots: number) =>
+    Math.ceil(gnosisDots / 2)
+
 export type TimeDuration = {
     value: number
     unit: `hour(s)` | `minute(s)`
