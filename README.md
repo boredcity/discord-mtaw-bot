@@ -19,17 +19,17 @@ Uses list of spells from http://wodcodex.com/wiki/Spells,_All_(2nd_Edition)
 
 1. Create `.env` file inside of the cloned project folder with the the following text inside (replacing `[text]` with the actual values; if you have trouble finding all the variables, use the guild from the previous step):
 
-```
-BOT_TOKEN=[copy from Application's "Bot" tab]
+    ```
+    BOT_TOKEN=[copy from Application's "Bot" tab]
 
-APP_ID=[copy from Application's "General Information" tab]
+    APP_ID=[copy from Application's "General Information" tab]
 
-PUB_KEY=[copy from Application's "General Information" tab]
+    PUB_KEY=[copy from Application's "General Information" tab]
 
-GUILD_ID=[copy from url https://discord.com/channels/<GuildID_YOU_NEED_THIS_PART>/<ChannelID>]
+    GUILD_ID=[copy from url https://discord.com/channels/<GuildID_YOU_NEED_THIS_PART>/<ChannelID>]
 
-NODE_ENV=["production" or "development", affects only the logging amount]
-```
+    NODE_ENV=["production" or "development", affects only the logging amount]
+    ```
 
 1. run `npm run dev` to start the bot in development mode
 
