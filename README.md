@@ -1,8 +1,33 @@
 # Discord bot for "Mage: the Awakening" (2nd Edition)
 
-Allows to calculate spell parameters similar to http://www.voidstate.com/rpg/mage-spell-helper/ (but with less required steps) and also has a simple dice roller
+A bot that allows you to:
+- calculate spell parameters for Mage: the Awakening (2nd edition)
+- roll d10 dice
+
+Heavily inspired by this website: http://www.voidstate.com/rpg/mage-spell-helper/ 
 
 Uses list of spells from http://wodcodex.com/wiki/Spells,_All_(2nd_Edition)
+
+## Available Slash Commands
+
+### Spell Casting
+- `/cast_improvised` -- calculates dice, reach and mana needed to cast an improvised spell or Praxis
+- `/cast_rote` -- calculates dice, reach and mana needed to cast a Rote
+
+### Dice rolls
+- `/chance` -- rolls a single d10 chance die
+- `/roll` -- rolls d10s; you can choose reroll/explosion rule
+- `/r` -- shorthand for `roll {number} 10_again`: rolls d10s with 10again rule
+
+### Other
+- `/ping` -- ping server
+- `/help` -- shows a list of available commands
+
+### Why not use the website above instead?
+
+1. You should use it if it's convenient to you! It's just our group was using Discord for video communication anyway so it made more sense to stick with a single app.
+
+2. there is a small added benefit of Storyteller being able to view the spell parameters right away and spot mistakes / figure out the spell potency / etc. without asking a player.
 
 ## How to run the bot locally
 (it will work for everyone on your discord server!)
@@ -34,36 +59,6 @@ Uses list of spells from http://wodcodex.com/wiki/Spells,_All_(2nd_Edition)
 1. run `npm run dev` to start the bot in development mode
 
 1. invite the bot to your channel (Application tab "Oauth 2" -> "Url generator"; select scope "bot" and bot permissions "Send Messages" + "Use slash commands" from the list) and copy the url to the browser.
-
-## Slash Commands:
-
-`/cast_improvised`
-
-calculates dice, reach and mana needed to cast an improvised spell or Praxis
-
-`/cast_rote`
-
-calculates dice, reach and mana needed to cast a Rote
-
-`/chance`
-
-rolls a single d10 chance die
-
-`/help`
-
-shows a list of available commands
-
-`/ping`
-
-ping server
-
-`/r`
-
-rolls d10s with 10again rule
-
-`/roll`
-
-rolls d10s; you can choose reroll/explosion rule
 
 ## Adding or removing commands
 
