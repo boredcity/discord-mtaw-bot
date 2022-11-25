@@ -13,6 +13,7 @@ Uses list of spells from http://wodcodex.com/wiki/Spells,_All_(2nd_Edition)
 ### Spell Casting
 - `/cast_improvised` -- calculates dice, reach and mana needed to cast an improvised spell or Praxis
 - `/cast_rote` -- calculates dice, reach and mana needed to cast a Rote
+- `/lookup_rote` -- get a Rote description by its name or Arcana + Level (i.e. `life4`)
 
 ### Dice rolls
 - `/chance` -- rolls a single d10 chance die
@@ -59,6 +60,8 @@ Uses list of spells from http://wodcodex.com/wiki/Spells,_All_(2nd_Edition)
 1. run `npm run dev` to start the bot in development mode
 
 1. invite the bot to your channel (Application tab "Oauth 2" -> "Url generator"; select scope "bot" and bot permissions "Send Messages" + "Use slash commands" from the list) and copy the url to the browser.
+
+The slash commands will work as long as you leave the terminal with `npm run dev` command running open.
 
 ## Adding or removing commands
 
