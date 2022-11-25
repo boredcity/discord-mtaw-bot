@@ -24,7 +24,7 @@ import {
     mageArcanaDotsBuilder,
     MAGE_ARCANA_DOTS_OPTION_NAME,
 } from './common/options/mageArcanaDotsOptions'
-import { RoteDescription } from '../../commonTypes'
+import { RoteDescription } from '../../wodTypes/common'
 
 const name = `cast_rote`
 

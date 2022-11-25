@@ -9,7 +9,7 @@ import {
     autocompleteRoteInput,
 } from './common/options/roteOptions'
 import { getSpellInformation } from './common/getSpellResult'
-import { RoteDescription } from '../../commonTypes'
+import { RoteDescription } from '../../wodTypes/common'
 
 const name = `lookup_rote`
 

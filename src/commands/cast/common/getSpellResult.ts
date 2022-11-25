@@ -18,7 +18,7 @@ import {
     SpellTypeChoiceValue,
 } from './options/spellTypeOptions'
 import { pluralize, pluralizeLabel } from '../../common/pluralize'
-import { RoteDescription } from '../../../commonTypes'
+import { RoteDescription } from '../../../wodTypes/common'
 import { getFullArcanaRequirementsString } from './getFullArcanaRequirementsString'
 
 type SpellFactorsInfo = {

@@ -1,4 +1,4 @@
-import { ArcanaDescription, RoteDescription } from '../../../commonTypes'
+import { ArcanaDescription, RoteDescription } from '../../../wodTypes/common'
 import { capitalize } from '../../common/capitalize'
 
 export const getArcanaRequirementsString = ({

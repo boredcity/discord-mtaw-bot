@@ -7,7 +7,7 @@ import { getRangeValue } from './options/rangeOptions'
 import { getScaleValue } from './options/scaleOptions'
 import { getYantraValues } from './options/yantraOptions'
 import { getEffect, SelectedValue } from '../../common/getSelectedValues'
-import { PrimaryFactorChoiceValue } from '../../../commonTypes'
+import { PrimaryFactorChoiceValue } from '../../../wodTypes/common'
 
 type GetSpellFactorsParam = {
     mageArcanaDots: number

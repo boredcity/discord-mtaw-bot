@@ -1,6 +1,6 @@
 import { SlashCommandStringOption } from 'discord.js'
 import { ArrayOfOptions } from '../../..'
-import { PrimaryFactorChoiceValue } from '../../../../commonTypes'
+import { PrimaryFactorChoiceValue } from '../../../../wodTypes/common'
 
 export const PRIMARY_FACTOR_OPTION_NAME = `primary_factor`
 

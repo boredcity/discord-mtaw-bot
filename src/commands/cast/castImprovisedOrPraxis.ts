@@ -29,7 +29,7 @@ import {
     mageArcanaDotsBuilder,
     MAGE_ARCANA_DOTS_OPTION_NAME,
 } from './common/options/mageArcanaDotsOptions'
-import { PrimaryFactorChoiceValue } from '../../commonTypes'
+import { PrimaryFactorChoiceValue } from '../../wodTypes/common'
 
 const name = `cast_improvised`
 
