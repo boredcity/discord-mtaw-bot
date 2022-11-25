@@ -1,10 +1,16 @@
 import { SlashCommandIntegerOption } from 'discord.js'
 import { ArrayOfOptions } from '../../..'
+import { PracticeName, RepeatString } from '../../../../commonTypes'
 
 export const PARCTICE_OPTION_NAME = `practice`
 export type PracticeChoiceValue = 1 | 2 | 3 | 4 | 5
 
-export const practiceChoices: ArrayOfOptions<PracticeChoiceValue> = [
+type PracticeInfoString =
+    `${RepeatString<`●`>} ${Capitalize<PracticeName>} - ${string}`
+export const practiceChoices: ArrayOfOptions<
+    PracticeChoiceValue,
+    PracticeInfoString
+> = [
     {
         name: `● Compelling - nudge possible into reality`,
         value: 1,

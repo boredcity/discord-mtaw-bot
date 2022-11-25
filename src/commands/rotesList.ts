@@ -1224,7 +1224,7 @@ Add Time 1: Use a Reach, you can now turn objects too fast for you to apply defe
         name: `Velocity Control`,
         arcana: `forces`,
         level: 3,
-        practice: `fraying or perfecting`,
+        practice: `fraying/perfecting`,
         primaryFactor: `potency`,
         description: `Increase or decrease an objects speed`,
         source: `MtAw2 p145`,
@@ -1818,7 +1818,7 @@ Add Forces 2: You are now also protected against the damage from the extreme tem
         name: `Alter Integrity`,
         arcana: `matter`,
         level: 3,
-        practice: `fraying or perfecting`,
+        practice: `fraying/perfecting`,
         primaryFactor: `potency`,
         withstand: `durability`,
         description: `Increase or decrease an objects Durability
@@ -1854,7 +1854,7 @@ Add Forces 2: You are now also protected against the damage from the extreme tem
         name: `Nigredo and Albedo`,
         arcana: `matter`,
         level: 3,
-        practice: `fraying or perfecting`,
+        practice: `fraying/perfecting`,
         primaryFactor: `potency`,
         description: `Repair or damage an objects Structure
 +1 Reach: When damaging ignore durability`,
@@ -3710,7 +3710,7 @@ Add Death 2 or Mind 2: Affects ghosts or Goetia respectively
         name: `Place of Power`,
         arcana: `spirit`,
         level: 3,
-        practice: `fraying or perfecting`,
+        practice: `fraying/perfecting`,
         primaryFactor: `potency`,
         withstand: `gauntlet strength`,
         description: `Raise or lower Gauntlet Strength in spell Area by Potency 

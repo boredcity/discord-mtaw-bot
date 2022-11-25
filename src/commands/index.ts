@@ -56,9 +56,9 @@ export const ALL_AUTOCOMPLETE_COMMANDS: AutocompleteCommand[] = [
     LOOKUP_ROTE_AUTOCOMPLETE_COMMAND,
 ]
 
-export type ArrayOfOptions<T> = Readonly<
+export type ArrayOfOptions<T, Name = string> = Readonly<
     {
-        name: string
+        name: Name
         value: T
         name_localizations?: Partial<Record<Locale, string>>
     }[]

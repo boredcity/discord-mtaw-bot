@@ -1,7 +1,19 @@
 export type StringId = string
 export type NumberId = number
 
+type Decrement = [never, 0, 1, 2, 3, 4, 5]
+export type RepeatString<S extends string, N extends number = 5> = N extends 1
+    ? S
+    : `${S}${`` | RepeatString<S, Decrement[N]>}`
+
 export type PrimaryFactorChoiceValue = `duration` | `potency`
+
+// export type Character {
+//     knownRotes: {
+//         description: RoteDescription,
+
+//     }
+// }
 
 export type ArcanaName =
     | `death`
@@ -20,10 +32,29 @@ export type ArcanaDescription = {
     level: number
 }
 
+export type PracticeName =
+    | `compelling`
+    | `knowing`
+    | `unveiling`
+    | `veiling`
+    | `ruling`
+    | `shielding`
+    | `weaving`
+    | `fraying`
+    | `perfecting`
+    | `unraveling`
+    | `patterning`
+    | `making`
+    | `unmaking`
+
+export type PracticeDescription =
+    | PracticeName
+    | `${PracticeName}/${PracticeName}`
+
 export type RoteDescription = ArcanaDescription & {
-    id: string
+    id: StringId
     name: string
-    practice: string
+    practice: PracticeDescription
     primaryFactor: PrimaryFactorChoiceValue
     withstand?:
         | `resolve`
