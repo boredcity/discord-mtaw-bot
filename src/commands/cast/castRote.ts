@@ -4,7 +4,6 @@ import { BotChatCommand, LocalizationWithDefault } from '../index'
 import { getIntegerOptionsBuilder } from '../common/getNumberOptionsBuilder'
 import {
     roteOptionsBuilder,
-    RoteDescription,
     getRoteDataByName,
     ROTE_OPTION_NAME,
     RoteChoiceValue,
@@ -25,6 +24,7 @@ import {
     mageArcanaDotsBuilder,
     MAGE_ARCANA_DOTS_OPTION_NAME,
 } from './common/options/mageArcanaDotsOptions'
+import { RoteDescription } from '../../commonTypes'
 
 const name = `cast_rote`
 

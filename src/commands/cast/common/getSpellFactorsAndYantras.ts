@@ -3,11 +3,11 @@ import { getCastingTimeValue } from './options/castingTimeOptions'
 import { getDurationChoices, getDurationValue } from './options/durationOptions'
 import { getSpellFactorsText, SpellInfo } from './getSpellResult'
 import { getPotencyChoices, getPotencyValue } from './options/potencyOptions'
-import { PrimaryFactorChoiceValue } from './options/primaryFactorOptions'
 import { getRangeValue } from './options/rangeOptions'
 import { getScaleValue } from './options/scaleOptions'
 import { getYantraValues } from './options/yantraOptions'
 import { getEffect, SelectedValue } from '../../common/getSelectedValues'
+import { PrimaryFactorChoiceValue } from '../../../commonTypes'
 
 type GetSpellFactorsParam = {
     mageArcanaDots: number

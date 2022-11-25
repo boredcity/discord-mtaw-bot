@@ -13,12 +13,13 @@ import { PotencyChoiceValue } from './options/potencyOptions'
 import { RangeChoiceValue } from './options/rangeOptions'
 import { ScaleChoiceValue } from './options/scaleOptions'
 import { YantraChoiceValue } from './options/yantraOptions'
-import { RoteDescription } from './options/roteOptions'
 import {
     NonRoteSpellTypeChoiceValue,
     SpellTypeChoiceValue,
 } from './options/spellTypeOptions'
 import { pluralize, pluralizeLabel } from '../../common/pluralize'
+import { RoteDescription } from '../../../commonTypes'
+import { getFullArcanaRequirementsString } from './getFullArcanaRequirementsString'
 
 type SpellFactorsInfo = {
     castingTime: SelectedValue<CastingTimeChoiceValue>
@@ -185,24 +186,11 @@ export const getSpellInformation = (
     } ${capitalize(spellTypeLabels[spellType] ?? `Spell`)}`
 
     if (isBaseRoteSpellInfo(spellInfo)) {
-        const {
-            name,
-            arcana,
-            level,
-            description,
-            secondaryRequiredArcana,
-            withstand,
-        } = spellInfo
+        const { name, description, withstand } = spellInfo
 
-        const primaryArcanaAndDots = `${capitalize(arcana)} ${`●`.repeat(
-            level,
-        )}`
-
-        const secondaryArcanaAndDots = secondaryRequiredArcana
-            ? `+${capitalize(secondaryRequiredArcana)}`
-            : ``
-
-        const spellNameAndArcanas = `"${name}" (${primaryArcanaAndDots}${secondaryArcanaAndDots})`
+        const spellNameAndArcanas = `"${name}" (${getFullArcanaRequirementsString(
+            spellInfo,
+        )})`
         const spellDescription = `*${description}*`
         const spellWithstand = withstand
             ? `Withstand: ${capitalize(withstand)}\n`

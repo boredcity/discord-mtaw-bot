@@ -3,13 +3,13 @@ import { ChatInputCommandInteraction } from 'discord.js'
 import { BotChatCommand, LocalizationWithDefault } from '../index'
 import {
     roteOptionsBuilder,
-    RoteDescription,
     getRoteDataByName,
     ROTE_OPTION_NAME,
     RoteChoiceValue,
     autocompleteRoteInput,
 } from './common/options/roteOptions'
 import { getSpellInformation } from './common/getSpellResult'
+import { RoteDescription } from '../../commonTypes'
 
 const name = `lookup_rote`
 

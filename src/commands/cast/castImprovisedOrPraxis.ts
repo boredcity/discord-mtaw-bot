@@ -8,7 +8,6 @@ import { BotChatCommand, LocalizationWithDefault } from '../index'
 import {
     primaryFactorOptionsBuilder,
     PRIMARY_FACTOR_OPTION_NAME,
-    PrimaryFactorChoiceValue,
 } from './common/options/primaryFactorOptions'
 import {
     defaultSpellFactors,
@@ -30,6 +29,7 @@ import {
     mageArcanaDotsBuilder,
     MAGE_ARCANA_DOTS_OPTION_NAME,
 } from './common/options/mageArcanaDotsOptions'
+import { PrimaryFactorChoiceValue } from '../../commonTypes'
 
 const name = `cast_improvised`
 
