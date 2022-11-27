@@ -30,7 +30,7 @@ const builder = new SlashCommandBuilder()
 const execute = async (interaction: ChatInputCommandInteraction) => {
     const count = interaction.options.getInteger(DICE_COUNT_OPTION_NAME)
 
-    await handleDiceRoll(interaction, count, defaultRuleChoice)
+    await handleDiceRoll(interaction, count, defaultRuleChoice, 8)
 }
 export const R_COMMAND: BotChatCommand = {
     name,

@@ -1,5 +1,5 @@
 import { AutocompleteInteraction, SlashCommandStringOption } from 'discord.js'
-import { rotesList, rotesMap } from '../../../rotesList'
+import { rotesList, rotesMap } from '../rotesList'
 import { getFullArcanaRequirementsString } from '../getFullArcanaRequirementsString'
 export const ROTE_OPTION_NAME = `rote_name`
 

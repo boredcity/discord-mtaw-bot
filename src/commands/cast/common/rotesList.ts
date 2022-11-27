@@ -1,4 +1,4 @@
-import { RoteDescription } from '../wodTypes/common'
+import { RoteDescription } from '../../../wodTypes/common'
 
 export const rotesList: Readonly<RoteDescription[]> = [
     {

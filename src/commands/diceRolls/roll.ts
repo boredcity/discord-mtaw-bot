@@ -4,6 +4,7 @@ import {
     SlashCommandBuilder,
 } from 'discord.js'
 import type { BotChatCommand, LocalizationWithDefault } from '..'
+import { RuleChoiceValue } from '../../wodTypes/ruleChoiceValue'
 import {
     diceCountOptionsBuilder,
     DICE_COUNT_OPTION_NAME,
@@ -11,7 +12,6 @@ import {
 import { handleDiceRoll } from './common/handleDiceRoll'
 import {
     defaultRuleChoice,
-    RuleChoiceValue,
     ruleOptionsBuilder,
     RULE_OPTION_NAME,
 } from './common/ruleOptions'
@@ -41,7 +41,7 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
             RULE_OPTION_NAME,
         ) as null | RuleChoiceValue) ?? defaultRuleChoice
 
-    await handleDiceRoll(interaction, count, rule)
+    await handleDiceRoll(interaction, count, rule, 8)
 }
 export const ROLL_COMMAND: BotChatCommand = {
     name,

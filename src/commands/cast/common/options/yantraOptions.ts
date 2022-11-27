@@ -12,7 +12,7 @@ import {
     SelectedValue,
 } from '../../../common/getSelectedValues'
 import { AWAIT_DURATION } from '../constants'
-import { getMaxYantrasByGnosis } from '../gnosisHelpers'
+import { getMaxYantrasByGnosis } from '../../../../gnosisHelpers'
 
 export type YantraChoiceValue =
     | `location`

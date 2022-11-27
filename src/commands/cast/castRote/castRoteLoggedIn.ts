@@ -1,30 +1,27 @@
 import { SlashCommandBuilder } from '@discordjs/builders'
 import { ChatInputCommandInteraction } from 'discord.js'
-import { BotChatCommand, LocalizationWithDefault } from '../index'
-import { getIntegerOptionsBuilder } from '../common/getNumberOptionsBuilder'
+import { BotChatCommand, LocalizationWithDefault } from '../../index'
 import {
     roteOptionsBuilder,
     getRoteDataByName,
     ROTE_OPTION_NAME,
     RoteChoiceValue,
     autocompleteRoteInput,
-} from './common/options/roteOptions'
+} from '../common/options/roteOptions'
 import {
     RoteSpellInfo,
     getSpellResultContent,
     defaultSpellFactors,
-} from './common/getSpellResult'
-import { getSpellFactorsAndYantras } from './common/getSpellFactorsAndYantras'
-import { getUserNickname } from '../common/getUserNickname'
+} from '../common/getSpellResult'
+import { getSpellFactorsAndYantras } from '../common/getSpellFactorsAndYantras'
+import { getUserNickname } from '../../common/getUserNickname'
+import { RoteDescription } from '../../../wodTypes/common'
 import {
-    gnosisDotsBuilder,
-    GNOSIS_DOTS_OPTION_NAME,
-} from './common/options/gnosisDotsOptions'
-import {
-    mageArcanaDotsBuilder,
-    MAGE_ARCANA_DOTS_OPTION_NAME,
-} from './common/options/mageArcanaDotsOptions'
-import { RoteDescription } from '../../wodTypes/common'
+    skillOptionsBuilder,
+    SKILL_OPTION_NAME,
+} from '../common/options/mudraSkillOptions'
+import { getCurrentMageCharacter } from '../../../storage/local/utils'
+import { SkillName } from '../../../wodTypes/skillName'
 
 const name = `cast_rote`
 
@@ -33,26 +30,12 @@ const description: LocalizationWithDefault = {
     ru: `рассчитывает, сколько кубов, Усилий и Маны нужно для создания Рутины`,
 }
 
-const MUDRA_SKILL_DOTS_OPTION_NAME = `mudra_skill_dots`
-const mudraSkillDotsBuilder = getIntegerOptionsBuilder({
-    name: {
-        default: MUDRA_SKILL_DOTS_OPTION_NAME,
-        ru: `точки_мага_в_навыке_рутины`,
-    },
-    description: { default: `How skilled are you in the Rote's mudra?` },
-    minValue: 0,
-    maxValue: 5,
-    isRequired: true,
-})
-
 const builder = new SlashCommandBuilder()
     .setName(name)
     .setDescription(`Cast Rote`)
     .setDMPermission(false)
-    .addIntegerOption(gnosisDotsBuilder)
-    .addIntegerOption(mageArcanaDotsBuilder)
-    .addIntegerOption(mudraSkillDotsBuilder)
     .addStringOption(roteOptionsBuilder)
+    .addStringOption(skillOptionsBuilder)
 
 const execute = async (interaction: ChatInputCommandInteraction) => {
     await interaction.deferReply({
@@ -61,32 +44,22 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
     const roteName = interaction.options.getString(
         ROTE_OPTION_NAME,
     ) as RoteChoiceValue
-    const mudraSkillDots = interaction.options.getInteger(
-        MUDRA_SKILL_DOTS_OPTION_NAME,
-    )
-    const gnosisDots = interaction.options.getInteger(GNOSIS_DOTS_OPTION_NAME)
-    const mageArcanaDots = interaction.options.getInteger(
-        MAGE_ARCANA_DOTS_OPTION_NAME,
-    )
+    const mudraSkill = interaction.options.getString(
+        SKILL_OPTION_NAME,
+    ) as SkillName | null
 
+    const mage = await getCurrentMageCharacter(interaction)
     const roteData: RoteDescription | undefined = getRoteDataByName(roteName)
 
-    if (!gnosisDots || !mageArcanaDots || mudraSkillDots === null) {
-        console.error(
-            `Some data not provided`,
-            JSON.stringify({
-                gnosisDots,
-                mageArcanaDots,
-                mudraSkillDots,
-            }),
-        )
-        return interaction.editReply(`Ooops, something went wrong, sorry :(`)
+    if (!mage) {
+        return interaction.editReply(`Ooops, couldn't find your mage, sorry :(`)
     }
 
     if (!roteName || !roteData) {
         return interaction.editReply(`Rote "${roteName}" not found :(`)
     }
 
+    const mageArcanaDots = mage.arcana[roteData.arcana]
     if (roteData.level > mageArcanaDots) {
         return interaction.editReply(`Not enough dots in the arcana :(`)
     }
@@ -96,17 +69,22 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
         ...roteData,
         spellType: `rote`,
         manaCost: 0,
-        diceToRoll: gnosisDots + mageArcanaDots,
+        diceToRoll: mage.gnosis + mageArcanaDots,
         reachUsed: 0,
     }
     const freeReach = 5 - roteData.level + 1
+
+    // + add order specialization skill value
+    const mudraSkillDots = mudraSkill
+        ? mage.skills[mudraSkill].value
+        : undefined
 
     const { chosenYantras } = await getSpellFactorsAndYantras({
         interaction,
         mageArcanaDots,
         primaryFactor: spellInfo.primaryFactor,
         spellInfo,
-        gnosisDots,
+        gnosisDots: mage.gnosis,
         mudraSkillDots,
         freeReach,
     })
@@ -122,7 +100,7 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
             freeReach,
             spellInfo,
             chosenYantras,
-            gnosisDots,
+            gnosisDots: mage.gnosis,
         }),
     })
 }

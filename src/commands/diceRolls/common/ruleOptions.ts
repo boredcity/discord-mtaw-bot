@@ -1,13 +1,8 @@
 import { Locale, SlashCommandStringOption } from 'discord.js'
 import { ArrayOfOptions } from '../..'
+import { RuleChoiceValue } from '../../../wodTypes/ruleChoiceValue'
 
 export const RULE_OPTION_NAME = `rule`
-export type RuleChoiceValue =
-    | `ruleNoAgain`
-    | `rule9Again`
-    | `rule8Again`
-    | `ruleRoteQuality`
-    | `rule10Again`
 
 export const defaultRuleChoice = `rule10Again`
 

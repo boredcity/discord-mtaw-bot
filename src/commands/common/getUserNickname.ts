@@ -1,15 +1,10 @@
 import { Interaction } from 'discord.js'
+import { getUserAsGuildMember } from './getUserAsGuildMember'
 
 export const getUserNickname = async (
     interaction: Interaction,
 ): Promise<string> => {
     const { username } = interaction.user
-    const members = await interaction.guild?.members.fetch({
-        query: username,
-        limit: 1,
-    })
-
-    const member = members?.find((m) => m.user.username === username)
-
+    const member = await getUserAsGuildMember(interaction)
     return member?.nickname ?? username
 }

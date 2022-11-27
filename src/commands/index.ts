@@ -10,15 +10,18 @@ import { PING_COMMAND } from './ping'
 import { CHANCE_COMMAND } from './diceRolls/chance'
 import { R_COMMAND } from './diceRolls/r'
 import { ROLL_COMMAND } from './diceRolls/roll'
-import { CAST_IMPROVISED_COMMAND } from './cast/castImprovisedOrPraxis'
+import { CAST_IMPROVISED_COMMAND } from './cast/castImprovisedOrPraxis/castImprovisedOrPraxisLoggedIn'
 import {
     CAST_ROTE_AUTOCOMPLETE_COMMAND,
     CAST_ROTE_COMMAND,
-} from './cast/castRote'
+} from './cast/castRote/castRoteLoggedIn'
 import {
     LOOKUP_ROTE_AUTOCOMPLETE_COMMAND,
     LOOKUP_ROTE_COMMAND,
 } from './cast/findRote'
+import { CREATE_CHARACTER } from './charsheet/createCharacter'
+import { REGISTER_PLAYER } from './charsheet/registerPlayer'
+import { REROLL_COMMAND } from './diceRolls/reroll'
 
 export interface LocalizationWithDefault
     extends Partial<Record<Locale, string>> {
@@ -43,9 +46,12 @@ export type AutocompleteCommand = {
 export const ALL_CHAT_INTERACTION_COMMANDS: BotChatCommand[] = [
     HELP_COMMAND,
     PING_COMMAND,
+    CREATE_CHARACTER,
+    REGISTER_PLAYER,
     ROLL_COMMAND,
     CHANCE_COMMAND,
     R_COMMAND,
+    REROLL_COMMAND,
     CAST_ROTE_COMMAND,
     CAST_IMPROVISED_COMMAND,
     LOOKUP_ROTE_COMMAND,

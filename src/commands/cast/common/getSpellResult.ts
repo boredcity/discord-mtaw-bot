@@ -8,7 +8,7 @@ import { DurationChoiceValue } from './options/durationOptions'
 import {
     getManaSpendPerTurnLimit,
     getParadoxDiceCountPerReachByGnosis,
-} from './gnosisHelpers'
+} from '../../../gnosisHelpers'
 import { PotencyChoiceValue } from './options/potencyOptions'
 import { RangeChoiceValue } from './options/rangeOptions'
 import { ScaleChoiceValue } from './options/scaleOptions'

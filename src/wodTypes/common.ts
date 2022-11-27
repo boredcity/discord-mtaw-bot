@@ -1,4 +1,9 @@
-import { StringId, numberFrom0to5, numberFrom1to5 } from '../commonTypes'
+import {
+    StringId,
+    numberFrom0to5,
+    numberFrom1to5,
+    numberFrom1to10,
+} from '../commonTypes'
 import { ArcanaName } from './arcaneName'
 import { AttributeName } from './attributeName'
 import { ConditionName } from './conditionName'
@@ -7,31 +12,44 @@ import { SkillName } from './skillName'
 import { TiltName } from './tiltName'
 import { ViceName } from './viceName'
 import { VirtueName } from './virtueName'
+import { RuleChoiceValue } from './ruleChoiceValue'
 
 export type PrimaryFactorChoiceValue = `duration` | `potency`
 export type ChronicleName = string
 
-interface SpendableWithGetter {
+export interface SpendableWithGetter {
     get max(): number
     current: number
 }
 
-export type PlayerInfo = {
-    name: string
-    characters: {
-        character: Character
-        chronicle: ChronicleName
-    }[]
+export type RollInfo = {
+    id: StringId
+    diceCount: number
+    rule: RuleChoiceValue
+    isChanceRoll: boolean
+    target: number
 }
 
-export interface Character {
+export type IPlayer = {
+    id: StringId
+    name: string
+    activeCharacterId?: StringId
+    characterIds: StringId[]
+}
+
+export interface ICharacter {
+    readonly id: StringId
+    rolls: RollInfo[]
     name: string
     concept: string
     virtue: VirtueName
     vice: ViceName
-    attributes: Map<AttributeName, numberFrom1to5>
-    skills: Map<SkillName, numberFrom0to5>
-    size: number
+    attributes: Record<AttributeName, numberFrom1to5>
+    skills: Record<
+        SkillName,
+        { value: numberFrom0to5; specializations: string[] }
+    >
+    readonly size: number
     armor: number
     get speed(): number
     get defense(): number
@@ -39,12 +57,12 @@ export interface Character {
     beats: number
     experience: number
     health: SpendableWithGetter
-    willPower: SpendableWithGetter
+    willpower: SpendableWithGetter
     additionalInfo: string
 }
 
-type PathName = `acanthus` | `mastigos` | `moros` | `obrimos` | `thyrsus`
-type OrderName =
+export type PathName = `acanthus` | `mastigos` | `moros` | `obrimos` | `thyrsus`
+export type OrderName =
     | `adamantine arrow`
     | `guardians of the veil`
     | `mysterium`
@@ -53,21 +71,24 @@ type OrderName =
     | `seers of the throne`
 // TODO: maybe, add nameless orders and specific prelacies later
 
+export type OrderNameOption = OrderName | `none`
+
 type LegacyName = string
 
-export interface Mage extends Character {
-    type: `mage`
-    path: PathName
-    order: OrderName | `none`
-    legacy: LegacyName
-    arcana: Map<ArcanaName, numberFrom0to5>
+export interface IMage extends ICharacter {
+    readonly type: `mage`
+    readonly path: PathName
+    shadowName: string
+    order: OrderNameOption
+    legacy: LegacyName | `none`
+    arcana: Record<ArcanaName, numberFrom0to5>
     knownRotes: {
         description: RoteDescription
         roteSkill: SkillName
     }[]
     arcaneBeats: number
     arcaneExperience: number
-    gnosis: number
+    gnosis: numberFrom1to10
     mana: SpendableWithGetter
     wisdom: number
     obsessions: string[]
@@ -75,8 +96,19 @@ export interface Mage extends Character {
     tilts: TiltName[]
     conditions: ConditionName[]
 }
+export type NeverEditableField = keyof Pick<IMage, `id` | `type` | `path`>
 
-export const isMage = (char: Character): char is Mage => `gnosis` in char
+export type MageSTEditableFields = keyof Omit<
+    IMage,
+    NeverEditableField | MageSelfEditableField
+>
+
+export type MageSelfEditableField = keyof Pick<
+    IMage,
+    `additionalInfo` | `obsessions` | `aspirations`
+>
+
+export const isMage = (char: ICharacter): char is IMage => `gnosis` in char
 
 export type ArcanaDescription = {
     arcana: ArcanaName

@@ -4,7 +4,7 @@
     "description": "",
     "main": "./src/app.ts",
     "scripts": {
-        "dev": "nodemon src/app.ts",
+        "dev": "nodemon src/app.ts --ignore local_file_storage/**",
         "build": "npx tsc",
         "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
         "lint": "eslint . --ext .ts",

@@ -7,6 +7,12 @@ const commands = ALL_CHAT_INTERACTION_COMMANDS.map((command) =>
     command.builder.toJSON(),
 )
 
+console.log(
+    `Deploying commands:\n${ALL_CHAT_INTERACTION_COMMANDS.map(
+        (c) => `- ${c.name}`,
+    ).join(`\n`)}`,
+)
+
 const rest = new REST({ version: `10` }).setToken(envs.BOT_TOKEN)
 
 ;(async () => {

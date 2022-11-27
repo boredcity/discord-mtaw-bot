@@ -1,3 +1,4 @@
+import { numberFrom1to10 } from './commonTypes'
 export const getMaxYantrasByGnosis = (gnosisDots: number) =>
     Math.ceil(gnosisDots / 2) + 1
 
@@ -48,4 +49,19 @@ export const getManaSpendPerTurnLimit = (gnosis: number) => {
     if (gnosis <= 8) return gnosis
     if (gnosis === 9) return 10
     return 15
+}
+
+export const getManaLimit = (gnosis: numberFrom1to10): number => {
+    return {
+        1: 10,
+        2: 11,
+        3: 12,
+        4: 13,
+        5: 15,
+        6: 20,
+        7: 25,
+        8: 30,
+        9: 50,
+        10: 75,
+    }[gnosis]
 }

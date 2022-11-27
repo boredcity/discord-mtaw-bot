@@ -1,4 +1,4 @@
-import { RuleChoiceValue } from './ruleOptions'
+import { RuleChoiceValue } from '../../../wodTypes/ruleChoiceValue'
 
 interface DieRollResultInfo {
     value: number
@@ -8,15 +8,11 @@ interface DieRollResultInfo {
 
 type GetRollResultsParams = {
     count: number
-    target?: number
+    target: number
     rule: RuleChoiceValue
 }
 
-export function getRollResults({
-    count,
-    target = 8,
-    rule,
-}: GetRollResultsParams): {
+export function getRollResults({ count, target, rule }: GetRollResultsParams): {
     successes: number
     rolled: DieRollResultInfo[]
 } {
@@ -57,6 +53,7 @@ export function getRollResults({
         const secondRollResults = getRollResults({
             rule: `rule10Again`,
             count: rolled.length - successes,
+            target,
         })
         successes += secondRollResults.successes
         rolled.push(...secondRollResults.rolled)

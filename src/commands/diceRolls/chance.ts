@@ -4,7 +4,7 @@ import {
     SlashCommandBuilder,
 } from 'discord.js'
 import type { BotChatCommand, LocalizationWithDefault } from '..'
-import { getRollResults } from './common/getRollResults'
+import { handleDiceRoll } from './common/handleDiceRoll'
 
 const name = `chance`
 
@@ -22,29 +22,7 @@ const builder = new SlashCommandBuilder()
     })
 
 const execute = async (interaction: ChatInputCommandInteraction) => {
-    await interaction.deferReply()
-    const { successes, rolled } = getRollResults({
-        count: 1,
-        target: 10,
-        rule: `ruleNoAgain`,
-    })
-
-    let content =
-        interaction.locale === Locale.Russian
-            ? `10! Тебе повезло! 🍀`
-            : `10! You got lucky! 🍀`
-
-    if (successes === 0) {
-        const value = rolled[0].value
-        content =
-            interaction.locale === Locale.Russian
-                ? `${value}...Увы, не повезло 🫣`
-                : `${value}...Sorry, no dice! 🫣`
-    }
-
-    await interaction.editReply({
-        content,
-    })
+    await handleDiceRoll(interaction, 1, `ruleNoAgain`, 10)
 }
 
 export const CHANCE_COMMAND: BotChatCommand = {
